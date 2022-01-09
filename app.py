@@ -20,7 +20,7 @@ def ping_pong():
 
 
 if __name__ == '__main__':
-    try:
-        app.run()
-    except Exception as e:
-        logging.error(e)
+    
+    app.run()
+    return jsonify("poszlo")
+ 
