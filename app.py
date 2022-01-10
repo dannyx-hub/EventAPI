@@ -1,9 +1,9 @@
 from flask import Flask,jsonify
 from flask_cors import CORS
-from flask_mysqldb import MySQL
-import logging
+# from flask_mysqldb import MySQL
+# import logging
 #config
-logging.basicConfig(filename = "log.log",level="DEBUG")
+# logging.basicConfig(filename = "log.log",level="DEBUG")
 DEBUG = True
 #instantiate the app
 
@@ -22,5 +22,5 @@ def ping_pong():
 if __name__ == '__main__':
     
     app.run()
-    jsonify("poszlo")
- 
+    print("dziala")
+    
