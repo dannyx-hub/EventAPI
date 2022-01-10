@@ -14,24 +14,30 @@ def logowanie():
     if request.method == "POST":
         login = request.form.get('login')
         password = request.form.get('haslo')
+        test = hashlib.md5(password.encode())
+        print(test.hexdigest())
         if login == '' or password == '':
             return "podaj dane logowania"
         else:
             print(login,password)
             # return login, password
-            query = f"select login from users where login ='{login}' and hash ='{password}' "
+            query = f"select id from users where login ='{login}' and hash ='{test.hexdigest()}' "
             print(query)
             log = db.CursorExec(query)
-            if log is None:
+            if len(log)>0:
                 return "Niepoprawne dane logowania", Response(status= 201)
             else:
-                return "udalo sie"
+                return "<h5>KUUUURWA DZIALA</h5>"
     else:
          return '''
-           <form method="POST">
+           <form method="POST" href="192.168.0.107/api/login">
                <div><label>Language: <input type="text" name="login"></label></div>
                <div><label>Framework: <input type="text" name="haslo"></label></div>
                <input type="submit" value="Submit">
            </form>'''
 @app.route('/api/register',methods=['GET','POST'] )
-app.run()
+def register():
+    wynik=db.CursorExec('SELECT * FROM USERS')
+    return str(wynik) 
+
+app.run(host='0.0.0.0')
