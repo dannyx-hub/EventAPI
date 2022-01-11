@@ -9,35 +9,43 @@ app.config['DEBUG'] = True
 db = db()
 db.BeginConnection()
 
-@app.route('/api/login', methods=['GET','POST'])
+
+@app.route('/api/login', methods=['POST'])
 def logowanie():
-    if request.method == "POST":
-        login = request.form.get('login')
-        password = request.form.get('haslo')
-        test = hashlib.md5(password.encode())
-        print(test.hexdigest())
-        if login == '' or password == '':
-            return "podaj dane logowania"
-        else:
-            print(login,password)
-            # return login, password
-            query = f"select id from users where login ='{login}' and hash ='{test.hexdigest()}' "
-            print(query)
-            log = db.CursorExec(query)
-            if len(log)>0:
-                return "Niepoprawne dane logowania", Response(status= 201)
-            else:
-                return "<h5>KUUUURWA DZIALA</h5>"
+    login = request.form.get('login')
+    password = request.form.get('haslo')
+    test = hashlib.md5(password.encode())
+    print(test.hexdigest())
+    if login == '' or password == '':
+        return "podaj dane logowania"
     else:
-         return '''
-           <form method="POST" href="192.168.0.107/api/login">
-               <div><label>Language: <input type="text" name="login"></label></div>
-               <div><label>Framework: <input type="text" name="haslo"></label></div>
-               <input type="submit" value="Submit">
-           </form>'''
-@app.route('/api/register',methods=['GET','POST'] )
+        print(login,password)
+        # return login, password
+        query = f"select id from users where login ='{login}' and hash ='{test.hexdigest()}' "
+        print(query)
+        log = db.CursorExec(query)
+        print(len(log))
+        if len(log)==1:
+            return "<h5>DZIALA</h5>"
+        else:
+            return "Niepoprawne dane logowania"
+
+
+@app.route('/api/register',methods=['POST'] )
 def register():
-    wynik=db.CursorExec('SELECT * FROM USERS')
-    return str(wynik) 
+    login = request.form.get('login')
+    password = request.form.get('haslo')
+    if login == '' or password == '':
+            return "podaj wszystkie dane"
+    else:
+        print(login,password)
+        passwdhash = hashlib.md5(password.encode())
+        query = f"insert into users(login,hash,role) values('{login}','{passwdhash.hexdigest()}','user')"
+        exec = db.InsertQuery(query)
+        if exec == True:
+            return "Zarejestrowano użytkownika"
+        else:
+            return "Nie udało sie zarejestrować użytkownika"
+
 
 app.run(host='0.0.0.0')
