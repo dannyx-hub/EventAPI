@@ -40,12 +40,18 @@ def register():
     else:
         print(login,password)
         passwdhash = hashlib.md5(password.encode())
-        query = f"insert into users(login,hash,role) values('{login}','{passwdhash.hexdigest()}','user')"
-        exec = db.InsertQuery(query)
-        if exec == True:
-            return "Zarejestrowano użytkownika"
+        #check if user exist
+        check = db.CursorExec(f"select id from users where login='{login}'")
+        print(len(check))
+        if len(check)>0:    
+           return "Użytkownik istnieje"
         else:
-            return "Nie udało sie zarejestrować użytkownika"
+            query = f"insert into users(login,hash,role) values('{login}','{passwdhash.hexdigest()}','user')"
+            exec = db.InsertQuery(query)
+            if exec == True:
+                return "Zarejestrowano użytkownika"
+            else:
+                return "Nie udało sie zarejestrować użytkownika"
 
 
 app.run(host='0.0.0.0')
