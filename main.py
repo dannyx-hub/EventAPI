@@ -3,6 +3,7 @@ from flask import Flask,request,Response,abort
 from flask_restful import Api
 from Database import db
 import hashlib
+import datetime
 app = Flask(__name__)
 api = Api(app)
 app.config['DEBUG'] = True
@@ -40,27 +41,12 @@ def register():
     else:
         print(login,password)
         passwdhash = hashlib.md5(password.encode())
-<<<<<<< HEAD
-        #check if user exist
-        check = db.CursorExec(f"select id from users where login='{login}'")
-        print(len(check))
-        if len(check)>0:    
-           return "Użytkownik istnieje"
-        else:
-            query = f"insert into users(login,hash,role) values('{login}','{passwdhash.hexdigest()}','user')"
-            exec = db.InsertQuery(query)
-            if exec == True:
-                return "Zarejestrowano użytkownika"
-            else:
-                return "Nie udało sie zarejestrować użytkownika"
-=======
         query = f"insert into users(login,hash,role) values('{login}','{passwdhash.hexdigest()}','user')"
         exec = db.InsertQuery(query)
         if exec == True:
             return "Zarejestrowano użytkownika",200
         else:
             abort(404)
->>>>>>> 6aaf23951cbf62fd9f132a080278e5c24e79d84b
 
 @app.route('/api/lecturesadd',methods = ['POST'])
 def lecturesadd():
@@ -91,7 +77,19 @@ def lecturesadd():
 @app.route('/api/list',methods=['POST'])
 def list():
     list = db.CursorExec('SELECT eventname,eventdate,eventpersoncreator from events')
+    # print(list[1][1])
+    print(len(list))
     for x in range(len(list)):
-        return list[0][x]
+        for y in range(len(list[x])):
+            data = {
+                f'eventname':f'{list[x][y]}',
+                f'eventdate': f'{list[x][y+1]}',
+                f'eventpersoncreator': f'{list[x][y+2]}',
+            }
     
+    print(data)
+            
+    return 'done'
+        
+    return "Test"
 app.run(host='0.0.0.0')
