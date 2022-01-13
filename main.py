@@ -1,5 +1,5 @@
 from logging import NOTSET
-from flask import Flask,request,Response
+from flask import Flask,request,Response,abort
 from flask_restful import Api
 from Database import db
 import hashlib
@@ -28,7 +28,7 @@ def logowanie():
         if len(log)==1:
             return "<h5>DZIALA</h5>"
         else:
-            return "Niepoprawne dane logowania"
+            abort(403)
 
 
 @app.route('/api/register',methods=['POST'] )
@@ -40,6 +40,7 @@ def register():
     else:
         print(login,password)
         passwdhash = hashlib.md5(password.encode())
+<<<<<<< HEAD
         #check if user exist
         check = db.CursorExec(f"select id from users where login='{login}'")
         print(len(check))
@@ -52,6 +53,45 @@ def register():
                 return "Zarejestrowano użytkownika"
             else:
                 return "Nie udało sie zarejestrować użytkownika"
+=======
+        query = f"insert into users(login,hash,role) values('{login}','{passwdhash.hexdigest()}','user')"
+        exec = db.InsertQuery(query)
+        if exec == True:
+            return "Zarejestrowano użytkownika",200
+        else:
+            abort(404)
+>>>>>>> 6aaf23951cbf62fd9f132a080278e5c24e79d84b
 
+@app.route('/api/lecturesadd',methods = ['POST'])
+def lecturesadd():
+    name = request.form.get('name')
+    who = request.form.get('who')
+    when = request.form.get('when')
+    print(name,who,when)
+    if name =='' or who == '' or when == '':
+       return Response(status=404)
+    else:
+        query = f"SELECT id from events where eventname = '{name}' and eventdate = '{when}'"
+        checklog = db.CursorExec(query)
+        print(len(checklog))
+        if len(checklog) <=0:
+            try:
+                insert = db.InsertQuery(f"insert into events (eventname,eventdate,eventpersoncreator) values('{name}','{when}','{who}')")
+                if insert == True:
+                    return Response('dodano prelekcje',status=200)
+                else:
+                    return Response('prelekcja istnieje',status=404)
+            except Exception as e:
+                print(e)
+                abort(404)
 
+        else:
+            return Response(status=404)
+
+@app.route('/api/list',methods=['POST'])
+def list():
+    list = db.CursorExec('SELECT eventname,eventdate,eventpersoncreator from events')
+    for x in range(len(list)):
+        return list[0][x]
+    
 app.run(host='0.0.0.0')
