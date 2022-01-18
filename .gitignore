@@ -50,6 +50,7 @@ coverage.xml
 *.py,cover
 .hypothesis/
 .pytest_cache/
+*.html
 
 # Translations
 *.mo
@@ -64,7 +65,9 @@ db.sqlite3-journal
 # Flask stuff:
 instance/
 .webassets-cache
-*.ini
+.ini
+.txt
+.html
 
 # Scrapy stuff:
 .scrapy
