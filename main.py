@@ -70,8 +70,8 @@ def lecturesadd():
 @app.route('/api/list',methods=['GET'])
 def list():
     jsonobj = []
-    columns = ["eventname","eventdate","eventpersoncreator"]
-    list = db.CursorExec('SELECT eventname,eventdate,eventpersoncreator from events')
+    columns = ["eventname","eventstartdate","eventstopdata","eventpersoncreator"]
+    list = db.CursorExec('SELECT eventname,eventstartdate,eventstopdata,eventpersoncreator from events where approved = True')
     for x in range(len(list)):
        data={}
        for col in range(len(columns)):
