@@ -28,7 +28,7 @@ def logowanie():
         log = db.CursorExec(query)
         print(len(log))
         if len(log)==1:
-            return "<h5>DZIALA</h5>"
+            return Response("ok",status=200)
         else:
             abort(403)
 
@@ -40,12 +40,11 @@ def register():
     if login == '' or password == '':
             return "podaj wszystkie dane"
     else:
-        print(login,password)
         passwdhash = hashlib.md5(password.encode())
         query = f"insert into users(login,hash,role) values('{login}','{passwdhash.hexdigest()}','user')"
         exec = db.InsertQuery(query)
         if exec == True:
-            return "Zarejestrowano użytkownika",200
+            return Response(status=201)
         else:
             abort(404)
 
@@ -54,9 +53,8 @@ def lecturesadd():
     name = request.form.get('name')
     who = request.form.get('who')
     when = request.form.get('when')
-    print(name,who,when)
     if name =='' or who == '' or when == '':
-       return Response(status=404)
+       return Response(status=409)
     else:
         query = f"SELECT id from events where eventname = '{name}' and eventdate = '{when}'"
         checklog = db.CursorExec(query)
@@ -67,7 +65,7 @@ def lecturesadd():
                 if insert == True:
                     return Response('dodano prelekcje',status=200)
                 else:
-                    return Response('prelekcja istnieje',status=404)
+                    return Response('prelekcja istnieje',status=409)
             except Exception as e:
                 print(e)
                 abort(404)
@@ -80,21 +78,10 @@ def list():
     jsonobj = []
     columns = ["eventname","eventdate","eventpersoncreator"]
     list = db.CursorExec('SELECT eventname,eventdate,eventpersoncreator from events')
-    print(list[0][1])
-    print(len(list))
     for x in range(len(list)):
        data={}
-       for col in range(len(columns)): 
-           print(x,col)
-        #    data ={
-        #         columns[col]:list[x][col],
-        #         f'eventdata':list[x][1],
-        #         f'eventpersoncreator':list[x][2]
-        #         }
+       for col in range(len(columns)):
            data[columns[col]]=list[x][col]
            jsonobj.append(data)
-        
-
-      
     return jsonify(jsonobj)
 app.run(host='0.0.0.0',port=32402)
