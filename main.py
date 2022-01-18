@@ -82,7 +82,6 @@ def list():
        data={}
        for col in range(len(columns)):
            data[columns[col]]=list[x][col]
-           
        jsonobj.append(data)
     return jsonify(jsonobj)
 app.run(host='0.0.0.0',port=32402)

@@ -13,5 +13,3 @@ def config(filename="Config.ini",section = 'postgresql'):
         raise Exception()
     return db
 
-test = config()
-print(test)
