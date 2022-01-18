@@ -78,21 +78,23 @@ def lecturesadd():
 @app.route('/api/list',methods=['GET'])
 def list():
     jsonobj = []
+    columns = ["eventname","eventdate","eventpersoncreator"]
     list = db.CursorExec('SELECT eventname,eventdate,eventpersoncreator from events')
-    # print(list[1][1])
-    # print(len(list))
+    print(list[0][1])
+    print(len(list))
     for x in range(len(list)):
-        for y in range(len(list)):
-           
-            data ={
-                f'eventname':list[x][y],
-                f'eventdata':list[x][y],
-                f'eventpersoncreator':list[x][y]
-                }
-            print(data)
+       data={}
+       for col in range(len(columns)): 
+           print(x,col)
+        #    data ={
+        #         columns[col]:list[x][col],
+        #         f'eventdata':list[x][1],
+        #         f'eventpersoncreator':list[x][2]
+        #         }
+           data[columns[col]]=list[x][col]
+           jsonobj.append(data)
+        
 
       
-    return Response(response=jsonify(data),status=200,content_type='application/json')
-
-
+    return jsonify(jsonobj)
 app.run(host='0.0.0.0',port=32402)
