@@ -1,9 +1,10 @@
 from logging import NOTSET
-from flask import Flask,request,Response,abort
+from flask import Flask,request,Response,abort,jsonify
 from flask_restful import Api
 from Database import db
 import hashlib
 import datetime
+import json
 app = Flask(__name__)
 api = Api(app)
 app.config['DEBUG'] = True
@@ -74,22 +75,24 @@ def lecturesadd():
         else:
             return Response(status=404)
 
-@app.route('/api/list',methods=['POST'])
+@app.route('/api/list',methods=['GET'])
 def list():
+    jsonobj = []
     list = db.CursorExec('SELECT eventname,eventdate,eventpersoncreator from events')
     # print(list[1][1])
-    print(len(list))
+    # print(len(list))
     for x in range(len(list)):
-        for y in range(len(list[x])):
-            data = {
-                f'eventname':f'{list[x][y]}',
-                f'eventdate': f'{list[x][y+1]}',
-                f'eventpersoncreator': f'{list[x][y+2]}',
-            }
-    
-    print(data)
-            
-    return 'done'
-        
-    return "Test"
-app.run(host='0.0.0.0')
+        for y in range(len(list)):
+           
+            data ={
+                f'eventname':list[x][y],
+                f'eventdata':list[x][y],
+                f'eventpersoncreator':list[x][y]
+                }
+            print(data)
+
+      
+    return Response(response=jsonify(data),status=200,content_type='application/json')
+
+
+app.run(host='0.0.0.0',port=32402)
