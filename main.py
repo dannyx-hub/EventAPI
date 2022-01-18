@@ -7,7 +7,7 @@ import datetime
 import json
 app = Flask(__name__)
 api = Api(app)
-app.config['DEBUG'] = True
+app.config['DEBUG'] = False
 db = db()
 db.BeginConnection()
 
