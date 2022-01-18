@@ -17,16 +17,11 @@ def logowanie():
     login = request.form.get('login')
     password = request.form.get('haslo')
     test = hashlib.md5(password.encode())
-    print(test.hexdigest())
     if login == '' or password == '':
         return "podaj dane logowania"
     else:
-        print(login,password)
-        # return login, password
         query = f"select id from users where login ='{login}' and hash ='{test.hexdigest()}' "
-        print(query)
         log = db.CursorExec(query)
-        print(len(log))
         if len(log)==1:
             return Response("ok",status=200)
         else:
@@ -58,7 +53,6 @@ def lecturesadd():
     else:
         query = f"SELECT id from events where eventname = '{name}' and eventdate = '{when}'"
         checklog = db.CursorExec(query)
-        print(len(checklog))
         if len(checklog) <=0:
             try:
                 insert = db.InsertQuery(f"insert into events (eventname,eventdate,eventpersoncreator) values('{name}','{when}','{who}')")

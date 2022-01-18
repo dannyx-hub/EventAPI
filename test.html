@@ -1,28 +1,55 @@
 <html>
-<form action = 'http://192.168.0.107:5000/api/login' method='POST'>
+    <h5>LOGOWANIE LOCAL</h5>
+<form action = 'http://192.168.0.106:32402/api/login' method='POST'>
  <div><label>Language: <input type="text" name="login"></label></div>
  <div><label>Framework: <input type="text" name="haslo"></label></div>
  <input type="submit" value="ZALOGUJ">
 </form>
 
-<h5>REJESTRACJA</h5>
+<h5>LOGOWANIE hosting</h5>
+<form action = 'http://192.168.0.106:32402/api/login' method='POST'>
+ <div><label>Language: <input type="text" name="login"></label></div>
+ <div><label>Framework: <input type="text" name="haslo"></label></div>
+ <input type="submit" value="ZALOGUJ">
+</form>
+
+<h5>REJESTRACJA-local</h5>
 <html>
-<form action = 'http://192.168.0.150:5000/api/register' method='POST'>
+<form action = 'http://192.168.0.106:32402/api/register' method='POST'>
+ <div><label>Language: <input type="text" name="login"></label></div>
+ <div><label>Framework: <input type="text" name="haslo"></label></div>
+ <input type="submit" value="rejestracja">
+</form>
+<h5>REJESTRACJA-hosting</h5>
+<html>
+<form action = 'http://192.168.0.106:32402/api/register' method='POST'>
  <div><label>Language: <input type="text" name="login"></label></div>
  <div><label>Framework: <input type="text" name="haslo"></label></div>
  <input type="submit" value="rejestracja">
 </form>
 
 <h5>DODAWANIE PRELEKCJI</h5>
-<form action = 'http://192.168.0.150:5000/api/lecturesadd' method='POST'>
+<form action = 'http://192.168.0.106:32402/api/lecturesadd' method='POST'>
  <div><label>name: <input type="text" name="name"></label></div>
  <div><label>who: <input type="text" name="who"></label></div>
  <div><label>when: <input type="datetime" name="when"></label></div>
  <input type="submit" value="DODAJ">
 </form>
- 
- <br><form action = 'http://192.168.0.150:5000/api/list' method='POST'>
+<h5>DODAWANIE PRELEKCJI-hosting</h5>
+<form action = 'http://192.168.0.150:32402/api/lecturesadd' method='POST'>
+ <div><label>name: <input type="text" name="name"></label></div>
+ <div><label>who: <input type="text" name="who"></label></div>
+ <div><label>when: <input type="datetime" name="when"></label></div>
+ <input type="submit" value="DODAJ">
+</form>
+ <h5>LISTA LOCAL</h5>
+ <br><form action = 'http://192.168.0.106:32402/api/list' method='GET'>
     <input type="submit" value="lista">
 </form>
+<h5>LISTA HOSTING</h5>
+<br><form action = 'http://192.168.0.150:32402/api/list' method='GET'>
+   <input type="submit" value="lista">
+</form>
+
 </html>
 
