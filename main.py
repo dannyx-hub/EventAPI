@@ -107,5 +107,6 @@ def list():
 @app.route('/api/approve',methods=['POST'])
 def approve():
     print("approve")
-    return "dupa"
+    body = request.json()
+    return jsonify(body)
 app.run(host='0.0.0.0',port=32402)
