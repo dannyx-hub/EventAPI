@@ -103,4 +103,9 @@ def list():
            data[columns[col]]=list[x][col]
        jsonobj.append(data)
     return jsonify(jsonobj)
+
+@app.route('/api/approve',methods=['POST'])
+def approve():
+    print("approve")
+    return "dupa"
 app.run(host='0.0.0.0',port=32402)
