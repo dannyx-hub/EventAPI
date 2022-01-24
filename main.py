@@ -10,7 +10,7 @@ from art import tprint
 import jwt
 from functools import wraps
 tprint("EventsAPI")
-print("version: 1.0.0\ncreated by dannyx-hub")
+print("version: 1.0.1\ncreated by dannyx-hub")
 print("\ngithub: https://github.com/dannyx-hub\n")
 app = Flask(__name__)
 CORS(app)
@@ -116,9 +116,31 @@ def list():
        jsonobj.append(data)
     return jsonify(jsonobj)
 
-@app.route('/api/approve',methods=['POST'])
+@app.route('/api/approve',methods=['GET','POST'])
 def approve():
-    print("approve")
-    body = request.json()
-    return jsonify(body)
-
+    if request.method == "GET":
+        jsonobj=[]
+        selectnotapproved = "select id,eventname,eventstartdate,eventstopdate,eventpersoncreator,descr from events where approved = false"
+        notapproved = db.CursorExec(selectnotapproved)
+        columns = ["id","eventname","eventstartdate","eventstopdate","eventpersoncreator","descr"]
+        for x in range(len(notapproved)):
+            data = {}
+            for col in range(len(columns)):
+                data[columns[col]] = notapproved[x][col]
+            jsonobj.append(data)
+        return jsonify(jsonobj)
+    elif request.method == "POST":
+        body = request.get_json()
+        checkquery = f'select approved from events where id = {body["id"]} and approved = False'
+        check = db.CursorExec(checkquery)
+        if len(check) !=1:
+            return Response('{"msg":"bad id"}',status=500)
+        elif len(check) == 1:
+            updatequery = f"update events set approved = True where id = {body['id']}"
+            update = db.UpdateQuery(updatequery)
+            if update == True:
+                return Response(status=200)
+            else:
+                return Response(status=500)
+        else:
+            return Response(status=500)
