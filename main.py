@@ -5,8 +5,13 @@ from flask_restful import Api
 from flask_cors import CORS
 from Database import db
 import hashlib
+from art import tprint
+#importy testowe jeszcze nie dzialaja
 import jwt
 from functools import wraps
+tprint("EventsAPI")
+print("version: 1.0.0\ncreated by dannyx-hub")
+print("\ngithub: https://github.com/dannyx-hub\n")
 app = Flask(__name__)
 CORS(app)
 api = Api(app)
@@ -102,8 +107,8 @@ def lecturesadd():
 # @token_required
 def list():
     jsonobj = []
-    columns = ["eventname","eventstartdate","eventstopdate","eventpersoncreator"]
-    list = db.CursorExec('SELECT eventname,eventstartdate,eventstopdate,eventpersoncreator from events where approved = True')
+    columns = ["eventname","eventstartdate","eventstopdate","eventpersoncreator","descr"]
+    list = db.CursorExec('SELECT eventname,eventstartdate,eventstopdate,eventpersoncreator,descr from events where approved = True')
     for x in range(len(list)):
        data={}
        for col in range(len(columns)):
