@@ -9,7 +9,7 @@ from art import tprint
 #importy testowe jeszcze nie dzialaja
 import jwt
 from functools import wraps
-tprint("EventsAPI")
+tprint("EventsAPI",font='random')
 print("version: 1.0.1\ncreated by dannyx-hub")
 print("\ngithub: https://github.com/dannyx-hub\n")
 app = Flask(__name__)
@@ -35,8 +35,6 @@ def token_required(f):
         try:
             data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"])
             current_user = db.CursorExec(f"SELECT id FROM USERS WHERE ROLE={data['id']}")
-            print("ez")
-            print(current_user[0][0])
             return f(current_user[0][0], *args, **kwargs)
         except:
             return jsonify({'message': 'token is invalid'})
@@ -44,17 +42,14 @@ def token_required(f):
 
 @app.route('/api/login', methods=['POST'])
 def logowanie():
-    # print(request.body)
     login = request.form.get('login')
     password = request.form.get('haslo')
     test = hashlib.md5(password.encode())
-    print(login,password)
     if login == '' or password == '':
         return "podaj dane logowania"
     else:
         query = f"select id from users where login ='{login}' and hash ='{test.hexdigest()}' "
         log = db.CursorExec(query)
-        print(log[0][0])
         if len(log)==1:
             token = jwt.encode({'id':log[0][0],'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=45)}, app.config['SECRET_KEY'], "HS256")
             return jsonify({'token':token})
