@@ -28,6 +28,8 @@ class db:
             
         except Exception as e:
             print(e)
+
+
     def CursorExec(self,query):
         self.cursor = self.conn.cursor()
         self.cursor.execute(query)
@@ -44,7 +46,15 @@ class db:
         except Exception as e:
             print(e)
             return False
-
+    def UpdateQuery(self,query):
+        self.cursor = self.conn.cursor()
+        try:
+            self.cursor.execute(query)
+            self.conn.commit()
+            return True
+        except Exception as e:
+            print(e)
+            return False
     def run(self):
         self.BeginConnection()
         self.CursorExec()
