@@ -1,16 +1,16 @@
-
 import datetime
+from urllib.request import Request
 from flask import Flask,request,Response,abort,jsonify
 from flask_restful import Api
 from flask_cors import CORS
 from Database import db
 import hashlib
-from art import tprint
+from art import tprint,decor,text2art
 #importy testowe jeszcze nie dzialaja
 import jwt
 from functools import wraps
-tprint("EventsAPI",font='random')
-print("version: 1.0.1\ncreated by dannyx-hub")
+tprint("EventsAPI")
+print(decor("barcode1") + text2art("    version: 1.0.1 created by dannyx-hub   ",font="random32") + decor("barcode1",reverse=True))
 print("\ngithub: https://github.com/dannyx-hub\n")
 app = Flask(__name__)
 CORS(app)
@@ -139,3 +139,18 @@ def approve():
                 return Response(status=500)
         else:
             return Response(status=500)
+        
+@app.route('/api/user',methods=['POST','GET','DELETE'])
+def user():
+    if request.method == 'GET':
+        selectuserquery = "select id,login,role from users"
+        columns = ['id','login','role']
+        selecteduser = db.CursorExec(selectuserquery)
+        jsonobj=[]
+        for x in range(len(selecteduser)):
+            data = {}
+            for col in range(len(columns)):
+                data[columns[col]] = selecteduser[x][col]
+                
+            jsonobj.append(data)
+        return jsonify(jsonobj)
