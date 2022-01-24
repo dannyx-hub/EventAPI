@@ -1313,3 +1313,822 @@ INFO:werkzeug: * Debugger PIN: 311-131-353
 INFO:werkzeug: * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
 INFO:werkzeug:192.168.0.150 - - [11/Jan/2022 13:24:13] "[37mPOST /api/register HTTP/1.1[0m" 200 -
 INFO:werkzeug: * Detected change in 'C:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\config.py', reloading
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 08:56:23] "[37mPOST /api/login HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 08:56:24] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 08:58:54] "[37mPOST /api/login HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 08:58:57] "[37mPOST /api/login HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 10:04:42] "[37mGET /api/list HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\__pycache__\\stringprep.cpython-38.pyc', reloading
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 13:20:30] "[37mGET /api/list HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:21:12] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\flask\\__pycache__\\debughelpers.cpython-38.pyc', reloading
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 13:21:41] "[37mPOST /api/login HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:21:51] "[33mGET /api/?login=root&password=root HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:22:46] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:22:47] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:22:48] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:22:49] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:22:49] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:28:23] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:28:23] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\Database.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:29:48] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:29:49] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:29:49] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:29:50] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 13:30:14] "[37mPOST /api/login HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 13:30:24] "[37mPOST /api/login HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\psycopg2\\__pycache__\\sql.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\flask\\app.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\flask_restful\\__init__.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\flask\\_compat.py', reloading
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 13:31:22] "[35m[1mPOST /api/login HTTP/1.1[0m" 500 -
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 13:31:22] "[37mGET /api/login?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 13:31:22] "[37mGET /api/login?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 13:31:22] "[37mGET /api/login?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 13:31:23] "[37mGET /api/login?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 13:31:23] "[37mGET /api/login?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 13:31:23] "[37mGET /api/login?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 13:31:30] "[35m[1mPOST /api/login HTTP/1.1[0m" 500 -
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 13:31:30] "[37mGET /api/login?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 13:31:30] "[37mGET /api/login?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 13:31:30] "[37mGET /api/login?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 13:31:30] "[37mGET /api/login?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 13:31:30] "[37mGET /api/login?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 13:31:40] "[35m[1mPOST /api/login HTTP/1.1[0m" 500 -
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 13:31:40] "[37mGET /api/login?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 13:31:40] "[37mGET /api/login?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 13:31:40] "[37mGET /api/login?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 13:31:40] "[37mGET /api/login?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 13:31:40] "[37mGET /api/login?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 13:31:40] "[37mGET /api/login?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 13:32:43] "[37mPOST /api/login HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 13:32:51] "[37mPOST /api/login HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 13:32:58] "[37mPOST /api/login HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 13:33:10] "[37mPOST /api/login HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:33:34] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:33:35] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:33:36] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:33:36] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:33:37] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:33:38] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:33:39] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:35:04] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:35:05] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:35:05] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:35:06] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:35:06] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:35:07] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:35:07] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:35:08] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:35:08] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:35:09] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 13:36:50] "[37mPOST /api/login HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:02] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:03] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:03] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:09] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:10] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:10] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:10] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:11] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:11] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:11] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:12] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:12] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:15] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:16] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:16] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:19] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:20] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:20] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:21] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:32] "[35m[1mGET /api/list?login=root&password=root HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\werkzeug\\datastructures.py', reloading
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:33] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:33] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:33] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:33] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:33] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:43] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:44] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:45] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:47] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:47] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:47] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:48] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:48] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:48] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:49] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:49] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:49] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:49] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:50] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:50] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:50] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:51] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:37:51] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\utils\\__pycache__\\datastructures.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\forms\\__pycache__\\__init__.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\core\\__pycache__\\__init__.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\core\\__pycache__\\exceptions.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\forms\\__pycache__\\boundfield.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\forms\\__pycache__\\utils.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\conf\\__pycache__\\__init__.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\conf\\__pycache__\\global_settings.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\core\\__pycache__\\validators.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\__pycache__\\ipaddress.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\utils\\__pycache__\\deconstruct.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\utils\\__pycache__\\encoding.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\utils\\__pycache__\\deprecation.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\asyncio\\__pycache__\\__init__.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\asyncio\\__pycache__\\base_events.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\concurrent\\__pycache__\\__init__.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\concurrent\\futures\\__pycache__\\__init__.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\concurrent\\futures\\__pycache__\\_base.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\asyncio\\__pycache__\\constants.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\asyncio\\__pycache__\\coroutines.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\asyncio\\__pycache__\\base_futures.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\asyncio\\__pycache__\\format_helpers.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\asyncio\\__pycache__\\log.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\asyncio\\__pycache__\\events.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\__pycache__\\contextvars.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\asyncio\\__pycache__\\exceptions.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\asyncio\\__pycache__\\base_tasks.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\asyncio\\__pycache__\\futures.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\asyncio\\__pycache__\\protocols.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\asyncio\\__pycache__\\sslproto.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\asyncio\\__pycache__\\transports.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\asyncio\\__pycache__\\staggered.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\asyncio\\__pycache__\\locks.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\asyncio\\__pycache__\\tasks.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\asyncio\\__pycache__\\trsock.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\asyncio\\__pycache__\\runners.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\asyncio\\__pycache__\\queues.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\asyncio\\__pycache__\\streams.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\asyncio\\__pycache__\\subprocess.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\asyncio\\__pycache__\\windows_events.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\asyncio\\__pycache__\\base_subprocess.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\asyncio\\__pycache__\\proactor_events.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\asyncio\\__pycache__\\selector_events.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\asyncio\\__pycache__\\windows_utils.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\asgiref\\__pycache__\\__init__.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\asgiref\\__pycache__\\sync.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\concurrent\\futures\\__pycache__\\thread.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\asgiref\\__pycache__\\current_thread_executor.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\asgiref\\__pycache__\\local.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\utils\\__pycache__\\functional.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\utils\\__pycache__\\ipv6.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\utils\\translation\\__pycache__\\__init__.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\utils\\__pycache__\\autoreload.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\apps\\__pycache__\\__init__.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\apps\\__pycache__\\config.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\utils\\__pycache__\\module_loading.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\apps\\__pycache__\\registry.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\core\\__pycache__\\signals.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\dispatch\\__pycache__\\__init__.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\dispatch\\__pycache__\\dispatcher.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\utils\\__pycache__\\inspect.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\utils\\__pycache__\\regex_helper.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\utils\\__pycache__\\timezone.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\pytz\\__pycache__\\__init__.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\pytz\\__pycache__\\exceptions.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\pytz\\__pycache__\\lazy.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\pytz\\__pycache__\\tzinfo.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\pytz\\__pycache__\\tzfile.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\utils\\__pycache__\\html.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\html\\__pycache__\\parser.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\__pycache__\\_markupbase.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\utils\\__pycache__\\http.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\utils\\__pycache__\\safestring.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\utils\\__pycache__\\text.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\forms\\__pycache__\\widgets.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\templatetags\\__pycache__\\__init__.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\templatetags\\__pycache__\\static.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\template\\__pycache__\\__init__.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\template\\__pycache__\\engine.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\template\\__pycache__\\base.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\template\\__pycache__\\context.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\utils\\__pycache__\\formats.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\utils\\__pycache__\\dateformat.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\utils\\__pycache__\\dates.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\utils\\__pycache__\\datetime_safe.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\utils\\__pycache__\\numberformat.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\template\\__pycache__\\exceptions.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\template\\__pycache__\\library.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\utils\\__pycache__\\itercompat.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\template\\__pycache__\\utils.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\utils\\__pycache__\\topological_sort.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\forms\\__pycache__\\renderers.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\template\\backends\\__pycache__\\__init__.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\template\\backends\\__pycache__\\django.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\template\\backends\\__pycache__\\base.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\utils\\__pycache__\\_os.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\template\\__pycache__\\loader.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\template\\backends\\__pycache__\\jinja2.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\forms\\__pycache__\\fields.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\utils\\__pycache__\\dateparse.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\utils\\__pycache__\\duration.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\forms\\__pycache__\\forms.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\forms\\__pycache__\\formsets.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\django\\forms\\__pycache__\\models.cpython-38.pyc', reloading
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:38:11] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 13:45:37] "[37mPOST /api/login HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 13:45:43] "[37mPOST /api/login HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:45:59] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 13:51:39] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Restarting with windowsapi reloader
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 14:12:10] "[37mPOST /api/login HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:12:20] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:12:22] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:12:23] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:12:24] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:12:24] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:12:25] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:12:26] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:12:26] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:12:27] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:12:27] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:12:28] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:12:43] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:12:44] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:12:45] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:12:45] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:12:46] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:12:47] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:12:47] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:12:48] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:12:48] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:12:49] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:12:49] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:12:50] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:12:51] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:12:51] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:12:52] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:12:52] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:12:53] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:12:53] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:12:54] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:12:55] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:12:55] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:12:55] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [20/Jan/2022 14:13:01] "[37mPOST /api/login HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:13:11] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:13:13] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:13:13] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:13:14] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:13:14] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:13:14] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:13:15] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:13:15] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:13:15] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:13:15] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:13:15] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:13:15] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:13:16] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:13:16] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:13:16] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:13:16] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/Jan/2022 14:13:16] "[37mGET /api/list?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:27:27] "[35m[1mGET /api/list HTTP/1.1[0m" 500 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:27:27] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:27:27] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:27:27] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:27:27] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:27:27] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:27:27] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:17] "[35m[1mGET /api/list HTTP/1.1[0m" 500 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:17] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:17] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:17] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:17] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:17] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:17] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:20] "[35m[1mGET /api/list HTTP/1.1[0m" 500 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:20] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:20] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:20] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:20] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:20] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:42] "[35m[1mGET /api/list HTTP/1.1[0m" 500 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:42] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:42] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:42] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:42] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:42] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:42] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:42] "[35m[1mGET /api/list HTTP/1.1[0m" 500 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:42] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:42] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:42] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:43] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:43] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:43] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:43] "[35m[1mGET /api/list HTTP/1.1[0m" 500 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:43] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:43] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:43] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:44] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:44] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:44] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:44] "[35m[1mGET /api/list HTTP/1.1[0m" 500 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:44] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:44] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:44] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:44] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:44] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:44] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:54] "[35m[1mGET /api/list HTTP/1.1[0m" 500 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:54] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:54] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:54] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:54] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:40:54] "[37mGET /api/list?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:41:07] "[37mGET /api/list HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:41:07] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 08:41:37] "[37mGET /api/list HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\flask\\wrappers.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\werkzeug\\wrappers\\__init__.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\werkzeug\\wrappers\\response.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\werkzeug\\wrappers\\base_response.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\werkzeug\\wrappers\\etag.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\werkzeug\\wrappers\\auth.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\werkzeug\\wrappers\\cors.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\werkzeug\\wrappers\\common_descriptors.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\werkzeug\\wrappers\\json.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\werkzeug\\exceptions.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\flask\\json\\__init__.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:192.168.0.90 - - [24/Jan/2022 11:06:34] "[37mGET /api/list HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.90 - - [24/Jan/2022 11:09:08] "[37mOPTIONS /api/login HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.90 - - [24/Jan/2022 11:09:20] "[37mOPTIONS /api/login HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\hashlib.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:192.168.0.90 - - [24/Jan/2022 11:10:07] "[37mOPTIONS /api/login HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\functools.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\flask_cors\\__init__.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\flask_cors\\decorator.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\flask_cors\\core.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\flask_cors\\extension.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\flask_cors\\version.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:192.168.0.90 - - [24/Jan/2022 11:11:01] "[37mOPTIONS /api/login HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\flask\\__pycache__\\debughelpers.cpython-38.pyc', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\flask\\app.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\flask_restful\\__init__.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\flask\\_compat.py', reloading
+INFO:werkzeug:192.168.0.90 - - [24/Jan/2022 11:11:01] "[35m[1mPOST /api/login HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:192.168.0.90 - - [24/Jan/2022 11:11:15] "[37mOPTIONS /api/login HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.90 - - [24/Jan/2022 11:11:15] "[35m[1mPOST /api/login HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:192.168.0.90 - - [24/Jan/2022 11:12:20] "[37mOPTIONS /api/login HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.90 - - [24/Jan/2022 11:12:20] "[35m[1mPOST /api/login HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:192.168.0.90 - - [24/Jan/2022 11:12:50] "[37mOPTIONS /api/login HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.90 - - [24/Jan/2022 11:12:50] "[35m[1mPOST /api/login HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:192.168.0.90 - - [24/Jan/2022 11:15:34] "[37mOPTIONS /api/login HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.90 - - [24/Jan/2022 11:15:34] "[35m[1mPOST /api/login HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:192.168.0.90 - - [24/Jan/2022 11:16:17] "[37mOPTIONS /api/login HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.90 - - [24/Jan/2022 11:16:17] "[35m[1mPOST /api/login HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\Lib\\site-packages\\werkzeug\\local.py', reloading
+INFO:werkzeug:127.0.0.1 - - [24/Jan/2022 11:17:08] "[35m[1mPOST /api/login?login=root&password=root HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [24/Jan/2022 11:17:17] "[35m[1mPOST /api/login?login=root&password=root HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [24/Jan/2022 11:17:19] "[35m[1mPOST /api/login?login=root&password=root HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [24/Jan/2022 11:17:39] "[37mPOST /api/login?login=root&password=root HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.90 - - [24/Jan/2022 11:25:00] "[37mPOST /api/login HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 11:41:12] "[31m[1mPOST /api/lecturesadd HTTP/1.1[0m" 409 -
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'c:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 11:41:43] "[37mPOST /api/lecturesadd HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.90 - - [24/Jan/2022 11:43:07] "[37mGET /api/list HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 11:43:28] "[37mPOST /api/register HTTP/1.1[0m" 201 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 11:43:35] "[37mPOST /api/register HTTP/1.1[0m" 201 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 11:43:45] "[31m[1mPOST /api/login HTTP/1.1[0m" 403 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 11:44:19] "[37mPOST /api/register HTTP/1.1[0m" 201 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 11:44:27] "[37mPOST /api/login HTTP/1.1[0m" 200 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 11:49:33] "[31m[1mGET /api/login HTTP/1.1[0m" 405 -
+INFO:werkzeug:192.168.0.150 - - [24/Jan/2022 11:49:36] "[31m[1mGET /api/login HTTP/1.1[0m" 405 -
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:waitress:Serving on http://0.0.0.0:32402
+INFO:werkzeug: * Restarting with windowsapi reloader
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 311-131-353
+INFO:werkzeug: * Running on http://0.0.0.0:32402/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\User\\Documents\\GitHub\\lecturesAPI\\main.py', reloading
+INFO:werkzeug: * Restarting with windowsapi reloader
+INFO:waitress:Serving on http://0.0.0.0:32402
+INFO:waitress:Serving on http://0.0.0.0:32402
+INFO:waitress:Serving on http://0.0.0.0:32402
