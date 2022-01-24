@@ -2,16 +2,19 @@
 import datetime
 from flask import Flask,request,Response,abort,jsonify
 from flask_restful import Api
+from flask_cors import CORS
 from Database import db
 import hashlib
 import jwt
 from functools import wraps
 app = Flask(__name__)
+CORS(app)
 api = Api(app)
 app.config['SECRET_KEY'] = '123123123adsasdasd'
 app.config['DEBUG'] = True
 db = db()
 db.BeginConnection()
+
 def token_required(f):
     @wraps(f)
     def decorator(*args, **kwargs):
@@ -36,9 +39,11 @@ def token_required(f):
 
 @app.route('/api/login', methods=['POST'])
 def logowanie():
+    # print(request.body)
     login = request.form.get('login')
     password = request.form.get('haslo')
     test = hashlib.md5(password.encode())
+    print(login,password)
     if login == '' or password == '':
         return "podaj dane logowania"
     else:
@@ -69,17 +74,19 @@ def register():
 
 @app.route('/api/lecturesadd',methods = ['POST'])
 def lecturesadd():
-    name = request.form.get('name')
-    who = request.form.get('who')
-    when = request.form.get('when')
-    if name =='' or who == '' or when == '':
+    eventname = request.form.get('eventname')
+    eventpersoncreator = request.form.get('eventpersoncreator')
+    eventstartdate = request.form.get('eventstartdate')
+    eventstopdate = request.form.get('eventstopdate')
+    descr = request.form.get('descr')
+    if eventname =='' or eventpersoncreator == '' or eventstartdate == '' or descr == '' :
        return Response(status=409)
     else:
-        query = f"SELECT id from events where eventname = '{name}' and eventdate = '{when}'"
+        query = f"SELECT id from events where eventname = '{eventname}' and eventstartdate = '{eventstartdate}'"
         checklog = db.CursorExec(query)
         if len(checklog) <=0:
             try:
-                insert = db.InsertQuery(f"insert into events (eventname,eventstartdate,eventpersoncreator,approved,eventstopdate) values('{name}','{when}','{who}')")
+                insert = db.InsertQuery(f"insert into events (eventname,eventstartdate,eventpersoncreator,approved,eventstopdate,descr) values('{eventname}','{eventstartdate}','{eventpersoncreator}','false','{eventstopdate}','{descr}')")
                 if insert == True:
                     return Response('dodano prelekcje',status=200)
                 else:
@@ -92,11 +99,11 @@ def lecturesadd():
             return Response(status=404)
 
 @app.route('/api/list',methods=['GET'])
-@token_required
+# @token_required
 def list():
     jsonobj = []
-    columns = ["eventname","eventstartdate","eventstopdata","eventpersoncreator"]
-    list = db.CursorExec('SELECT eventname,eventstartdate,eventstopdata,eventpersoncreator from events where approved = True')
+    columns = ["eventname","eventstartdate","eventstopdate","eventpersoncreator"]
+    list = db.CursorExec('SELECT eventname,eventstartdate,eventstopdate,eventpersoncreator from events where approved = True')
     for x in range(len(list)):
        data={}
        for col in range(len(columns)):
