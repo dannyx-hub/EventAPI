@@ -1,29 +1,58 @@
-from logging import NOTSET
+
+import datetime
 from flask import Flask,request,Response,abort,jsonify
 from flask_restful import Api
+from flask_cors import CORS
 from Database import db
 import hashlib
-import datetime
-import json
+import jwt
+from functools import wraps
 app = Flask(__name__)
+CORS(app)
 api = Api(app)
-app.config['DEBUG'] = False
+app.config['SECRET_KEY'] = '123123123adsasdasd'
+app.config['DEBUG'] = True
 db = db()
 db.BeginConnection()
 
+def token_required(f):
+    @wraps(f)
+    def decorator(*args, **kwargs):
+
+        token = None
+
+        if 'x-access-tokens' in request.headers:
+            token = request.headers['x-access-tokens']
+
+        if not token:
+            return jsonify({'message': 'a valid token is missing'})
+        
+        try:
+            data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"])
+            current_user = db.CursorExec(f"SELECT id FROM USERS WHERE ROLE={data['id']}")
+            print("ez")
+            print(current_user[0][0])
+            return f(current_user[0][0], *args, **kwargs)
+        except:
+            return jsonify({'message': 'token is invalid'})
+    return decorator
 
 @app.route('/api/login', methods=['POST'])
 def logowanie():
+    # print(request.body)
     login = request.form.get('login')
     password = request.form.get('haslo')
     test = hashlib.md5(password.encode())
+    print(login,password)
     if login == '' or password == '':
         return "podaj dane logowania"
     else:
         query = f"select id from users where login ='{login}' and hash ='{test.hexdigest()}' "
         log = db.CursorExec(query)
+        print(log[0][0])
         if len(log)==1:
-            return Response("ok",status=200)
+            token = jwt.encode({'id':log[0][0],'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=45)}, app.config['SECRET_KEY'], "HS256")
+            return jsonify({'token':token})
         else:
             abort(403)
 
@@ -45,17 +74,19 @@ def register():
 
 @app.route('/api/lecturesadd',methods = ['POST'])
 def lecturesadd():
-    name = request.form.get('name')
-    who = request.form.get('who')
-    when = request.form.get('when')
-    if name =='' or who == '' or when == '':
+    eventname = request.form.get('eventname')
+    eventpersoncreator = request.form.get('eventpersoncreator')
+    eventstartdate = request.form.get('eventstartdate')
+    eventstopdate = request.form.get('eventstopdate')
+    descr = request.form.get('descr')
+    if eventname =='' or eventpersoncreator == '' or eventstartdate == '' or descr == '' :
        return Response(status=409)
     else:
-        query = f"SELECT id from events where eventname = '{name}' and eventdate = '{when}'"
+        query = f"SELECT id from events where eventname = '{eventname}' and eventstartdate = '{eventstartdate}'"
         checklog = db.CursorExec(query)
         if len(checklog) <=0:
             try:
-                insert = db.InsertQuery(f"insert into events (eventname,eventdate,eventpersoncreator) values('{name}','{when}','{who}')")
+                insert = db.InsertQuery(f"insert into events (eventname,eventstartdate,eventpersoncreator,approved,eventstopdate,descr) values('{eventname}','{eventstartdate}','{eventpersoncreator}','false','{eventstopdate}','{descr}')")
                 if insert == True:
                     return Response('dodano prelekcje',status=200)
                 else:
@@ -68,6 +99,7 @@ def lecturesadd():
             return Response(status=404)
 
 @app.route('/api/list',methods=['GET'])
+# @token_required
 def list():
     jsonobj = []
     columns = ["eventname","eventstartdate","eventstopdate","eventpersoncreator"]
@@ -78,4 +110,10 @@ def list():
            data[columns[col]]=list[x][col]
        jsonobj.append(data)
     return jsonify(jsonobj)
+
+@app.route('/api/approve',methods=['POST'])
+def approve():
+    print("approve")
+    body = request.json()
+    return jsonify(body)
 app.run(host='0.0.0.0',port=32402)
