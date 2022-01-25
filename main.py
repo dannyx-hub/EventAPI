@@ -27,8 +27,10 @@ def token_required(f):
         if not token:
             return("token missing")
         try:
-            data = jwt.decode(token,app.config["SECRET_KEY"])
-        except:
+            data = jwt.decode(token,app.config['SECRET_KEY'],algorithms="HS256")
+            print(data['user'])
+        except Exception as e:
+            print(e)
             return "nie dziala"
         return f(*args,**kwargs)
     return decorator
@@ -41,10 +43,10 @@ def logowanie():
     if login == '' or password == '':
         return "podaj dane logowania"
     else:
-        query = f"select id from users where login ='{login}' and hash ='{test.hexdigest()}' "
+        query = f"select login from users where login ='{login}' and hash ='{test.hexdigest()}' "
         log = db.CursorExec(query)
         if len(log)==1:
-            token = jwt.encode({'id':log[0][0],'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=45)}, app.config['SECRET_KEY'], "HS256")
+            token = jwt.encode({'user':log[0][0],'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=45)}, app.config['SECRET_KEY'], "HS256")
             return jsonify({'token':token})
         else:
             abort(403)
@@ -92,7 +94,7 @@ def lecturesadd():
             return Response(status=404)
 
 @app.route('/api/list',methods=['GET'])
-@token_required
+#@token_required
 def list():
     jsonobj = []
     columns = ["eventname","eventstartdate","eventstopdate","eventpersoncreator","descr"]
