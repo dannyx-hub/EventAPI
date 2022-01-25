@@ -1,21 +1,21 @@
 import datetime
-from urllib.request import Request
+# from urllib.request import Request
 from flask import Flask,request,Response,abort,jsonify
 from flask_restful import Api
 from flask_cors import CORS
 from Database import db
 import hashlib
-from art import tprint,decor,text2art
+from art import tprint,decor
 #importy testowe jeszcze nie dzialaja
 import jwt
 from functools import wraps
 tprint("EventsAPI")
-print(decor("barcode1") + text2art("    version: 1.0.1 created by dannyx-hub   ",font="random32") + decor("barcode1",reverse=True))
+print(decor("barcode1") +"    version: 1.0.2 created by dannyx-hub   " + decor("barcode1",reverse=True))
 print("\ngithub: https://github.com/dannyx-hub\n")
 app = Flask(__name__)
 CORS(app)
 api = Api(app)
-app.config['SECRET_KEY'] = '123123123adsasdasd'
+app.config['SECRET_KEY'] = '12312123123123secretkey123123123123'
 app.config['DEBUG'] = True
 db = db()
 db.BeginConnection()
@@ -23,21 +23,14 @@ db.BeginConnection()
 def token_required(f):
     @wraps(f)
     def decorator(*args, **kwargs):
-
-        token = None
-
-        if 'x-access-tokens' in request.headers:
-            token = request.headers['x-access-tokens']
-
+        token = request.args.get('token')
         if not token:
-            return jsonify({'message': 'a valid token is missing'})
-        
+            return("token missing")
         try:
-            data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=["HS256"])
-            current_user = db.CursorExec(f"SELECT id FROM USERS WHERE ROLE={data['id']}")
-            return f(current_user[0][0], *args, **kwargs)
+            data = jwt.decode(token,app.config["SECRET_KEY"])
         except:
-            return jsonify({'message': 'token is invalid'})
+            return "nie dziala"
+        return f(*args,**kwargs)
     return decorator
 
 @app.route('/api/login', methods=['POST'])
@@ -99,7 +92,7 @@ def lecturesadd():
             return Response(status=404)
 
 @app.route('/api/list',methods=['GET'])
-# @token_required
+@token_required
 def list():
     jsonobj = []
     columns = ["eventname","eventstartdate","eventstopdate","eventpersoncreator","descr"]
@@ -154,3 +147,21 @@ def user():
                 
             jsonobj.append(data)
         return jsonify(jsonobj)
+    elif request.method == "POST":
+        body = request.get_json()
+        updateQuery = f"Update users set role = 'root' where id={body['id']}"
+        update = db.UpdateQuery(updateQuery)
+        if update == True:
+            return Response("ok",status=200)
+        else:
+            return Response(status=500)
+    elif request.method == 'DELETE':
+        body = request.get_json()
+        deletequery = f"delete from users where id={body['id']}"
+        delete = db.DeleteQuery(deletequery)
+        if delete == True:
+            return Response("ok",status=200)
+        else:
+            return Response(status=500)
+    else:
+        return Response(status=500)
