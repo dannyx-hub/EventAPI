@@ -24,8 +24,8 @@ db.BeginConnection()
 #-------------------------------------------------------------------------------------------------------
 
 tprint("EventsAPI")
-logging.info(decor("barcode1") +"    EventAPI version: 1.0.2 created by dannyx-hub    " + decor("barcode1",reverse=True))
-print(decor("barcode1") +"    version: 1.0.2 created by dannyx-hub   " + decor("barcode1",reverse=True))
+logging.info(decor("barcode1") +"    EventAPI version: 1.0.3 created by dannyx-hub    " + decor("barcode1",reverse=True))
+print(decor("barcode1") +"    version: 1.0.3 created by dannyx-hub   " + decor("barcode1",reverse=True))
 print("\ngithub: https://github.com/dannyx-hub\n")
 
 #-------------------------------------------------------------------------------------------------------
