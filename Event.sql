@@ -5,5 +5,6 @@ Insert into users(login,hash,role) values('root','63a9f0ea7bb98050796b649e854818
 ALTER TABLE events ADD COLUMN approved boolean DEFAULT False;
 ALTER TABLE events ADD COLUMN eventstopdate TIMESTAMP;
 ALTER Table events rename COLUMN eventdate to eventstartdate;
-
+ALTER TABLE users 
+    ADD CONSTRAINT login UNIQUE (login);
 ALTER TABLE events ADD COLUMN descr text;
