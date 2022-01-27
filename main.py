@@ -163,6 +163,7 @@ def approve():
             data = {}
             for col in range(len(columns)):
                 data[columns[col]] = notapproved[x][col]
+                print(data)
             jsonobj.append(data)
         return jsonify(jsonobj)
     elif request.method == "POST":
