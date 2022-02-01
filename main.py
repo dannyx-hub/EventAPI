@@ -40,7 +40,7 @@ def token_required(f):
             data = jwt.decode(token,app.config['SECRET_KEY'],algorithms="HS256")
         except Exception as e:
             print(e)
-            return "nie dziala"
+            return Response("invalid token",status=403)
         return f(*args,**kwargs)
     return decorator
 
