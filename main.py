@@ -24,8 +24,8 @@ db.BeginConnection()
 #-------------------------------------------------------------------------------------------------------
 
 tprint("EventsAPI")
-logging.info(decor("barcode1") +"    EventAPI version: 1.0.3 created by dannyx-hub    " + decor("barcode1",reverse=True))
-print(decor("barcode1") +"    version: 1.0.3 created by dannyx-hub   " + decor("barcode1",reverse=True))
+logging.info(decor("barcode1") +"    EventAPI version: 1.0.4 created by dannyx-hub    " + decor("barcode1",reverse=True))
+print(decor("barcode1") +"    version: 1.0.4 created by dannyx-hub   " + decor("barcode1",reverse=True))
 print("\ngithub: https://github.com/dannyx-hub\n")
 
 #-------------------------------------------------------------------------------------------------------
@@ -38,7 +38,6 @@ def token_required(f):
             return("token missing")
         try:
             data = jwt.decode(token,app.config['SECRET_KEY'],algorithms="HS256")
-            print(data['user'])
         except Exception as e:
             print(e)
             return "nie dziala"
@@ -58,12 +57,12 @@ def logowanie():
     if login == '' or password == '':
         return "podaj dane logowania"
     else:
-        query = f"select login from users where login ='{login}' and hash ='{test.hexdigest()}' "
+        query = f"select login,id,role from users where login ='{login}' and hash ='{test.hexdigest()}' "
         log = db.CursorExec(query)
         if len(log)==1:
             token = jwt.encode({'user':log[0][0],'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=45)}, app.config['SECRET_KEY'], "HS256")
             logging.info(f"[*] Login succesfull: {login}")
-            return jsonify({'token':token})
+            return jsonify({'token':token,'id':log[0][1],'role':log[0][2]})
         else:
             abort(403)
 
@@ -151,7 +150,7 @@ def list():
 #-------------------------------------------------------------------------------------------------------
 
 #ROUTE TO LIST UNAPPROVED EVENTS AND APPROVE EVENT
-@app.route('/api/approve',methods=['GET','POST'])
+@app.route('/api/approve',methods=['GET','POST','DELETE'])
 @token_required
 def approve():
     if request.method == "GET":
@@ -163,7 +162,6 @@ def approve():
             data = {}
             for col in range(len(columns)):
                 data[columns[col]] = notapproved[x][col]
-                print(data)
             jsonobj.append(data)
         return jsonify(jsonobj)
     elif request.method == "POST":
@@ -176,10 +174,20 @@ def approve():
             updatequery = f"update events set approved = True where id = {body['id']}"
             update = db.UpdateQuery(updatequery)
             if update == True:
+                logging.info("[*] event update sucessfull!")
                 return Response(status=200)
             else:
                 return Response(status=500)
+    elif request.method == "DELETE":
+        body = request.get_json()
+        deletequery = f"delete from events where id={body['id']}"
+        delete = db.DeleteQuery(deletequery)
+        if delete == True:
+            logging.info("[*] event delete sucessfull!")
+            return Response("ok",status=200)
         else:
+            return Response(status=500)
+    else:
             return Response(status=500)
 
 #-------------------------------------------------------------------------------------------------------
@@ -205,6 +213,7 @@ def user():
         updateQuery = f"Update users set role = 'root' where id={body['id']}"
         update = db.UpdateQuery(updateQuery)
         if update == True:
+            logging.info("[*] user update sucessfull!")
             return Response("ok",status=200)
         else:
             return Response(status=500)
@@ -213,6 +222,7 @@ def user():
         deletequery = f"delete from users where id={body['id']}"
         delete = db.DeleteQuery(deletequery)
         if delete == True:
+            logging.info("[*] user delete sucessfull!")
             return Response("ok",status=200)
         else:
             return Response(status=500)
