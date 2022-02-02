@@ -1,4 +1,4 @@
-#EventAPI version 1.0.5 created by dannyx-hub @2022
+#EventAPI version 1.0.6 created by dannyx-hub @2022
 
 import datetime
 import logging
@@ -13,8 +13,8 @@ from functools import wraps
 #-------------------------------------------------------------------------------------------------------
 logging.basicConfig(format='%(message)s',stream=open(r'log.txt', 'w', encoding='utf-8'),level=5)
 tprint("EventAPI")
-logging.info(decor("barcode1") +"    EventAPI version: 1.0.5 created by dannyx-hub    " + decor("barcode1",reverse=True))
-print(decor("barcode1") +"    version: 1.0.5 created by dannyx-hub   " + decor("barcode1",reverse=True))
+logging.info(decor("barcode1") +"    EventAPI version: 1.0.6 created by dannyx-hub    " + decor("barcode1",reverse=True))
+print(decor("barcode1") +"    version: 1.0.6 created by dannyx-hub   " + decor("barcode1",reverse=True))
 print("\ngithub: https://github.com/dannyx-hub\n")
 #-------------------------------------------------------------------------------------------------------
 app = Flask(__name__)
@@ -125,14 +125,27 @@ def lecturesadd():
 @app.route('/api/list',methods=['GET'])
 def list():
     jsonobj = []
-    columns = ["eventname","eventstartdate","eventstopdate","eventpersoncreator","descr"]
-    list = db.CursorExec('SELECT eventname,eventstartdate,eventstopdate,eventpersoncreator,descr from events where approved = True')
+    columns = ["id","eventname","eventstartdate","eventstopdate","eventpersoncreator","descr"]
+    list = db.CursorExec('SELECT id,eventname,eventstartdate,eventstopdate,eventpersoncreator,descr from events where approved = True')
     for x in range(len(list)):
        data={}
        for col in range(len(columns)):
            data[columns[col]]=list[x][col]
        jsonobj.append(data)
     return jsonify(jsonobj)
+
+@app.route("/api/remove", methods=['DELETE'])
+@token_required
+def remove():
+
+    body = request.get_json()
+    deletequery = f"delete from events where id={body['id']} and approved = True"
+    delete = db.DeleteQuery(deletequery)
+    if delete == True:
+        logging.info("[*] event delete sucessfull!")
+        return Response("ok",status=200)
+    else:
+        return Response(status=404)
 #-------------------------------------------------------------------------------------------------------
 #ROUTE TO LIST UNAPPROVED EVENTS AND APPROVE EVENT
 @app.route('/api/approve',methods=['GET','POST','DELETE'])
