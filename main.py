@@ -11,12 +11,12 @@ from art import tprint,decor
 import jwt
 from functools import wraps
 #-------------------------------------------------------------------------------------------------------
+logging.basicConfig(format='%(message)s',stream=open(r'log.txt', 'w', encoding='utf-8'),level=5)
 tprint("EventAPI")
 logging.info(decor("barcode1") +"    EventAPI version: 1.0.5 created by dannyx-hub    " + decor("barcode1",reverse=True))
 print(decor("barcode1") +"    version: 1.0.5 created by dannyx-hub   " + decor("barcode1",reverse=True))
 print("\ngithub: https://github.com/dannyx-hub\n")
 #-------------------------------------------------------------------------------------------------------
-logging.basicConfig(format='%(message)s',stream=open(r'log.txt', 'w', encoding='utf-8'),level=5)
 app = Flask(__name__)
 CORS(app)
 api = Api(app)
