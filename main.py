@@ -1,4 +1,4 @@
-#EventAPI version 1.0.2 created by dannyx-hub @2022
+#EventAPI version 1.0.5 created by dannyx-hub @2022
 
 import datetime
 import logging
@@ -10,7 +10,11 @@ import hashlib
 from art import tprint,decor
 import jwt
 from functools import wraps
-
+#-------------------------------------------------------------------------------------------------------
+tprint("EventAPI")
+logging.info(decor("barcode1") +"    EventAPI version: 1.0.5 created by dannyx-hub    " + decor("barcode1",reverse=True))
+print(decor("barcode1") +"    version: 1.0.5 created by dannyx-hub   " + decor("barcode1",reverse=True))
+print("\ngithub: https://github.com/dannyx-hub\n")
 #-------------------------------------------------------------------------------------------------------
 logging.basicConfig(format='%(message)s',stream=open(r'log.txt', 'w', encoding='utf-8'),level=5)
 app = Flask(__name__)
@@ -20,16 +24,7 @@ app.config['SECRET_KEY'] = '12312123123123secretkey123123123123'
 app.config['DEBUG'] = True
 db = db()
 db.BeginConnection()
-
 #-------------------------------------------------------------------------------------------------------
-
-tprint("EventsAPI")
-logging.info(decor("barcode1") +"    EventAPI version: 1.0.4 created by dannyx-hub    " + decor("barcode1",reverse=True))
-print(decor("barcode1") +"    version: 1.0.4 created by dannyx-hub   " + decor("barcode1",reverse=True))
-print("\ngithub: https://github.com/dannyx-hub\n")
-
-#-------------------------------------------------------------------------------------------------------
-
 def token_required(f):
     @wraps(f)
     def decorator(*args, **kwargs):
@@ -43,9 +38,7 @@ def token_required(f):
             return Response("invalid token",status=403)
         return f(*args,**kwargs)
     return decorator
-
 #-------------------------------------------------------------------------------------------------------
-
 #LOGIN
 @app.route('/api/login', methods=['POST'])
 def logowanie():
@@ -65,9 +58,7 @@ def logowanie():
             return jsonify({'token':token,'id':log[0][1],'role':log[0][2]})
         else:
             abort(403)
-
 #-------------------------------------------------------------------------------------------------------
-
 #REGISTER
 @app.route('/api/register',methods=['POST'] )
 def register():
@@ -94,9 +85,7 @@ def register():
             else:
                 logging.error("[!] register error")
                 abort(404)
-
 #-------------------------------------------------------------------------------------------------------
-
 #ADD EVENT
 @app.route('/api/eventadd',methods = ['POST'])
 def lecturesadd():
@@ -131,9 +120,7 @@ def lecturesadd():
 
             else:
                 return Response(status=404)
-
 #-------------------------------------------------------------------------------------------------------
-
 #APPROVED EVENTS LIST
 @app.route('/api/list',methods=['GET'])
 def list():
@@ -146,9 +133,7 @@ def list():
            data[columns[col]]=list[x][col]
        jsonobj.append(data)
     return jsonify(jsonobj)
-
 #-------------------------------------------------------------------------------------------------------
-
 #ROUTE TO LIST UNAPPROVED EVENTS AND APPROVE EVENT
 @app.route('/api/approve',methods=['GET','POST','DELETE'])
 @token_required
@@ -186,12 +171,10 @@ def approve():
             logging.info("[*] event delete sucessfull!")
             return Response("ok",status=200)
         else:
-            return Response(status=500)
+            return Response(status=404)
     else:
-            return Response(status=500)
-
+            return Response(status=404)
 #-------------------------------------------------------------------------------------------------------
-
 #ROUTE TO LIST USERS,UPDATE ROLE AND DELETE THEM
 @app.route('/api/user',methods=['POST','GET','DELETE'])
 @token_required
@@ -228,5 +211,4 @@ def user():
             return Response(status=500)
     else:
         return Response(status=500)
-
 #-------------------------------------------------------------------------------------------------------
