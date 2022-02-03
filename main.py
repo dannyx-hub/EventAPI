@@ -10,11 +10,12 @@ import hashlib
 from art import tprint,decor
 import jwt
 from functools import wraps
+import re
 #-------------------------------------------------------------------------------------------------------
 logging.basicConfig(format='%(message)s',stream=open(r'log.txt', 'w', encoding='utf-8'),level=5)
 tprint("EventAPI")
-logging.info(decor("barcode1") +"    EventAPI version: 1.0.6 created by dannyx-hub    " + decor("barcode1",reverse=True))
-print(decor("barcode1") +"    version: 1.0.6 created by dannyx-hub   " + decor("barcode1",reverse=True))
+logging.info(decor("barcode1") +"    EventAPI version: 1.0.7 created by dannyx-hub    " + decor("barcode1",reverse=True))
+print(decor("barcode1") +"    version: 1.0.7 created by dannyx-hub   " + decor("barcode1",reverse=True))
 print("\ngithub: https://github.com/dannyx-hub\n")
 #-------------------------------------------------------------------------------------------------------
 app = Flask(__name__)
@@ -47,17 +48,23 @@ def logowanie():
     password = request.form.get('haslo')
     logging.info(f"[*] Login attempt: {login,password}")
     test = hashlib.md5(password.encode())
+    loginmatch = re.search('([\=\-\"\\\/\@\&])+',login)
+    passwordmatch = re.search('([\=\-\"\\\/\@\&])+',password)
     if login == '' or password == '':
-        return "podaj dane logowania"
+        return Response(status=402)
     else:
-        query = f"select login,id,role from users where login ='{login}' and hash ='{test.hexdigest()}' "
-        log = db.CursorExec(query)
-        if len(log)==1:
-            token = jwt.encode({'user':log[0][0],'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=45)}, app.config['SECRET_KEY'], "HS256")
-            logging.info(f"[*] Login succesfull: {login}")
-            return jsonify({'token':token,'id':log[0][1],'role':log[0][2]})
+        if loginmatch or passwordmatch:
+            logging.error("[!] REGEX TRIGGER")
+            return Response(status=402)
         else:
-            abort(403)
+            query = f"select login,id,role from users where login ='{login}' and hash ='{test.hexdigest()}' "
+            log = db.CursorExec(query)
+            if len(log)==1:
+                token = jwt.encode({'user':log[0][0],'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=45)}, app.config['SECRET_KEY'], "HS256")
+                logging.info(f"[*] Login succesfull: {login}")
+                return jsonify({'token':token,'id':log[0][1],'role':log[0][2]})
+            else:
+                abort(403)
 #-------------------------------------------------------------------------------------------------------
 #REGISTER
 @app.route('/api/register',methods=['POST'] )
@@ -65,12 +72,17 @@ def register():
     
     login = request.form.get('login')
     password = request.form.get('haslo')
+    loginmatch = re.search('([\=\-\"\\\/\@\&])+',login)
+    passwordmatch = re.search('([\=\-\"\\\/\@\&])+',password)
     logging.info(f"[*] register attempt: {login,password}")
     if login == '' or password == '':
             logging.error(f"[!] register error: blank inputs!")
-            return "podaj wszystkie dane"
+            return Response(status=402)
 
     else:
+        if loginmatch or passwordmatch:
+            logging.error("[!] REGEX TRIGGER")
+            return Response(status=402)
         passwdhash = hashlib.md5(password.encode())
         checkquery = f"select login from users where login ='{login}'"
         check = db.CursorExec(checkquery)
