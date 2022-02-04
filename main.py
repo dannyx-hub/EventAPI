@@ -115,7 +115,7 @@ def lecturesadd():
             return Response("zla data",status=409)
         else:
             query = f"SELECT id from events where eventname = '{eventname}' and eventstartdate = '{eventstartdate}'"
-            checklog = db.fetchOne(query)
+            checklog = db.CursorExec(query)
             if len(checklog) <=0:
                 try:
                     insert = db.InsertQuery(f"insert into events (eventname,eventstartdate,eventpersoncreator,approved,eventstopdate,descr) values('{eventname}','{eventstartdate}','{eventpersoncreator}','false','{eventstopdate}','{descr}')")
