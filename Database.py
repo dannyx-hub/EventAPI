@@ -36,7 +36,18 @@ class db:
         result = self.cursor.fetchall()
         self.cursor.close()
         return result
-    
+    def fetchOne(self,query):
+        self.cursor = self.conn.cursor()
+        self.cursor.execute(query)
+        if self.cursor.rowcount == 0:
+            return 0
+        else:
+            result = self.cursor.fetchone()
+            if result is None:
+                return 0 
+            else:
+                self.cursor.close()
+                return result
     def InsertQuery(self,query):
         self.cursor = self.conn.cursor()
         try:

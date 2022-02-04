@@ -14,8 +14,8 @@ import re
 #-------------------------------------------------------------------------------------------------------
 logging.basicConfig(format='%(message)s',stream=open(r'log.txt', 'w', encoding='utf-8'),level=5)
 tprint("EventAPI")
-logging.info(decor("barcode1") +"    EventAPI version: 1.0.7 created by dannyx-hub    " + decor("barcode1",reverse=True))
-print(decor("barcode1") +"    version: 1.0.7 created by dannyx-hub   " + decor("barcode1",reverse=True))
+logging.info(decor("barcode1") +"    EventAPI version: 1.0.8 created by dannyx-hub    " + decor("barcode1",reverse=True))
+print(decor("barcode1") +"    version: 1.0.8 created by dannyx-hub   " + decor("barcode1",reverse=True))
 print("\ngithub: https://github.com/dannyx-hub\n")
 #-------------------------------------------------------------------------------------------------------
 app = Flask(__name__)
@@ -85,7 +85,7 @@ def register():
             return Response(status=402)
         passwdhash = hashlib.md5(password.encode())
         checkquery = f"select login from users where login ='{login}'"
-        check = db.CursorExec(checkquery)
+        check = db.fetchOne(checkquery)
         if len(check)==1:
             return Response(status=409)
         else:
@@ -115,7 +115,7 @@ def lecturesadd():
             return Response("zla data",status=409)
         else:
             query = f"SELECT id from events where eventname = '{eventname}' and eventstartdate = '{eventstartdate}'"
-            checklog = db.CursorExec(query)
+            checklog = db.fetchOne(query)
             if len(checklog) <=0:
                 try:
                     insert = db.InsertQuery(f"insert into events (eventname,eventstartdate,eventpersoncreator,approved,eventstopdate,descr) values('{eventname}','{eventstartdate}','{eventpersoncreator}','false','{eventstopdate}','{descr}')")
@@ -137,8 +137,8 @@ def lecturesadd():
 @app.route('/api/list',methods=['GET'])
 def list():
     jsonobj = []
-    columns = ["id","eventname","eventstartdate","eventstopdate","eventpersoncreator","descr"]
-    list = db.CursorExec('SELECT id,eventname,eventstartdate,eventstopdate,eventpersoncreator,descr from events where approved = True')
+    columns = ["id","eventname","eventstartdate","eventstopdate","eventpersoncreator","descr","approved"]
+    list = db.CursorExec('SELECT id,eventname,eventstartdate,eventstopdate,eventpersoncreator,descr,approved from events order by id desc')
     for x in range(len(list)):
        data={}
        for col in range(len(columns)):
@@ -167,17 +167,21 @@ def approve():
         jsonobj=[]
         selectnotapproved = "select id,eventname,eventstartdate,eventstopdate,eventpersoncreator,descr from events where approved = false"
         notapproved = db.CursorExec(selectnotapproved)
-        columns = ["id","eventname","eventstartdate","eventstopdate","eventpersoncreator","descr"]
-        for x in range(len(notapproved)):
-            data = {}
-            for col in range(len(columns)):
-                data[columns[col]] = notapproved[x][col]
-            jsonobj.append(data)
-        return jsonify(jsonobj)
+        if notapproved is None:
+            print("nie ma")
+            return"[]"
+        else:
+            columns = ["id","eventname","eventstartdate","eventstopdate","eventpersoncreator","descr"]
+            for x in range(len(notapproved)):
+                data = {}
+                for col in range(len(columns)):
+                    data[columns[col]] = notapproved[x][col]
+                jsonobj.append(data)
+            return jsonify(jsonobj)
     elif request.method == "POST":
         body = request.get_json()
         checkquery = f'select approved from events where id = {body["id"]} and approved = False'
-        check = db.CursorExec(checkquery)
+        check = db.fetchOne(checkquery)
         if len(check) !=1:
             return Response('{"msg":"bad id"}',status=500)
         elif len(check) == 1:
@@ -188,6 +192,8 @@ def approve():
                 return Response(status=200)
             else:
                 return Response(status=500)
+        elif len(check) == 0:
+            print("nie ma")
     elif request.method == "DELETE":
         body = request.get_json()
         deletequery = f"delete from events where id={body['id']}"
