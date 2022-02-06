@@ -14,8 +14,8 @@ import re
 #-------------------------------------------------------------------------------------------------------
 logging.basicConfig(format='%(message)s',stream=open(r'log.txt', 'w', encoding='utf-8'),level=5)
 tprint("EventAPI")
-logging.info(decor("barcode1") +"    EventAPI version: 1.0.8 created by dannyx-hub    " + decor("barcode1",reverse=True))
-print(decor("barcode1") +"    version: 1.0.8 created by dannyx-hub   " + decor("barcode1",reverse=True))
+logging.info(decor("barcode1") +"    EventAPI version: 1.0.9 created by dannyx-hub    " + decor("barcode1",reverse=True))
+print(decor("barcode1") +"    version: 1.0.9 created by dannyx-hub   " + decor("barcode1",reverse=True))
 print("\ngithub: https://github.com/dannyx-hub\n")
 #-------------------------------------------------------------------------------------------------------
 app = Flask(__name__)
@@ -139,6 +139,8 @@ def list():
     jsonobj = []
     columns = ["id","eventname","eventstartdate","eventstopdate","eventpersoncreator","descr","approved"]
     list = db.CursorExec('SELECT id,eventname,eventstartdate,eventstopdate,eventpersoncreator,descr,approved from events order by id desc')
+    if list is None:
+        return "[]"
     for x in range(len(list)):
        data={}
        for col in range(len(columns)):
@@ -168,7 +170,6 @@ def approve():
         selectnotapproved = "select id,eventname,eventstartdate,eventstopdate,eventpersoncreator,descr from events where approved = false"
         notapproved = db.CursorExec(selectnotapproved)
         if notapproved is None:
-            print("nie ma")
             return"[]"
         else:
             columns = ["id","eventname","eventstartdate","eventstopdate","eventpersoncreator","descr"]
@@ -214,6 +215,8 @@ def user():
         selectuserquery = "select id,login,role from users"
         columns = ['id','login','role']
         selecteduser = db.CursorExec(selectuserquery)
+        if selecteduser is None:
+            return "[]"
         jsonobj=[]
         for x in range(len(selecteduser)):
             data = {}
