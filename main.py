@@ -183,9 +183,9 @@ def approve():
         body = request.get_json()
         checkquery = f'select approved from events where id = {body["id"]} and approved = False'
         check = db.fetchOne(checkquery)
-        if len(check) !=1:
+        if check !=1:
             return Response('{"msg":"bad id"}',status=500)
-        elif len(check) == 1:
+        elif check == 1:
             updatequery = f"update events set approved = True where id = {body['id']}"
             update = db.UpdateQuery(updatequery)
             if update == True:
@@ -193,8 +193,6 @@ def approve():
                 return Response(status=200)
             else:
                 return Response(status=500)
-        elif len(check) == 0:
-            print("nie ma")
     elif request.method == "DELETE":
         body = request.get_json()
         deletequery = f"delete from events where id={body['id']}"
