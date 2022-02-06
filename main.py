@@ -153,7 +153,7 @@ def list():
 def remove():
 
     body = request.get_json()
-    deletequery = f"delete from events where id={body['id']} and approved = True"
+    deletequery = f"delete from events where id={body['id']}"
     delete = db.DeleteQuery(deletequery)
     if delete == True:
         logging.info("[*] event delete sucessfull!")
