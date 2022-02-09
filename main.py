@@ -1,4 +1,4 @@
-#EventAPI version 1.0.6 created by dannyx-hub @2022
+#EventAPI created by dannyx-hub @2022
 
 import datetime
 import logging
@@ -68,7 +68,9 @@ def logowanie():
 #-------------------------------------------------------------------------------------------------------
 #REGISTER
 @app.route('/api/register',methods=['POST'] )
+@token_required
 def register():
+
     
     login = request.form.get('login')
     password = request.form.get('haslo')
