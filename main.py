@@ -4,6 +4,7 @@ import datetime
 import logging
 from flask import Flask,request,Response,abort,jsonify
 from flask_restful import Api
+from flask_mail import Mail,Message
 from flask_cors import CORS
 from Database import db
 import hashlib
@@ -11,18 +12,27 @@ from art import tprint,decor
 import jwt
 from functools import wraps
 import re
+
+version = '1.1.0'
 #-------------------------------------------------------------------------------------------------------
 logging.basicConfig(format='%(message)s',stream=open(r'log.txt', 'w', encoding='utf-8'),level=5)
 tprint("EventAPI")
-logging.info(decor("barcode1") +"    EventAPI version: 1.0.9 created by dannyx-hub    " + decor("barcode1",reverse=True))
-print(decor("barcode1") +"    version: 1.0.9 created by dannyx-hub   " + decor("barcode1",reverse=True))
+logging.info(decor("barcode1") +f"    EventAPI version: {version} created by dannyx-hub    " + decor("barcode1",reverse=True))
+print(decor("barcode1") +f"    version: {version} created by dannyx-hub   " + decor("barcode1",reverse=True))
 print("\ngithub: https://github.com/dannyx-hub\n")
 #-------------------------------------------------------------------------------------------------------
 app = Flask(__name__)
 CORS(app)
 api = Api(app)
 app.config['SECRET_KEY'] = '12312123123123secretkey123123123123'
-app.config['DEBUG'] = True
+app.config['DEBUG'] = False
+app.config['MAIL_SERVER']='s1.ct8.pl'
+app.config['MAIL_PORT'] = 25
+app.config['MAIL_USERNAME'] = 'EventCalendar@dannyx123.ct8.pl'
+app.config['MAIL_PASSWORD'] = 'Eventcalendar1.'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = False
+mail = Mail(app)
 db = db()
 db.BeginConnection()
 #-------------------------------------------------------------------------------------------------------
@@ -106,6 +116,7 @@ def lecturesadd():
     eventstartdate = request.form.get('eventstartdate')
     eventstopdate = request.form.get('eventstopdate')
     descr = request.form.get('descr')
+    email = request.form.get('email')
     if eventname =='' or eventpersoncreator == '' or eventstartdate == '' or eventname ==None or eventpersoncreator == None or eventstartdate == None:
         logging.error("[!] lecturesadd error!")
         return Response("zla data",status=409)
@@ -118,8 +129,16 @@ def lecturesadd():
             checklog = db.CursorExec(query)
             if len(checklog) <=0:
                 try:
-                    insert = db.InsertQuery(f"insert into events (eventname,eventstartdate,eventpersoncreator,approved,eventstopdate,descr) values('{eventname}','{eventstartdate}','{eventpersoncreator}','false','{eventstopdate}','{descr}')")
+                    insert = db.InsertQuery(f"insert into events (eventname,eventstartdate,eventpersoncreator,approved,eventstopdate,descr,email) values('{eventname}','{eventstartdate}','{eventpersoncreator}','false','{eventstopdate}','{descr}','{email}')")
                     if insert == True:
+                        try:
+                            msg = Message('Potwierdzenie dodania wydarzenia',sender ='no-reply-EventCalendar@dannyx123.ct8.pl',recipients = [email])
+                            msg.html=f"<h3>Twoje wydarzenie:</h3>\n<h2>{eventname}</h2>\n<br><b>data</b>:{eventstartdate} - {eventstopdate}<br><b>opis</b>:{descr}\n<br>zostało utworzone i czeka na zatwierdzenie. Jego aktualny stan możesz sprawdzić na naszej <a href='http://129.159.203.123/'>stronie internetowej</a>"
+                            mail.send(msg)
+                            # print(msg)
+                            logging.info("[*] Eventadd Mail send!")
+                        except Exception as e:
+                            logging.error(f"[!] Mail send ERROR : {e}")
                         logging.info("[*] lecturesadd add sucessfull!")
                         return Response('dodano prelekcje',status=200)
                     else:
@@ -181,15 +200,24 @@ def approve():
             return jsonify(jsonobj)
     elif request.method == "POST":
         body = request.get_json()
-        checkquery = f'select approved from events where id = {body["id"]} and approved = False'
-        check = db.fetchOne(checkquery)
-        if check !=1:
+        checkquery = f'select eventname,eventstartdate,eventstopdate,descr,email from events where id = {body["id"]} and approved = false'
+        check = db.CursorExec(checkquery)
+        if len(check)<1:
             return Response('{"msg":"bad id"}',status=500)
-        elif check == 1:
+        elif len(check) == 1:
             updatequery = f"update events set approved = True where id = {body['id']}"
             update = db.UpdateQuery(updatequery)
             if update == True:
+                try:
+                    msg = Message('Zmiana statusu wydarzenia',sender ='no-reply-EventCalendar@dannyx123.ct8.pl',recipients = [f'{check[0][4]}'])
+                    msg.html=f"<h3>Twoje wydarzenie:</h3>\n<h2>{check[0][0]}</h2>\n<br><b>data</b>:{check[0][1]} - {check[0][2]}<br><b>opis</b>:{check[0][3]}\n<br>zmieniło status na <b><u>ZATWIERDZONY</u></b>.<br>Jego aktualny stan możesz sprawdzić na naszej <a href='http://129.159.203.123/'>stronie internetowej</a>"
+                    mail.send(msg)
+                    logging.info("[*] Mail send!")
+                except Exception as e:
+                    logging.error(f"[!] Mail send ERROR : {e}")
+
                 logging.info("[*] event update sucessfull!")
+                
                 return Response(status=200)
             else:
                 return Response(status=500)

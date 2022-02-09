@@ -7,4 +7,4 @@ ALTER TABLE events ADD COLUMN eventstopdate TIMESTAMP;
 ALTER Table events rename COLUMN eventdate to eventstartdate;
 ALTER TABLE users 
     ADD CONSTRAINT login UNIQUE (login);
-ALTER TABLE events ADD COLUMN descr text;
+ALTER TABLE events ADD COLUMN email text DEFAULT NULL;
