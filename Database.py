@@ -1,11 +1,11 @@
 import psycopg2
-from config import config
+from config import dbconfig
 import logging
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT # <-- ADD THIS LINE
 
 class db:
     def __init__(self):
-        self.dbconfig = config()
+        self.dbconfig = dbconfig()
         logging.basicConfig(filename='log.txt',level='DEBUG',filemode="a")
         self.force= None
     def BeginConnection(self):

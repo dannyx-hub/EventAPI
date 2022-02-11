@@ -1,6 +1,6 @@
 from configparser import ConfigParser
 
-def config(filename="Config.ini",section = 'postgresql'):
+def dbconfig(filename="Config.ini",section = 'postgresql'):
     parser = ConfigParser()
     parser.read(filename)
 
@@ -13,3 +13,15 @@ def config(filename="Config.ini",section = 'postgresql'):
         raise Exception()
     return db
 
+def emailconfig(filename= 'Config.ini',section = 'email'):
+    parser = ConfigParser()
+    parser.read(filename)
+
+    email = {}
+    if parser.has_section(section):
+        parms = parser.items(section)
+        for x in parms:
+            email[x[0]] = x[1]
+    else:
+        raise Exception()
+    return email

@@ -1,19 +1,21 @@
 #EventAPI created by dannyx-hub @2022
 
 import datetime
+import email
 import logging
 from flask import Flask,request,Response,abort,jsonify
 from flask_restful import Api
 from flask_mail import Mail,Message
 from flask_cors import CORS
 from Database import db
+from config import emailconfig
 import hashlib
 from art import tprint,decor
 import jwt
 from functools import wraps
 import re
 
-version = '1.1.0'
+version = '1.1.1'
 #-------------------------------------------------------------------------------------------------------
 logging.basicConfig(format='%(message)s',stream=open(r'log.txt', 'w', encoding='utf-8'),level=5)
 tprint("EventAPI")
@@ -21,17 +23,18 @@ logging.info(decor("barcode1") +f"    EventAPI version: {version} created by dan
 print(decor("barcode1") +f"    version: {version} created by dannyx-hub   " + decor("barcode1",reverse=True))
 print("\ngithub: https://github.com/dannyx-hub\n")
 #-------------------------------------------------------------------------------------------------------
+emailconfig = emailconfig()
 app = Flask(__name__)
 CORS(app)
 api = Api(app)
 app.config['SECRET_KEY'] = '12312123123123secretkey123123123123'
 app.config['DEBUG'] = False
-app.config['MAIL_SERVER']='s1.ct8.pl'
-app.config['MAIL_PORT'] = 25
-app.config['MAIL_USERNAME'] = ''
-app.config['MAIL_PASSWORD'] = ''
-app.config['MAIL_USE_TLS'] = False
-app.config['MAIL_USE_SSL'] = False
+app.config['MAIL_SERVER']=emailconfig['server']
+app.config['MAIL_PORT'] = emailconfig['port']
+app.config['MAIL_USERNAME'] = emailconfig['username']
+app.config['MAIL_PASSWORD'] = emailconfig['password']
+# app.config['MAIL_USE_TLS'] = emailconfig['tls']
+# app.config['MAIL_USE_SSL'] = emailconfig['ssl']
 mail = Mail(app)
 db = db()
 db.BeginConnection()
