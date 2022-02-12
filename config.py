@@ -25,3 +25,17 @@ def emailconfig(filename= 'Config.ini',section = 'email'):
     else:
         raise Exception()
     return email
+
+def appconfig(filename='Config.ini',section='app'):
+    parser = ConfigParser()
+    parser.read(filename)
+    
+    app = {}
+    if parser.has_section(section):
+        parms = parser.items(section)
+        for x in parms:
+            app[x[0]] = x[1]
+    else:
+        raise Exception()
+    
+    return app

@@ -1,14 +1,14 @@
 #EventAPI created by dannyx-hub @2022
 
 import datetime
-import email
 import logging
+from sqlite3 import Cursor
 from flask import Flask,request,Response,abort,jsonify
 from flask_restful import Api
 from flask_mail import Mail,Message
 from flask_cors import CORS
 from Database import db
-from config import emailconfig
+from config import emailconfig,appconfig
 import hashlib
 from art import tprint,decor
 import jwt
@@ -24,17 +24,18 @@ print(decor("barcode1") +f"    version: {version} created by dannyx-hub   " + de
 print("\ngithub: https://github.com/dannyx-hub\n")
 #-------------------------------------------------------------------------------------------------------
 emailconfig = emailconfig()
+appconfig = appconfig()
 app = Flask(__name__)
 CORS(app)
 api = Api(app)
-app.config['SECRET_KEY'] = '12312123123123secretkey123123123123'
-app.config['DEBUG'] = False
+app.config['SECRET_KEY'] = appconfig['secret_key']
+# app.config['DEBUG'] = appconfig['debug']
 app.config['MAIL_SERVER']=emailconfig['server']
 app.config['MAIL_PORT'] = emailconfig['port']
 app.config['MAIL_USERNAME'] = emailconfig['username']
 app.config['MAIL_PASSWORD'] = emailconfig['password']
-# app.config['MAIL_USE_TLS'] = emailconfig['tls']
-# app.config['MAIL_USE_SSL'] = emailconfig['ssl']
+app.config['MAIL_USE_TLS'] = emailconfig['tls']
+app.config['MAIL_USE_SSL'] = emailconfig['ssl']
 mail = Mail(app)
 db = db()
 db.BeginConnection()
@@ -172,19 +173,19 @@ def list():
        jsonobj.append(data)
     return jsonify(jsonobj)
 
-@app.route("/api/remove", methods=['DELETE'])
-@token_required
-def remove():
+# @app.route("/api/remove", methods=['DELETE'])
+# @token_required
+# def remove():
 
-    body = request.get_json()
-    deletequery = f"delete from events where id={body['id']}"
-    delete = db.DeleteQuery(deletequery)
-    if delete == True:
-        logging.info("[*] event delete sucessfull!")
-        return Response("ok",status=200)
-    else:
-        return Response(status=404)
-#-------------------------------------------------------------------------------------------------------
+#     body = request.get_json()
+#     deletequery = f"delete from events where id={body['id']}"
+#     delete = db.DeleteQuery(deletequery)
+#     if delete == True:
+#         logging.info("[*] event delete sucessfull!")
+#         return Response("ok",status=200)
+#     else:
+#         return Response(status=404)
+# #-------------------------------------------------------------------------------------------------------
 #ROUTE TO LIST UNAPPROVED EVENTS AND APPROVE EVENT
 @app.route('/api/approve',methods=['GET','POST','DELETE'])
 @token_required
@@ -228,15 +229,28 @@ def approve():
                 return Response(status=500)
     elif request.method == "DELETE":
         body = request.get_json()
+        checkquery = f"select email,id from events where id = {body['id']}"
         deletequery = f"delete from events where id={body['id']}"
-        delete = db.DeleteQuery(deletequery)
-        if delete == True:
-            logging.info("[*] event delete sucessfull!")
-            return Response("ok",status=200)
-        else:
-            return Response(status=404)
+        check = db.CursorExec(checkquery)
+        print(check)
+        if len(check) == 1:
+            delete = db.DeleteQuery(deletequery)
+            if delete == True:
+                try:
+                    msg = Message('Twoje wydarzenie zostało usunięte',sender='no-reply-EventCalendar@dannyx123.ct8.pl',recipients =[f'{checkquery[0][0]}'])
+                    msg.html=f"<h3>Twoje wydarzenie:</h3>\n<h2>{check[0][0]}</h2>\n<br><b>data</b>:{check[0][1]} - {check[0][2]}<br><b>opis</b>:{check[0][3]}\n<br>zmieniło status na <b><u>ODRZUCONY</u></b><br><b>powód:</b>{body['msg']}<br>Jego aktualny stan możesz sprawdzić na naszej <a href='http://129.159.203.123/'>stronie internetowej</a>"
+                    mail.send(msg)
+                    logging.info("[*] Mail send!")
+                except Exception as e:
+                    logging.error(' [!] Mail send ERROR: ',e)
+                logging.info("[*] event delete sucessfull!")
+                return Response("ok",status=200)
+            else:
+                return Response(status=404)
+        elif len(check)!=1:
+            return(Response(status=402))    
     else:
-            return Response(status=404)
+        return Response(status=404)
 #-------------------------------------------------------------------------------------------------------
 #ROUTE TO LIST USERS,UPDATE ROLE AND DELETE THEM
 @app.route('/api/user',methods=['POST','GET','DELETE'])
