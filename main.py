@@ -1,5 +1,5 @@
 #EventAPI created by dannyx-hub @2022
-
+import ssl
 import datetime
 import logging
 from sqlite3 import Cursor
@@ -34,8 +34,8 @@ app.config['MAIL_SERVER']=emailconfig['server']
 app.config['MAIL_PORT'] = emailconfig['port']
 app.config['MAIL_USERNAME'] = emailconfig['username']
 app.config['MAIL_PASSWORD'] = emailconfig['password']
-app.config['MAIL_USE_TLS'] = emailconfig['tls']
-app.config['MAIL_USE_SSL'] = emailconfig['ssl']
+# app.config['MAIL_USE_TLS'] = emailconfig['tls']
+# app.config['MAIL_USE_SSL'] = emailconfig['ssl']
 mail = Mail(app)
 db = db()
 db.BeginConnection()
@@ -54,7 +54,7 @@ def token_required(f):
         return f(*args,**kwargs)
     return decorator
 #-------------------------------------------------------------------------------------------------------
-#LOGIN
+#LOGIN sqldone
 @app.route('/api/login', methods=['POST'])
 def logowanie():
     
@@ -71,8 +71,9 @@ def logowanie():
             logging.error("[!] REGEX TRIGGER")
             return Response(status=402)
         else:
-            query = f"select login,id,role from users where login ='{login}' and hash ='{test.hexdigest()}' "
-            log = db.CursorExec(query)
+            query = "select login,id,role from users where login =%s and hash =%s "
+            data = (login,test.hexdigest())
+            log = db.CursorExec(query,data)
             if len(log)==1:
                 token = jwt.encode({'user':log[0][0],'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=45)}, app.config['SECRET_KEY'], "HS256")
                 logging.info(f"[*] Login succesfull: {login}")
@@ -80,7 +81,7 @@ def logowanie():
             else:
                 abort(403)
 #-------------------------------------------------------------------------------------------------------
-#REGISTER
+#REGISTER #sqldone
 @app.route('/api/register',methods=['POST'] )
 @token_required
 def register():
@@ -100,12 +101,14 @@ def register():
             logging.error("[!] REGEX TRIGGER")
             return Response(status=402)
         passwdhash = hashlib.md5(password.encode())
-        checkquery = f"select login from users where login ='{login}'"
-        check = db.fetchOne(checkquery)
+        checkquery = f"select login from users where login =%s"
+        data = login
+        check = db.fetchOne(checkquery,data)
         if len(check)==1:
             return Response(status=409)
         else:
-            query = f"insert into users(login,hash,role) values('{login}','{passwdhash.hexdigest()}','user')"
+            query = f"insert into users(login,hash,role) values(%s,%s,'user')"
+            data = (login,passwdhash.hexdigest())
             exec = db.InsertQuery(query)
             if exec == True:
                 logging.info(f"[*] register success!")
@@ -117,12 +120,13 @@ def register():
 #ADD EVENT
 @app.route('/api/eventadd',methods = ['POST'])
 def lecturesadd():
-    eventname = request.form.get('eventname')
-    eventpersoncreator = request.form.get('eventpersoncreator')
+    eventname = str(request.form.get('eventname'))
+    eventpersoncreator = str(request.form.get('eventpersoncreator'))
     eventstartdate = request.form.get('eventstartdate')
     eventstopdate = request.form.get('eventstopdate')
-    descr = request.form.get('descr')
+    descr = str(request.form.get('descr'))
     email = request.form.get('email')
+    approved = False
     if eventname =='' or eventpersoncreator == '' or eventstartdate == '' or eventname ==None or eventpersoncreator == None or eventstartdate == None:
         logging.error("[!] lecturesadd error!")
         return Response("zla data",status=409)
@@ -131,11 +135,15 @@ def lecturesadd():
             logging.error("[!] lecturesadd error! Bad date configuration")
             return Response("zla data",status=409)
         else:
-            query = f"SELECT id from events where eventname = '{eventname}' and eventstartdate = '{eventstartdate}'"
-            checklog = db.CursorExec(query)
+            query = f"SELECT id from events where eventname = %s and eventstartdate = %s"
+            data = (eventname,eventstartdate)
+            checklog = db.CursorExec(query,data)
             if len(checklog) <=0:
                 try:
-                    insert = db.InsertQuery(f"insert into events (eventname,eventstartdate,eventpersoncreator,approved,eventstopdate,descr,email) values('{eventname}','{eventstartdate}','{eventpersoncreator}','false','{eventstopdate}','{descr}','{email}')")
+                    sqlquery = """insert into events (eventname,eventstartdate,eventpersoncreator,approved,eventstopdate,descr,email) values(%s,%s,%s,%s,%s,%s,%s)"""
+                    data = (eventname,eventstartdate,eventpersoncreator,approved,eventstopdate,descr,email)
+                    # insert = db.InsertQuery("insert into events (eventname,eventstartdate,eventpersoncreator,approved,eventstopdate,descr,email) values('{eventname}','{eventstartdate}','{eventpersoncreator}','false','{eventstopdate}','\\{descr}','{email}')")
+                    insert = db.InsertQuery(sqlquery,data)
                     if insert == True:
                         try:
                             msg = Message('Potwierdzenie dodania wydarzenia',sender ='no-reply-EventCalendar@dannyx123.ct8.pl',recipients = [email])
@@ -187,10 +195,10 @@ def list():
 #         return Response(status=404)
 # #-------------------------------------------------------------------------------------------------------
 #ROUTE TO LIST UNAPPROVED EVENTS AND APPROVE EVENT
-@app.route('/api/approve',methods=['GET','POST','DELETE'])
+@app.route('/api/approve',methods=['PUT','POST','DELETE'])
 @token_required
 def approve():
-    if request.method == "GET":
+    if request.method == "PUT":
         jsonobj=[]
         selectnotapproved = "select id,eventname,eventstartdate,eventstopdate,eventpersoncreator,descr from events where approved = false"
         notapproved = db.CursorExec(selectnotapproved)
@@ -206,13 +214,15 @@ def approve():
             return jsonify(jsonobj)
     elif request.method == "POST":
         body = request.get_json()
-        checkquery = f'select eventname,eventstartdate,eventstopdate,descr,email from events where id = {body["id"]} and approved = false'
-        check = db.CursorExec(checkquery)
+        checkquery = f'select eventname,eventstartdate,eventstopdate,descr,email from events where id =%s and approved = false'
+        
+        check = db.CursorExec(checkquery,[body['id']])
         if len(check)<1:
             return Response('{"msg":"bad id"}',status=500)
         elif len(check) == 1:
-            updatequery = f"update events set approved = True where id = {body['id']}"
-            update = db.UpdateQuery(updatequery)
+            updatequery = f"update events set approved = True where id = %s"
+            data= body['id']
+            update = db.UpdateQuery(updatequery,[data])
             if update == True:
                 try:
                     msg = Message('Zmiana statusu wydarzenia',sender ='no-reply-EventCalendar@dannyx123.ct8.pl',recipients = [f'{check[0][4]}'])
@@ -229,12 +239,13 @@ def approve():
                 return Response(status=500)
     elif request.method == "DELETE":
         body = request.get_json()
-        checkquery = f"select email,id from events where id = {body['id']}"
-        deletequery = f"delete from events where id={body['id']}"
-        check = db.CursorExec(checkquery)
+        checkquery = f"select email,id from events where id = %s"
+        data= body['id']
+        deletequery = f"delete from events where id=%s"
+        check = db.CursorExec(checkquery,data)
         print(check)
         if len(check) == 1:
-            delete = db.DeleteQuery(deletequery)
+            delete = db.DeleteQuery(deletequery,data)
             if delete == True:
                 try:
                     msg = Message('Twoje wydarzenie zostało usunięte',sender='no-reply-EventCalendar@dannyx123.ct8.pl',recipients =[f'{checkquery[0][0]}'])
@@ -272,8 +283,9 @@ def user():
         return jsonify(jsonobj)
     elif request.method == "POST":
         body = request.get_json()
-        updateQuery = f"Update users set role = 'root' where id={body['id']}"
-        update = db.UpdateQuery(updateQuery)
+        updateQuery = f"Update users set role = 'root' where id=%s"
+        data= body['id']
+        update = db.UpdateQuery(updateQuery,data)
         if update == True:
             logging.info("[*] user update sucessfull!")
             return Response("ok",status=200)
@@ -281,8 +293,9 @@ def user():
             return Response(status=500)
     elif request.method == 'DELETE':
         body = request.get_json()
-        deletequery = f"delete from users where id={body['id']}"
-        delete = db.DeleteQuery(deletequery)
+        deletequery = f"delete from users where id=%s"
+        data= body['id']
+        delete = db.DeleteQuery(deletequery,data)
         if delete == True:
             logging.info("[*] user delete sucessfull!")
             return Response("ok",status=200)

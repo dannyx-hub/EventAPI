@@ -30,15 +30,16 @@ class db:
             print(e)
 
 
-    def CursorExec(self,query):
+    def CursorExec(self,sql,data=""):
         self.cursor = self.conn.cursor()
-        self.cursor.execute(query)
+        self.cursor.execute(sql,data)
         result = self.cursor.fetchall()
         self.cursor.close()
         return result
-    def fetchOne(self,query):
+
+    def fetchOne(self,sql,data=""):
         self.cursor = self.conn.cursor()
-        self.cursor.execute(query)
+        self.cursor.execute(sql,data)
         if self.cursor.rowcount == 0:
             return 0
         else:
@@ -48,30 +49,30 @@ class db:
             else:
                 self.cursor.close()
                 return result
-    def InsertQuery(self,query):
+    def InsertQuery(self,sql,data=""):
         self.cursor = self.conn.cursor()
         try:
-            self.cursor.execute(query)
+            self.cursor.execute(sql,data)
             self.conn.commit()
             return True
         except Exception as e:
             print(e)
             return False
 
-    def UpdateQuery(self,query):
+    def UpdateQuery(self,sql,data=""):
         self.cursor = self.conn.cursor()
         try:
-            self.cursor.execute(query)
+            self.cursor.execute(sql,data)
             self.conn.commit()
             return True
         except Exception as e:
             print(e)
             return False
 
-    def DeleteQuery(self,query):
+    def DeleteQuery(self,sql,data=""):
         self.cursor = self.conn.cursor()
         try:
-            self.cursor.execute(query)
+            self.cursor.execute(sql,data)
             self.conn.commit()
             return True
         except Exception as e:
