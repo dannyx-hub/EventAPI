@@ -164,7 +164,7 @@ def lecturesadd():
                     abort(501)
 
             else:
-                return Response(status=404)
+                return Response(status=500)
 #-------------------------------------------------------------------------------------------------------
 #APPROVED EVENTS LIST
 @app.route('/api/list',methods=['GET'])
@@ -239,17 +239,18 @@ def approve():
                 return Response(status=500)
     elif request.method == "DELETE":
         body = request.get_json()
-        checkquery = f"select email,id from events where id = %s"
+        checkquery = f"select email,eventname,eventstartdate,eventstopdate,eventpersoncreator,descr from events where id = %s"
         data= body['id']
         deletequery = f"delete from events where id=%s"
-        check = db.CursorExec(checkquery,data)
+        check = db.CursorExec(checkquery,[data])
         print(check)
         if len(check) == 1:
-            delete = db.DeleteQuery(deletequery,data)
+            delete = db.DeleteQuery(deletequery,[data])
             if delete == True:
                 try:
-                    msg = Message('Twoje wydarzenie zostało usunięte',sender='no-reply-EventCalendar@dannyx123.ct8.pl',recipients =[f'{checkquery[0][0]}'])
-                    msg.html=f"<h3>Twoje wydarzenie:</h3>\n<h2>{check[0][0]}</h2>\n<br><b>data</b>:{check[0][1]} - {check[0][2]}<br><b>opis</b>:{check[0][3]}\n<br>zmieniło status na <b><u>ODRZUCONY</u></b><br><b>powód:</b>{body['msg']}<br>Jego aktualny stan możesz sprawdzić na naszej <a href='http://129.159.203.123/'>stronie internetowej</a>"
+                    msg = Message('Twoje wydarzenie zostało usunięte',sender='no-reply-EventCalendar@dannyx123.ct8.pl',recipients =[f'{check[0][0]}'])
+                    msg.html=f"<h3>Twoje wydarzenie:</h3>\n<h2>{check[0][1]}</h2>\n<br><b>data</b>:{check[0][2]} - {check[0][3]}<br><b>opis</b>:{check[0][5]}\n<br>zmieniło status na <b><u>ODRZUCONY</u></b><br><b>powód:</b>{body['msg']}<br>Jego aktualny stan możesz sprawdzić na naszej <a href='http://129.159.203.123/'>stronie internetowej</a>"
+                    # msg.body = "dupadupa123."
                     mail.send(msg)
                     logging.info("[*] Mail send!")
                 except Exception as e:
