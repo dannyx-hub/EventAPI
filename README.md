@@ -30,7 +30,7 @@ secret_key =
 <p><b>user</b> = nazwa użytkownika bazy danych
 <p><b>password</b> = hasło do użytkownika bazy danych
 
-<h3>[postgres]</h3>
+<h3>[email]</h3>
  <p><b>server</b> = nazwa serwera smtp
   <p><b>port</b> = port serwera smtp
     <p><b>username</b> = nazwa użytkownika
