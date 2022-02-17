@@ -1,0 +1,15 @@
+{
+    "python.pythonPath": "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python38-32\\python.exe",
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "askForPassword": true,
+            "driver": "PostgreSQL",
+            "name": "lecture",
+            "database": "lectures",
+            "username": "postgres"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    // Użyj funkcji IntelliSense, aby uzyskać informacje o możliwych atrybutach.
+    // Najedź kursorem, aby wyświetlić opisy istniejących atrybutów.
+    // Aby uzyskać więcej informacji, odwiedź stronę: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "1.1.1",
+    "configurations": [
+        {
+            "name": "Python: server",
+            "type": "python",
+            "request": "launch",
+            "program": "server.py",
+            "console": "integratedTerminal"
+        }
+    ]
+}
