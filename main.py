@@ -189,7 +189,7 @@ def approve():
     if request.method == "PUT":
       body = request.get_json()
       checkquery = "select id from events where id =%s"
-      data = body['id']
+      id = body['id']
       check = db.CursorExec(checkquery,[data])
       if len(check)==1:
           eventname = body['eventname']
@@ -197,7 +197,14 @@ def approve():
           eventstopdate = body['eventstopdate']
           eventpersoncreator = body['eventpersoncreator']
           descr = body['descr']
-          email = body['email'] 
+          email = body['email']
+          updatequery = "update events set eventname = %s,eventstartdate=%s,evenstopdate=%s,eventpersoncreator=%s,descr=%s,email=%s where id = %s"
+          data = (eventname,eventstartdate,eventstopdate,eventpersoncreator,descr,email,id)
+          update = db.UpdateQuery(updatequery,data)
+          if update == True:
+              logging.info("[*] Event Update")
+              msg = Message('Twoje wydarzenie zostało zaktualizowane',sender ='no-reply-EventCalendar@dannyx123.ct8.pl',recipients = [email])
+              msg.html = f"<h3>Twoje wydarzenie:</h3>\n<h2>{check[0][0]}</h2>\n<br><b>data</b>:{check[0][1]} - {check[0][2]}<br><b>opis</b>:{check[0][3]}\n<br>zmieniło status na <b><u>ZATWIERDZONY</u></b>.<br>Jego aktualny stan możesz sprawdzić na naszej <a href='http://129.159.203.123/'>stronie internetowej</a>"
     elif request.method == "POST":
         body = request.get_json()
         checkquery = f'select eventname,eventstartdate,eventstopdate,descr,email from events where id =%s and approved = false'
@@ -236,7 +243,6 @@ def approve():
                 try:
                     msg = Message('Twoje wydarzenie zostało usunięte',sender='no-reply-EventCalendar@dannyx123.ct8.pl',recipients =[f'{check[0][0]}'])
                     msg.html=f"<h3>Twoje wydarzenie:</h3>\n<h2>{check[0][1]}</h2>\n<br><b>data</b>:{check[0][2]} - {check[0][3]}<br><b>opis</b>:{check[0][5]}\n<br>zmieniło status na <b><u>ODRZUCONY</u></b><br><b>powód:</b>{body['msg']}<br>Jego aktualny stan możesz sprawdzić na naszej <a href='http://129.159.203.123/'>stronie internetowej</a>"
-                    # msg.body = "dupadupa123."
                     mail.send(msg)
                     logging.info("[*] Mail send!")
                 except Exception as e:
