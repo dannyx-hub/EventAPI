@@ -15,7 +15,7 @@ import jwt
 from functools import wraps
 import re
 
-version = '1.1.1'
+version = '1.1.2'
 #-------------------------------------------------------------------------------------------------------
 logging.basicConfig(format='%(message)s',stream=open(r'log.txt', 'w', encoding='utf-8'),level=5)
 tprint("EventAPI")
@@ -147,7 +147,7 @@ def lecturesadd():
                     if insert == True:
                         try:
                             msg = Message('Potwierdzenie dodania wydarzenia',sender ='no-reply-EventCalendar@dannyx123.ct8.pl',recipients = [email])
-                            msg.html=f"<h3>Twoje wydarzenie:</h3>\n<h2>{eventname}</h2>\n<br><b>data</b>:{eventstartdate} - {eventstopdate}<br><b>opis</b>:{descr}\n<br>zostało utworzone i czeka na zatwierdzenie. Jego aktualny stan możesz sprawdzić na naszej <a href='http://129.159.203.123/'>stronie internetowej</a>"
+                            msg.html=f"<h3>Twoje wydarzenie:</h3>\n<h2>{eventname}</h2>\n<br><b>data</b>:{eventstartdate} - {eventstopdate}<br><b>opis</b>:{descr}\n<br>zostało utworzone i czeka na zatwierdzenie. Jego aktualny stan możesz sprawdzić na naszej <a href='https://karczmarpg.tk'>stronie internetowej</a>"
                             mail.send(msg)
                             # print(msg)
                             logging.info("[*] Eventadd Mail send!")
@@ -190,21 +190,34 @@ def approve():
       body = request.get_json()
       checkquery = "select id from events where id =%s"
       id = body['id']
-      check = db.CursorExec(checkquery,[data])
+      check = db.CursorExec(checkquery,[id])
       if len(check)==1:
-          eventname = body['eventname']
-          eventstartdate = body['eventstartdate']
-          eventstopdate = body['eventstopdate']
-          eventpersoncreator = body['eventpersoncreator']
-          descr = body['descr']
-          email = body['email']
-          updatequery = "update events set eventname = %s,eventstartdate=%s,evenstopdate=%s,eventpersoncreator=%s,descr=%s,email=%s where id = %s"
-          data = (eventname,eventstartdate,eventstopdate,eventpersoncreator,descr,email,id)
-          update = db.UpdateQuery(updatequery,data)
-          if update == True:
-              logging.info("[*] Event Update")
-              msg = Message('Twoje wydarzenie zostało zaktualizowane',sender ='no-reply-EventCalendar@dannyx123.ct8.pl',recipients = [email])
-              msg.html = f"<h3>Twoje wydarzenie:</h3>\n<h2>{check[0][0]}</h2>\n<br><b>data</b>:{check[0][1]} - {check[0][2]}<br><b>opis</b>:{check[0][3]}\n<br>zmieniło status na <b><u>ZATWIERDZONY</u></b>.<br>Jego aktualny stan możesz sprawdzić na naszej <a href='http://129.159.203.123/'>stronie internetowej</a>"
+        eventname = body['eventname']
+        eventstartdate = body['eventstartdate']
+        eventstopdate = body['eventstopdate']
+        eventpersoncreator = body['eventpersoncreator']
+        descr = body['descr']
+        email = body['email']
+        checkifexistquery = "select id from events where eventname = %s and eventpersoncreator = %s "
+        checkifexistdata = [eventname,eventpersoncreator]
+        checkifexist = db.CursorExec(checkifexistquery,checkifexistdata)
+        updatequery = "update events set eventname = %s,eventstartdate=%s,eventstopdate=%s,eventpersoncreator=%s,descr=%s,email=%s where id = %s"
+        if len(checkifexist)<0:   
+            data = (eventname,eventstartdate,eventstopdate,eventpersoncreator,descr,email,id)
+            update = db.UpdateQuery(updatequery,data)
+            if update == True:
+                logging.info("[*] Event Update")
+                msg = Message('Twoje wydarzenie zostało zaktualizowane',sender ='no-reply-EventCalendar@dannyx123.ct8.pl',recipients = [email])
+                msg.html = f"<h3>Twoje wydarzenie:</h3>\n<h2>{eventname}</h2>\n<br><b>data</b>:{eventstartdate} - {eventstopdate}<br><b>opis</b>:{descr}\n<br>zostało zaktualizowane.<br>Jego aktualny stan możesz sprawdzić na naszej <a href='https://karczmarpg.tk/'>stronie internetowej</a>"
+                logging.info("[*] event update")
+                return Response(status=200)
+            else:
+                logging.error("[!] event update error")
+                return Response(status=402)
+        else:
+                logging.error("[!] event update error, event exist")
+                return Response(status=402)
+            
     elif request.method == "POST":
         body = request.get_json()
         checkquery = f'select eventname,eventstartdate,eventstopdate,descr,email from events where id =%s and approved = false'
@@ -219,7 +232,7 @@ def approve():
             if update == True:
                 try:
                     msg = Message('Zmiana statusu wydarzenia',sender ='no-reply-EventCalendar@dannyx123.ct8.pl',recipients = [f'{check[0][4]}'])
-                    msg.html=f"<h3>Twoje wydarzenie:</h3>\n<h2>{check[0][0]}</h2>\n<br><b>data</b>:{check[0][1]} - {check[0][2]}<br><b>opis</b>:{check[0][3]}\n<br>zmieniło status na <b><u>ZATWIERDZONY</u></b>.<br>Jego aktualny stan możesz sprawdzić na naszej <a href='http://129.159.203.123/'>stronie internetowej</a>"
+                    msg.html=f"<h3>Twoje wydarzenie:</h3>\n<h2>{check[0][0]}</h2>\n<br><b>data</b>:{check[0][1]} - {check[0][2]}<br><b>opis</b>:{check[0][3]}\n<br>zmieniło status na <b><u>ZATWIERDZONY</u></b>.<br>Jego aktualny stan możesz sprawdzić na naszej <a href='https://karczmarpg.tk'>stronie internetowej</a>"
                     mail.send(msg)
                     logging.info("[*] Mail send!")
                 except Exception as e:
@@ -242,7 +255,7 @@ def approve():
             if delete == True:
                 try:
                     msg = Message('Twoje wydarzenie zostało usunięte',sender='no-reply-EventCalendar@dannyx123.ct8.pl',recipients =[f'{check[0][0]}'])
-                    msg.html=f"<h3>Twoje wydarzenie:</h3>\n<h2>{check[0][1]}</h2>\n<br><b>data</b>:{check[0][2]} - {check[0][3]}<br><b>opis</b>:{check[0][5]}\n<br>zmieniło status na <b><u>ODRZUCONY</u></b><br><b>powód:</b>{body['msg']}<br>Jego aktualny stan możesz sprawdzić na naszej <a href='http://129.159.203.123/'>stronie internetowej</a>"
+                    msg.html=f"<h3>Twoje wydarzenie:</h3>\n<h2>{check[0][1]}</h2>\n<br><b>data</b>:{check[0][2]} - {check[0][3]}<br><b>opis</b>:{check[0][5]}\n<br>zmieniło status na <b><u>ODRZUCONY</u></b><br><b>powód:</b>{body['msg']}<br>Jego aktualny stan możesz sprawdzić na naszej <a href='https://karczmarpg.tk'>stronie internetowej</a>"
                     mail.send(msg)
                     logging.info("[*] Mail send!")
                 except Exception as e:
@@ -297,3 +310,5 @@ def user():
     else:
         return Response(status=500)
 #-------------------------------------------------------------------------------------------------------
+if __name__ == "__main__":
+    app.run(host='0.0.0.0',port='21155')
