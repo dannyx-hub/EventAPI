@@ -140,16 +140,14 @@ def lecturesadd():
             checklog = db.CursorExec(query,data)
             if len(checklog) <=0:
                 try:
-                    sqlquery = """insert into events (eventname,eventstartdate,eventpersoncreator,approved,eventstopdate,descr,email) values(%s,%s,%s,%s,%s,%s,%s)"""
+                    sqlquery = "insert into events (eventname,eventstartdate,eventpersoncreator,approved,eventstopdate,descr,email) values(%s,%s,%s,%s,%s,%s,%s)"
                     data = (eventname,eventstartdate,eventpersoncreator,approved,eventstopdate,descr,email)
-                    # insert = db.InsertQuery("insert into events (eventname,eventstartdate,eventpersoncreator,approved,eventstopdate,descr,email) values('{eventname}','{eventstartdate}','{eventpersoncreator}','false','{eventstopdate}','\\{descr}','{email}')")
                     insert = db.InsertQuery(sqlquery,data)
                     if insert == True:
                         try:
                             msg = Message('Potwierdzenie dodania wydarzenia',sender ='no-reply-EventCalendar@dannyx123.ct8.pl',recipients = [email])
                             msg.html=f"<h3>Twoje wydarzenie:</h3>\n<h2>{eventname}</h2>\n<br><b>data</b>:{eventstartdate} - {eventstopdate}<br><b>opis</b>:{descr}\n<br>zostało utworzone i czeka na zatwierdzenie. Jego aktualny stan możesz sprawdzić na naszej <a href='https://karczmarpg.tk'>stronie internetowej</a>"
                             mail.send(msg)
-                            # print(msg)
                             logging.info("[*] Eventadd Mail send!")
                         except Exception as e:
                             logging.error(f"[!] Mail send ERROR : {e}")
@@ -202,13 +200,15 @@ def approve():
         checkifexistdata = [eventname,eventpersoncreator]
         checkifexist = db.CursorExec(checkifexistquery,checkifexistdata)
         updatequery = "update events set eventname = %s,eventstartdate=%s,eventstopdate=%s,eventpersoncreator=%s,descr=%s,email=%s where id = %s"
-        if len(checkifexist)<0:   
+        print(len(checkifexist))
+        if len(checkifexist) == 0:   
             data = (eventname,eventstartdate,eventstopdate,eventpersoncreator,descr,email,id)
             update = db.UpdateQuery(updatequery,data)
             if update == True:
                 logging.info("[*] Event Update")
                 msg = Message('Twoje wydarzenie zostało zaktualizowane',sender ='no-reply-EventCalendar@dannyx123.ct8.pl',recipients = [email])
-                msg.html = f"<h3>Twoje wydarzenie:</h3>\n<h2>{eventname}</h2>\n<br><b>data</b>:{eventstartdate} - {eventstopdate}<br><b>opis</b>:{descr}\n<br>zostało zaktualizowane.<br>Jego aktualny stan możesz sprawdzić na naszej <a href='https://karczmarpg.tk/'>stronie internetowej</a>"
+                msg.html = f"<h3>Twoje wydarzenie:</h3>\n<h2>{eventname}</h2>\n<br><b>data</b>:{eventstartdate} - {eventstopdate}<br><b>opis</b>:{descr}\n<br>zostało zaktualizowane.<br>Jego aktualny stan możesz sprawdzić na naszej <a href='https://karczmarpg.tk/'>stronie internetowej</a><br><b>Pozdrawiamy<br>Zespół ds. IT karczmarpg.tk</b>"
+                mail.send(msg)
                 logging.info("[*] event update")
                 return Response(status=200)
             else:
@@ -311,4 +311,5 @@ def user():
         return Response(status=500)
 #-------------------------------------------------------------------------------------------------------
 if __name__ == "__main__":
+    
     app.run(host='0.0.0.0',port='21155')
