@@ -1,8 +1,14 @@
 #EventAPI created by dannyx-hub @2022
+#TODO
+#-get only future events in api/list
+
+
+
 import ssl
-import datetime
+from datetime import datetime
 import logging
 from sqlite3 import Cursor
+from time import strftime
 from flask import Flask,request,Response,abort,jsonify
 from flask_restful import Api
 from flask_mail import Mail,Message
@@ -146,7 +152,7 @@ def lecturesadd():
                     if insert == True:
                         try:
                             msg = Message('Potwierdzenie dodania wydarzenia',sender ='no-reply-EventCalendar@dannyx123.ct8.pl',recipients = [email])
-                            msg.html=f"<h3>Twoje wydarzenie:</h3>\n<h2>{eventname}</h2>\n<br><b>data</b>:{eventstartdate} - {eventstopdate}<br><b>opis</b>:{descr}\n<br>zostało utworzone i czeka na zatwierdzenie. Jego aktualny stan możesz sprawdzić na naszej <a href='https://karczmarpg.tk'>stronie internetowej</a>"
+                            msg.html=f"<h3>Twoje wydarzenie:</h3>\n<h2>{eventname}</h2>\n<br><b>data</b>:{eventstartdate} - {eventstopdate}<br><b>opis</b>:{descr}\n<br>zostało utworzone i czeka na zatwierdzenie. Jego aktualny stan możesz sprawdzić na naszej <a href='https://karczmarpg.tk'>stronie internetowej</a><br><b>Pozdrawiamy<br>Zespół ds. IT karczmarpg.tk</b>"
                             mail.send(msg)
                             logging.info("[*] Eventadd Mail send!")
                         except Exception as e:
@@ -167,9 +173,12 @@ def lecturesadd():
 #APPROVED EVENTS LIST
 @app.route('/api/list',methods=['GET'])
 def list():
+    today = datetime.now()
+    today_format = today.strftime("%G-%m-%d")
+    finetoday = str(today_format)
     jsonobj = []
     columns = ["id","eventname","eventstartdate","eventstopdate","eventpersoncreator","email","descr","approved"]
-    list = db.CursorExec('SELECT id,eventname,eventstartdate,eventstopdate,eventpersoncreator,email,descr,approved from events order by id desc')
+    list = db.CursorExec('SELECT id,eventname,eventstartdate,eventstopdate,eventpersoncreator,email,descr,approved from events where eventstartdate > %s order by id desc',[today_format])
     if list is None:
         return "[]"
     for x in range(len(list)):
@@ -232,7 +241,7 @@ def approve():
             if update == True:
                 try:
                     msg = Message('Zmiana statusu wydarzenia',sender ='no-reply-EventCalendar@dannyx123.ct8.pl',recipients = [f'{check[0][4]}'])
-                    msg.html=f"<h3>Twoje wydarzenie:</h3>\n<h2>{check[0][0]}</h2>\n<br><b>data</b>:{check[0][1]} - {check[0][2]}<br><b>opis</b>:{check[0][3]}\n<br>zmieniło status na <b><u>ZATWIERDZONY</u></b>.<br>Jego aktualny stan możesz sprawdzić na naszej <a href='https://karczmarpg.tk'>stronie internetowej</a>"
+                    msg.html=f"<h3>Twoje wydarzenie:</h3>\n<h2>{check[0][0]}</h2>\n<br><b>data</b>:{check[0][1]} - {check[0][2]}<br><b>opis</b>:{check[0][3]}\n<br>zmieniło status na <b><u>ZATWIERDZONY</u></b>.<br>Jego aktualny stan możesz sprawdzić na naszej <a href='https://karczmarpg.tk'>stronie internetowej</a><br><b>Pozdrawiamy<br>Zespół ds. IT karczmarpg.tk</b>"
                     mail.send(msg)
                     logging.info("[*] Mail send!")
                 except Exception as e:
@@ -311,5 +320,11 @@ def user():
         return Response(status=500)
 #-------------------------------------------------------------------------------------------------------
 if __name__ == "__main__":
-    
-    app.run(host='0.0.0.0',port='21155')
+    debug = appconfig['debug']
+    if debug == "True":
+        print("* API port: ",appconfig['devport'])
+        app.run(host=appconfig['host'],port=appconfig['devport'])
+    elif debug == "False":
+        print("* API port: ",appconfig['port'])
+        app.run(host= appconfig['host'], port=appconfig['port'])
+        

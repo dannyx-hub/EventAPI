@@ -1,31 +1,32 @@
 import psycopg2
-from config import dbconfig
+from config import appconfig, dbconfig
 import logging
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT # <-- ADD THIS LINE
 
 class db:
     def __init__(self):
         self.dbconfig = dbconfig()
+        self.appconfig = appconfig()
         logging.basicConfig(filename='log.txt',level='DEBUG',filemode="a")
-        self.force= None
+        self.sync= self.appconfig['sync']
     def BeginConnection(self):
         try:
             self.conn = psycopg2.connect(**self.dbconfig)
             self.conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT) # <-- ADD THIS LINE
             print("* Connected to Database")
-            cursor = self.conn.cursor()
-            # if self.force == None:
-            #     with open('Event.sql','r') as sqlfile:
-            #         tab = sqlfile.readlines()
-            #         for x in range(len(tab)):
-            #             print(tab[x])
-            #             cursor.execute(tab[x])
-            #             self.conn.commit()
-            #             self.force = True
-            #         print("* Dodano układ bazy")
-            # else:
-            #     print("* nic")       
-            
+            with self.conn.cursor() as cur:
+                check = cur.execute("SELECT tablename FROM pg_catalog.pg_tables WHERE schemaname != 'pg_catalog' AND schemaname != 'information_schema'")
+                result = cur.fetchall()
+                print(result)
+                if len(result) == 0:
+                    cur.execute(open("Event.sql", "r").read())
+                else:
+                    for x in range(len(result)):
+                        if result[0][x] == 'events' or result[0][x] == 'users':
+                            print("[!] Tables exists!")
+                        else:
+                            print("[!] Database Error")
+                
         except Exception as e:
             print(e)
 
