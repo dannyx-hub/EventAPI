@@ -5,7 +5,7 @@
 
 
 import ssl
-from datetime import datetime
+from datetime import datetime,timedelta
 import logging
 from sqlite3 import Cursor
 from time import strftime
@@ -81,7 +81,7 @@ def logowanie():
             data = (login,test.hexdigest())
             log = db.CursorExec(query,data)
             if len(log)==1:
-                token = jwt.encode({'user':log[0][0],'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=45)}, app.config['SECRET_KEY'], "HS256")
+                token = jwt.encode({'user':log[0][0],'exp': datetime.utcnow() + timedelta(minutes=45)}, app.config['SECRET_KEY'], "HS256")
                 logging.info(f"[*] Login succesfull: {login}")
                 return jsonify({'token':token,'id':log[0][1],'role':log[0][2]})
             else:
