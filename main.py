@@ -175,10 +175,9 @@ def lecturesadd():
 def list():
     today = datetime.now()
     today_format = today.strftime("%G-%m-%d")
-    finetoday = str(today_format)
     jsonobj = []
     columns = ["id","eventname","eventstartdate","eventstopdate","eventpersoncreator","email","descr","approved"]
-    list = db.CursorExec('SELECT id,eventname,eventstartdate,eventstopdate,eventpersoncreator,email,descr,approved from events where eventstartdate > %s order by id desc',[today_format])
+    list = db.CursorExec('SELECT id,eventname,eventstartdate,eventstopdate,eventpersoncreator,email,descr,approved from events where eventstartdate >= %s order by id desc',[today_format])
     if list is None:
         return "[]"
     for x in range(len(list)):
@@ -190,7 +189,7 @@ def list():
 
 #-------------------------------------------------------------------------------------------------------
 #ROUTE TO LIST UNAPPROVED EVENTS AND APPROVE EVENT
-@app.route('/api/approve',methods=['PUT','POST','DELETE'])
+@app.route('/api/approve',methods=['PUT','POST','DELETE','GET'])
 @token_required
 def approve():
     if request.method == "PUT":
@@ -227,6 +226,20 @@ def approve():
                 logging.error("[!] event update error, event exist")
                 return Response(status=402)
             
+    elif request.method == "GET":
+        today = datetime.now()
+        today_format = today.strftime("%G-%m-%d")
+        jsonobj = []
+        columns = ["id","eventname","eventstartdate","eventstopdate","eventpersoncreator","email","descr","approved"]
+        list = db.CursorExec('SELECT id,eventname,eventstartdate,eventstopdate,eventpersoncreator,email,descr,approved from events where eventstartdate < %s order by id desc',[today_format])
+        if list is None:
+            return "[]"
+        for x in range(len(list)):
+            data={}
+            for col in range(len(columns)):
+                data[columns[col]]=list[x][col]
+        jsonobj.append(data)
+        return jsonify(jsonobj)
     elif request.method == "POST":
         body = request.get_json()
         checkquery = f'select eventname,eventstartdate,eventstopdate,descr,email from events where id =%s and approved = false'
