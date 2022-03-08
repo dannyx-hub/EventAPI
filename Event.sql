@@ -15,4 +15,11 @@ CREATE TABLE IF NOT EXISTS public.users (
     hash text NOT NULL,
     role character varying(10) NOT NULL
 );
+CREATE TABLE IF NOT EXISTS public.log(
+    id serial NOT NULL,
+    ip text NOT NULL,
+    path text NOT NULL,
+    data TIMESTAMP NOT NULL
+
+);
 Insert INTO public.users(id,login,hash,role) VALUES (1,'root','63a9f0ea7bb98050796b649e85481845','root');

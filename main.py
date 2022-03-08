@@ -1,14 +1,15 @@
 #EventAPI created by dannyx-hub @2022
 #TODO
-#-get only future events in api/list
 
 
 
+from itertools import count
 import ssl
 from datetime import datetime,timedelta
 import logging
 from sqlite3 import Cursor
 from time import strftime
+from wsgiref.util import request_uri
 from flask import Flask,request,Response,abort,jsonify
 from flask_restful import Api
 from flask_mail import Mail,Message
@@ -63,7 +64,15 @@ def token_required(f):
 #LOGIN sqldone
 @app.route('/api/login', methods=['POST'])
 def logowanie():
-    
+    iplog = request.remote_addr
+    path = "api/login"
+    data = [iplog,path,datetime.now()]
+    logquery = "insert into log(ip,path,data) values (%s,%s,%s)"
+    savelog = db.InsertQuery(logquery,data)
+    if savelog == True:
+        pass
+    else:
+        pass
     login = request.form.get('login')
     password = request.form.get('haslo')
     logging.info(f"[*] Login attempt: {login,password}")
@@ -92,7 +101,15 @@ def logowanie():
 @token_required
 def register():
 
-    
+    iplog = request.remote_addr
+    path = "api/register"
+    data = [iplog,path,datetime.now()]
+    logquery = "insert into log(ip,path,data) values (%s,%s,%s)"
+    savelog = db.InsertQuery(logquery,data)
+    if savelog == True:
+        pass
+    else:
+        pass
     login = request.form.get('login')
     password = request.form.get('haslo')
     loginmatch = re.search('([\=\-\"\\\/\@\&])+',login)
@@ -126,6 +143,15 @@ def register():
 #ADD EVENT
 @app.route('/api/eventadd',methods = ['POST'])
 def lecturesadd():
+    iplog = request.remote_addr
+    path = "api/eventadd"
+    data = [iplog,path,datetime.now()]
+    logquery = "insert into log(ip,path,data) values (%s,%s,%s)"
+    savelog = db.InsertQuery(logquery,data)
+    if savelog == True:
+        pass
+    else:
+        pass
     eventname = str(request.form.get('eventname'))
     eventpersoncreator = str(request.form.get('eventpersoncreator'))
     eventstartdate = request.form.get('eventstartdate')
@@ -173,23 +199,47 @@ def lecturesadd():
 #APPROVED EVENTS LIST
 @app.route('/api/list',methods=['GET'])
 def list():
+    archived = request.args.get('archived')
     today = datetime.now()
     today_format = today.strftime("%G-%m-%d")
+    iplog = request.remote_addr
+    path = "api/list"
+    data = [iplog,path,today_format]
+    logquery = "insert into log(ip,path,data) values (%s,%s,%s)"
+    savelog = db.InsertQuery(logquery,data)
+    if savelog == True:
+        pass
+    else:
+        pass
     jsonobj = []
     columns = ["id","eventname","eventstartdate","eventstopdate","eventpersoncreator","email","descr","approved"]
-    list = db.CursorExec('SELECT id,eventname,eventstartdate,eventstopdate,eventpersoncreator,email,descr,approved from events where eventstartdate >= %s order by id desc',[today_format])
-    if list is None:
-        return "[]"
-    for x in range(len(list)):
-       data={}
-       for col in range(len(columns)):
-           data[columns[col]]=list[x][col]
-       jsonobj.append(data)
-    return jsonify(jsonobj)
+    if archived == "false":
+        list = db.CursorExec('SELECT id,eventname,eventstartdate,eventstopdate,eventpersoncreator,email,descr,approved from events where eventstartdate >= %s order by id desc',[today_format])
+        if list is None or len(list)== 0:
+            return "[]"
+        for x in range(len(list)):
+            data={}
+            for col in range(len(columns)):
+                data[columns[col]]=list[x][col]
+        jsonobj.append(data)
+        if jsonobj is None:
+            return "[]"
+        else:
+            return jsonify(jsonobj)
+    elif archived == "true":
+        list = db.CursorExec('SELECT id,eventname,eventstartdate,eventstopdate,eventpersoncreator,email,descr,approved from events where eventstartdate < %s order by id desc',[today_format])
+        if list is None:
+            return "[]"
+        for x in range(len(list)):
+            data={}
+            for col in range(len(columns)):
+                data[columns[col]]=list[x][col]
+        jsonobj.append(data)
+        return jsonify(jsonobj)
 
 #-------------------------------------------------------------------------------------------------------
 #ROUTE TO LIST UNAPPROVED EVENTS AND APPROVE EVENT
-@app.route('/api/approve',methods=['PUT','POST','DELETE','GET'])
+@app.route('/api/approve',methods=['PUT','POST','DELETE'])
 @token_required
 def approve():
     if request.method == "PUT":
@@ -225,21 +275,6 @@ def approve():
         else:
                 logging.error("[!] event update error, event exist")
                 return Response(status=402)
-            
-    elif request.method == "GET":
-        today = datetime.now()
-        today_format = today.strftime("%G-%m-%d")
-        jsonobj = []
-        columns = ["id","eventname","eventstartdate","eventstopdate","eventpersoncreator","email","descr","approved"]
-        list = db.CursorExec('SELECT id,eventname,eventstartdate,eventstopdate,eventpersoncreator,email,descr,approved from events where eventstartdate < %s order by id desc',[today_format])
-        if list is None:
-            return "[]"
-        for x in range(len(list)):
-            data={}
-            for col in range(len(columns)):
-                data[columns[col]]=list[x][col]
-        jsonobj.append(data)
-        return jsonify(jsonobj)
     elif request.method == "POST":
         body = request.get_json()
         checkquery = f'select eventname,eventstartdate,eventstopdate,descr,email from events where id =%s and approved = false'
@@ -299,7 +334,7 @@ def user():
         selectuserquery = "select id,login,role from users"
         columns = ['id','login','role']
         selecteduser = db.CursorExec(selectuserquery)
-        if selecteduser is None:
+        if selecteduser is None or len(selecteduser) == 0:
             return "[]"
         jsonobj=[]
         for x in range(len(selecteduser)):
@@ -331,6 +366,27 @@ def user():
             return Response(status=500)
     else:
         return Response(status=500)
+
+@app.route("/api/log",methods=['GET'])
+# @token_required
+def log():
+    printquery = "select id,ip,path,data from log"
+    ipcountquery = f"select count(ip) from log where data = %s"
+    data = []
+    jsonobj=[]
+    columns = ['id','ip','path','data']
+    # ipcount = db.CursorExec(ipcountquery,data)
+    log = db.CursorExec(printquery,data)
+    iplog = db.CursorExec(ipcountquery,datetime.now())
+    if log is None or len(log) == 0:
+        return "[]"
+    else:
+            for x in range(len(log)):
+                data = {}
+                for col in range(len(columns)):
+                    data[columns[col]] = log[x][col]
+                jsonobj.append(data)
+            return jsonify(jsonobj,iplog)
 #-------------------------------------------------------------------------------------------------------
 if __name__ == "__main__":
     debug = appconfig['debug']
