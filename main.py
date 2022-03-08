@@ -222,13 +222,10 @@ def list():
             for col in range(len(columns)):
                 data[columns[col]]=list[x][col]
         jsonobj.append(data)
-        if jsonobj is None:
-            return "[]"
-        else:
-            return jsonify(jsonobj)
+        return jsonify(jsonobj)
     elif archived == "true":
         list = db.CursorExec('SELECT id,eventname,eventstartdate,eventstopdate,eventpersoncreator,email,descr,approved from events where eventstartdate < %s order by id desc',[today_format])
-        if list is None:
+        if list is None or len(list) == 0:
             return "[]"
         for x in range(len(list)):
             data={}
