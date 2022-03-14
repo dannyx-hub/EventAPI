@@ -291,7 +291,7 @@ def approve():
                     logging.info("[*] Mail send!")
                 except Exception as e:
                     logging.error(f"[!] Mail send ERROR : {e}")
-
+                    
                 logging.info("[*] event update sucessfull!")
                 
                 return Response(status=200)
