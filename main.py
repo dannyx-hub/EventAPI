@@ -214,17 +214,17 @@ def list():
     jsonobj = []
     columns = ["id","eventname","eventstartdate","eventstopdate","eventpersoncreator","email","descr","approved"]
     if archived == "false":
-        list = db.CursorExec('SELECT id,eventname,eventstartdate,eventstopdate,eventpersoncreator,email,descr,approved from events where eventstartdate >= %s order by id desc',[today_format])
+        list = db.CursorExec('SELECT id,eventname,eventstartdate,eventstopdate,eventpersoncreator,email,descr,approved from events where eventstopdate >= %s order by id desc',[today_format])
         if list is None or len(list)== 0:
             return "[]"
         for x in range(len(list)):
             data={}
             for col in range(len(columns)):
                 data[columns[col]]=list[x][col]
-        jsonobj.append(data)
+            jsonobj.append(data)
         return jsonify(jsonobj)
     elif archived == "true":
-        list = db.CursorExec('SELECT id,eventname,eventstartdate,eventstopdate,eventpersoncreator,email,descr,approved from events where eventstartdate < %s order by id desc',[today_format])
+        list = db.CursorExec('SELECT id,eventname,eventstartdate,eventstopdate,eventpersoncreator,email,descr,approved from events where eventstopdate < %s order by id desc',[today_format])
         if list is None or len(list) == 0:
             return "[]"
         for x in range(len(list)):
