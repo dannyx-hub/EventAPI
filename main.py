@@ -1,7 +1,4 @@
 #EventAPI created by dannyx-hub @2022
-#TODO
-
-
 
 from itertools import count
 import ssl
@@ -257,6 +254,9 @@ def approve():
         updatequery = "update events set eventname = %s,eventstartdate=%s,eventstopdate=%s,eventpersoncreator=%s,descr=%s,email=%s where id = %s"
         print(len(checkifexist))
         if len(checkifexist) == 0:   
+            logging.error("[!] event update error, event exist")
+            return Response(status=402)
+        else:
             data = (eventname,eventstartdate,eventstopdate,eventpersoncreator,descr,email,id)
             update = db.UpdateQuery(updatequery,data)
             if update == True:
@@ -268,9 +268,6 @@ def approve():
                 return Response(status=200)
             else:
                 logging.error("[!] event update error")
-                return Response(status=402)
-        else:
-                logging.error("[!] event update error, event exist")
                 return Response(status=402)
     elif request.method == "POST":
         body = request.get_json()
