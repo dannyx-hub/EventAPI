@@ -265,11 +265,11 @@ def approve():
                 return Response(status=200)
             else:
                 logging.error("[!] event update error")
-                return Response(status=402)
+                return Response(status=409)
             
         else:
                 logging.error("[!] event update error, name event exist")
-                return Response(status=402)
+                return Response(jsonify({"msg":"event update error, name event exist"}),status=409)
     # else:
     #     logging.error("[!] event update error")
     #     return Response(status=402)
