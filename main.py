@@ -248,15 +248,12 @@ def approve():
         eventpersoncreator = body['eventpersoncreator']
         descr = body['descr']
         email = body['email']
-        checkifexistquery = "select id from events where eventname = %s and eventpersoncreator = %s "
-        checkifexistdata = [eventname,eventpersoncreator]
+        checkifexistquery = "select id from events where eventname = %s and eventpersoncreator = %s and id != %s  "
+        checkifexistdata = [eventname,eventpersoncreator,id]
         checkifexist = db.CursorExec(checkifexistquery,checkifexistdata)
         updatequery = "update events set eventname = %s,eventstartdate=%s,eventstopdate=%s,eventpersoncreator=%s,descr=%s,email=%s where id = %s"
         print(len(checkifexist))
         if len(checkifexist) == 0:   
-            logging.error("[!] event update error, event exist")
-            return Response(status=402)
-        else:
             data = (eventname,eventstartdate,eventstopdate,eventpersoncreator,descr,email,id)
             update = db.UpdateQuery(updatequery,data)
             if update == True:
@@ -269,6 +266,13 @@ def approve():
             else:
                 logging.error("[!] event update error")
                 return Response(status=402)
+            
+        else:
+                logging.error("[!] event update error, event exist")
+                return Response(status=402)
+    # else:
+    #     logging.error("[!] event update error")
+    #     return Response(status=402)
     elif request.method == "POST":
         body = request.get_json()
         checkquery = f'select eventname,eventstartdate,eventstopdate,descr,email from events where id =%s and approved = false'
