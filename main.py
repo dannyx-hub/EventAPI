@@ -269,7 +269,7 @@ def approve():
             
         else:
                 logging.error("[!] event update error, name event exist")
-                return Response(jsonify({"msg":"event update error, name event exist"}),status=409)
+                return Response('{"msg":"event update error, name event exist"}',status=409)
     # else:
     #     logging.error("[!] event update error")
     #     return Response(status=402)
