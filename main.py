@@ -389,7 +389,7 @@ def log():
                 for col in range(len(columns)):
                     data[columns[col]] = log[x][col]
                 jsonobj.append(data)
-            return jsonify(jsonobj,iplog)
+            return jsonify(jsonobj)
 #-------------------------------------------------------------------------------------------------------
 if __name__ == "__main__":
     debug = appconfig['debug']
