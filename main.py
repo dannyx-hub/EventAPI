@@ -61,9 +61,11 @@ def token_required(f):
 #LOGIN sqldone
 @app.route('/api/login', methods=['POST'])
 def logowanie():
+    today = datetime.now()
+    today_format = today.strftime("%G-%m-%d")
     iplog = request.remote_addr
-    path = "api/login"
-    data = [iplog,path,datetime.now()]
+    path = "api/list"
+    data = [iplog,path,today_format]
     logquery = "insert into log(ip,path,data) values (%s,%s,%s)"
     savelog = db.InsertQuery(logquery,data)
     if savelog == True:
@@ -97,10 +99,11 @@ def logowanie():
 @app.route('/api/register',methods=['POST'] )
 @token_required
 def register():
-
+    today = datetime.now()
+    today_format = today.strftime("%G-%m-%d")
     iplog = request.remote_addr
-    path = "api/register"
-    data = [iplog,path,datetime.now()]
+    path = "api/list"
+    data = [iplog,path,today_format]
     logquery = "insert into log(ip,path,data) values (%s,%s,%s)"
     savelog = db.InsertQuery(logquery,data)
     if savelog == True:
@@ -140,9 +143,11 @@ def register():
 #ADD EVENT
 @app.route('/api/eventadd',methods = ['POST'])
 def lecturesadd():
+    today = datetime.now()
+    today_format = today.strftime("%G-%m-%d")
     iplog = request.remote_addr
-    path = "api/eventadd"
-    data = [iplog,path,datetime.now()]
+    path = "api/list"
+    data = [iplog,path,today_format]
     logquery = "insert into log(ip,path,data) values (%s,%s,%s)"
     savelog = db.InsertQuery(logquery,data)
     if savelog == True:
