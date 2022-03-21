@@ -401,5 +401,5 @@ if __name__ == "__main__":
         app.run(host=appconfig['host'],port=appconfig['devport'])
     elif debug == "False":
         print("* API port: ",appconfig['port'])
-        app.run(host= appconfig['host'], port=appconfig['port'])
+        app.run(host= appconfig['host'], port=appconfig['port'],ssl_context=("server.pem", "server.key"))
         
