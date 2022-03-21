@@ -1,8 +1,12 @@
 #EventAPI created by dannyx-hub @2022
+
+from itertools import count
 import ssl
-import datetime
+from datetime import datetime,timedelta
 import logging
 from sqlite3 import Cursor
+from time import strftime
+from wsgiref.util import request_uri
 from flask import Flask,request,Response,abort,jsonify
 from flask_restful import Api
 from flask_mail import Mail,Message
@@ -15,7 +19,7 @@ import jwt
 from functools import wraps
 import re
 
-version = '1.1.1'
+version = '1.1.2'
 #-------------------------------------------------------------------------------------------------------
 logging.basicConfig(format='%(message)s',stream=open(r'log.txt', 'w', encoding='utf-8'),level=5)
 tprint("EventAPI")
@@ -57,7 +61,17 @@ def token_required(f):
 #LOGIN sqldone
 @app.route('/api/login', methods=['POST'])
 def logowanie():
-    
+    today = datetime.now()
+    today_format = today.strftime("%G-%m-%d")
+    iplog = request.remote_addr
+    path = "api/list"
+    data = [iplog,path,today_format]
+    logquery = "insert into log(ip,path,data) values (%s,%s,%s)"
+    savelog = db.InsertQuery(logquery,data)
+    if savelog == True:
+        pass
+    else:
+        pass
     login = request.form.get('login')
     password = request.form.get('haslo')
     logging.info(f"[*] Login attempt: {login,password}")
@@ -75,7 +89,7 @@ def logowanie():
             data = (login,test.hexdigest())
             log = db.CursorExec(query,data)
             if len(log)==1:
-                token = jwt.encode({'user':log[0][0],'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=45)}, app.config['SECRET_KEY'], "HS256")
+                token = jwt.encode({'user':log[0][0],'exp': datetime.utcnow() + timedelta(minutes=45)}, app.config['SECRET_KEY'], "HS256")
                 logging.info(f"[*] Login succesfull: {login}")
                 return jsonify({'token':token,'id':log[0][1],'role':log[0][2]})
             else:
@@ -85,8 +99,17 @@ def logowanie():
 @app.route('/api/register',methods=['POST'] )
 @token_required
 def register():
-
-    
+    today = datetime.now()
+    today_format = today.strftime("%G-%m-%d")
+    iplog = request.remote_addr
+    path = "api/list"
+    data = [iplog,path,today_format]
+    logquery = "insert into log(ip,path,data) values (%s,%s,%s)"
+    savelog = db.InsertQuery(logquery,data)
+    if savelog == True:
+        pass
+    else:
+        pass
     login = request.form.get('login')
     password = request.form.get('haslo')
     loginmatch = re.search('([\=\-\"\\\/\@\&])+',login)
@@ -120,6 +143,17 @@ def register():
 #ADD EVENT
 @app.route('/api/eventadd',methods = ['POST'])
 def lecturesadd():
+    today = datetime.now()
+    today_format = today.strftime("%G-%m-%d")
+    iplog = request.remote_addr
+    path = "api/list"
+    data = [iplog,path,today_format]
+    logquery = "insert into log(ip,path,data) values (%s,%s,%s)"
+    savelog = db.InsertQuery(logquery,data)
+    if savelog == True:
+        pass
+    else:
+        pass
     eventname = str(request.form.get('eventname'))
     eventpersoncreator = str(request.form.get('eventpersoncreator'))
     eventstartdate = request.form.get('eventstartdate')
@@ -140,16 +174,14 @@ def lecturesadd():
             checklog = db.CursorExec(query,data)
             if len(checklog) <=0:
                 try:
-                    sqlquery = """insert into events (eventname,eventstartdate,eventpersoncreator,approved,eventstopdate,descr,email) values(%s,%s,%s,%s,%s,%s,%s)"""
+                    sqlquery = "insert into events (eventname,eventstartdate,eventpersoncreator,approved,eventstopdate,descr,email) values(%s,%s,%s,%s,%s,%s,%s)"
                     data = (eventname,eventstartdate,eventpersoncreator,approved,eventstopdate,descr,email)
-                    # insert = db.InsertQuery("insert into events (eventname,eventstartdate,eventpersoncreator,approved,eventstopdate,descr,email) values('{eventname}','{eventstartdate}','{eventpersoncreator}','false','{eventstopdate}','\\{descr}','{email}')")
                     insert = db.InsertQuery(sqlquery,data)
                     if insert == True:
                         try:
                             msg = Message('Potwierdzenie dodania wydarzenia',sender ='no-reply-EventCalendar@dannyx123.ct8.pl',recipients = [email])
-                            msg.html=f"<h3>Twoje wydarzenie:</h3>\n<h2>{eventname}</h2>\n<br><b>data</b>:{eventstartdate} - {eventstopdate}<br><b>opis</b>:{descr}\n<br>zostało utworzone i czeka na zatwierdzenie. Jego aktualny stan możesz sprawdzić na naszej <a href='http://129.159.203.123/'>stronie internetowej</a>"
+                            msg.html=f"<h3>Twoje wydarzenie:</h3>\n<h2>{eventname}</h2>\n<br><b>data</b>:{eventstartdate} - {eventstopdate}<br><b>opis</b>:{descr}\n<br>zostało utworzone i czeka na zatwierdzenie. Jego aktualny stan możesz sprawdzić na naszej <a href='https://karczmarpg.tk'>stronie internetowej</a><br><b>Pozdrawiamy<br>Zespół ds. IT karczmarpg.tk</b>"
                             mail.send(msg)
-                            # print(msg)
                             logging.info("[*] Eventadd Mail send!")
                         except Exception as e:
                             logging.error(f"[!] Mail send ERROR : {e}")
@@ -169,17 +201,40 @@ def lecturesadd():
 #APPROVED EVENTS LIST
 @app.route('/api/list',methods=['GET'])
 def list():
+    archived = request.args.get('archived')
+    today = datetime.now()
+    today_format = today.strftime("%G-%m-%d")
+    iplog = request.remote_addr
+    path = "api/list"
+    data = [iplog,path,today_format]
+    logquery = "insert into log(ip,path,data) values (%s,%s,%s)"
+    savelog = db.InsertQuery(logquery,data)
+    if savelog == True:
+        pass
+    else:
+        pass
     jsonobj = []
     columns = ["id","eventname","eventstartdate","eventstopdate","eventpersoncreator","email","descr","approved"]
-    list = db.CursorExec('SELECT id,eventname,eventstartdate,eventstopdate,eventpersoncreator,email,descr,approved from events order by id desc')
-    if list is None:
-        return "[]"
-    for x in range(len(list)):
-       data={}
-       for col in range(len(columns)):
-           data[columns[col]]=list[x][col]
-       jsonobj.append(data)
-    return jsonify(jsonobj)
+    if archived == "false":
+        list = db.CursorExec('SELECT id,eventname,eventstartdate,eventstopdate,eventpersoncreator,email,descr,approved from events where eventstopdate >= %s order by id desc',[today_format])
+        if list is None or len(list)== 0:
+            return "[]"
+        for x in range(len(list)):
+            data={}
+            for col in range(len(columns)):
+                data[columns[col]]=list[x][col]
+            jsonobj.append(data)
+        return jsonify(jsonobj)
+    elif archived == "true":
+        list = db.CursorExec('SELECT id,eventname,eventstartdate,eventstopdate,eventpersoncreator,email,descr,approved from events where eventstopdate < %s order by id desc',[today_format])
+        if list is None or len(list) == 0:
+            return "[]"
+        for x in range(len(list)):
+            data={}
+            for col in range(len(columns)):
+                data[columns[col]]=list[x][col]
+        jsonobj.append(data)
+        return jsonify(jsonobj)
 
 #-------------------------------------------------------------------------------------------------------
 #ROUTE TO LIST UNAPPROVED EVENTS AND APPROVE EVENT
@@ -190,21 +245,42 @@ def approve():
       body = request.get_json()
       checkquery = "select id from events where id =%s"
       id = body['id']
-      check = db.CursorExec(checkquery,[data])
+      check = db.CursorExec(checkquery,[id])
       if len(check)==1:
-          eventname = body['eventname']
-          eventstartdate = body['eventstartdate']
-          eventstopdate = body['eventstopdate']
-          eventpersoncreator = body['eventpersoncreator']
-          descr = body['descr']
-          email = body['email']
-          updatequery = "update events set eventname = %s,eventstartdate=%s,evenstopdate=%s,eventpersoncreator=%s,descr=%s,email=%s where id = %s"
-          data = (eventname,eventstartdate,eventstopdate,eventpersoncreator,descr,email,id)
-          update = db.UpdateQuery(updatequery,data)
-          if update == True:
-              logging.info("[*] Event Update")
-              msg = Message('Twoje wydarzenie zostało zaktualizowane',sender ='no-reply-EventCalendar@dannyx123.ct8.pl',recipients = [email])
-              msg.html = f"<h3>Twoje wydarzenie:</h3>\n<h2>{check[0][0]}</h2>\n<br><b>data</b>:{check[0][1]} - {check[0][2]}<br><b>opis</b>:{check[0][3]}\n<br>zmieniło status na <b><u>ZATWIERDZONY</u></b>.<br>Jego aktualny stan możesz sprawdzić na naszej <a href='http://129.159.203.123/'>stronie internetowej</a>"
+        eventname = body['eventname']
+        eventstartdate = body['eventstartdate']
+        eventstopdate = body['eventstopdate']
+        eventpersoncreator = body['eventpersoncreator']
+        descr = body['descr']
+        email = body['email']
+        checkifexistquery = "select id from events where eventname = %s and id != %s  "
+        checkifexistdata = [eventname,id]
+        checkifexist = db.CursorExec(checkifexistquery,checkifexistdata)
+        updatequery = "update events set eventname = %s,eventstartdate=%s,eventstopdate=%s,eventpersoncreator=%s,descr=%s,email=%s where id = %s"
+        print(len(checkifexist))
+        if len(checkifexist) == 0:   
+            data = (eventname,eventstartdate,eventstopdate,eventpersoncreator,descr,email,id)
+            update = db.UpdateQuery(updatequery,data)
+            if update == True:
+                logging.info("[*] Event Update")
+                try:
+                    msg = Message('Twoje wydarzenie zostało zaktualizowane',sender ='no-reply-EventCalendar@dannyx123.ct8.pl',recipients = [email])
+                    msg.html = f"<h3>Twoje wydarzenie:</h3>\n<h2>{eventname}</h2>\n<br><b>data</b>:{eventstartdate} - {eventstopdate}<br><b>opis</b>:{descr}\n<br>zostało zaktualizowane.<br>Jego aktualny stan możesz sprawdzić na naszej <a href='https://karczmarpg.tk/'>stronie internetowej</a><br><b>Pozdrawiamy<br>Zespół ds. IT karczmarpg.tk</b>"
+                    mail.send(msg)
+                except Exception as e:
+                    logging.error("[!] PUT mail error: ",e)
+
+                return Response(status=200)
+            else:
+                logging.error("[!] event update error")
+                return Response(status=409)
+            
+        else:
+                logging.error("[!] event update error, name event exist")
+                return Response('{"msg":"event update error, name event exist"}',status=409)
+    # else:
+    #     logging.error("[!] event update error")
+    #     return Response(status=402)
     elif request.method == "POST":
         body = request.get_json()
         checkquery = f'select eventname,eventstartdate,eventstopdate,descr,email from events where id =%s and approved = false'
@@ -219,12 +295,12 @@ def approve():
             if update == True:
                 try:
                     msg = Message('Zmiana statusu wydarzenia',sender ='no-reply-EventCalendar@dannyx123.ct8.pl',recipients = [f'{check[0][4]}'])
-                    msg.html=f"<h3>Twoje wydarzenie:</h3>\n<h2>{check[0][0]}</h2>\n<br><b>data</b>:{check[0][1]} - {check[0][2]}<br><b>opis</b>:{check[0][3]}\n<br>zmieniło status na <b><u>ZATWIERDZONY</u></b>.<br>Jego aktualny stan możesz sprawdzić na naszej <a href='http://129.159.203.123/'>stronie internetowej</a>"
+                    msg.html=f"<h3>Twoje wydarzenie:</h3>\n<h2>{check[0][0]}</h2>\n<br><b>data</b>:{check[0][1]} - {check[0][2]}<br><b>opis</b>:{check[0][3]}\n<br>zmieniło status na <b><u>ZATWIERDZONY</u></b>.<br>Jego aktualny stan możesz sprawdzić na naszej <a href='https://karczmarpg.tk'>stronie internetowej</a><br><b>Pozdrawiamy<br>Zespół ds. IT karczmarpg.tk</b>"
                     mail.send(msg)
                     logging.info("[*] Mail send!")
                 except Exception as e:
                     logging.error(f"[!] Mail send ERROR : {e}")
-
+                    
                 logging.info("[*] event update sucessfull!")
                 
                 return Response(status=200)
@@ -242,7 +318,7 @@ def approve():
             if delete == True:
                 try:
                     msg = Message('Twoje wydarzenie zostało usunięte',sender='no-reply-EventCalendar@dannyx123.ct8.pl',recipients =[f'{check[0][0]}'])
-                    msg.html=f"<h3>Twoje wydarzenie:</h3>\n<h2>{check[0][1]}</h2>\n<br><b>data</b>:{check[0][2]} - {check[0][3]}<br><b>opis</b>:{check[0][5]}\n<br>zmieniło status na <b><u>ODRZUCONY</u></b><br><b>powód:</b>{body['msg']}<br>Jego aktualny stan możesz sprawdzić na naszej <a href='http://129.159.203.123/'>stronie internetowej</a>"
+                    msg.html=f"<h3>Twoje wydarzenie:</h3>\n<h2>{check[0][1]}</h2>\n<br><b>data</b>:{check[0][2]} - {check[0][3]}<br><b>opis</b>:{check[0][5]}\n<br>zmieniło status na <b><u>ODRZUCONY</u></b><br><b>powód:</b>{body['msg']}<br>Jego aktualny stan możesz sprawdzić na naszej <a href='https://karczmarpg.tk'>stronie internetowej</a>"
                     mail.send(msg)
                     logging.info("[*] Mail send!")
                 except Exception as e:
@@ -264,7 +340,7 @@ def user():
         selectuserquery = "select id,login,role from users"
         columns = ['id','login','role']
         selecteduser = db.CursorExec(selectuserquery)
-        if selecteduser is None:
+        if selecteduser is None or len(selecteduser) == 0:
             return "[]"
         jsonobj=[]
         for x in range(len(selecteduser)):
@@ -296,4 +372,34 @@ def user():
             return Response(status=500)
     else:
         return Response(status=500)
+
+@app.route("/api/log",methods=['GET'])
+# @token_required
+def log():
+    printquery = "select id,ip,path,data from log"
+    ipcountquery = f"select count(ip) from log where data = %s"
+    data = []
+    jsonobj=[]
+    columns = ['id','ip','path','data']
+    # ipcount = db.CursorExec(ipcountquery,data)
+    log = db.CursorExec(printquery,data)
+    iplog = db.CursorExec(ipcountquery,datetime.now())
+    if log is None or len(log) == 0:
+        return "[]"
+    else:
+            for x in range(len(log)):
+                data = {}
+                for col in range(len(columns)):
+                    data[columns[col]] = log[x][col]
+                jsonobj.append(data)
+            return jsonify(jsonobj)
 #-------------------------------------------------------------------------------------------------------
+if __name__ == "__main__":
+    debug = appconfig['debug']
+    if debug == "True":
+        print("* API port: ",appconfig['devport'])
+        app.run(host=appconfig['host'],port=appconfig['devport'])
+    elif debug == "False":
+        print("* API port: ",appconfig['port'])
+        app.run(host= appconfig['host'], port=appconfig['port'],ssl_context=("server.pem", "server.key"))
+        
