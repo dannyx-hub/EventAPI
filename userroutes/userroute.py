@@ -17,18 +17,18 @@ db.BeginConnection()
 @user_route.route('/api/list', methods=['GET'])
 def list():
     # TODO zapiski do logów muszą mieć funkcje z parametrem (path)
-    # archived = request.args.get('archived')
-    # today = datetime.now()
-    # today_format = today.strftime("%G-%m-%d")
-    # iplog = request.remote_addr
-    # path = "api/list"
-    # data = [iplog, path, today_format]
-    # logquery = "insert into log(ip,path,data) values (%s,%s,%s)"
-    # savelog = db.InsertQuery(logquery, data)
-    # if savelog is True:
-    #     pass
-    # else:
-    #     pass
+    archived = request.args.get('archived')
+    today = datetime.now()
+    today_format = today.strftime("%G-%m-%d")
+    iplog = request.remote_addr
+    path = "api/list"
+    data = [iplog, path, today_format]
+    logquery = "insert into log(ip,path,data) values (%s,%s,%s)"
+    savelog = db.InsertQuery(logquery, data)
+    if savelog is True:
+        pass
+    else:
+        pass
     jsonobj = []
     columns = ["id", "eventname", "eventstartdate", "eventstopdate", "eventpersoncreator", "email", "descr", "approved"]
     if archived == "false":

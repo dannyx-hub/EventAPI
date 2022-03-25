@@ -3,7 +3,6 @@
 from datetime import datetime, timedelta
 import logging
 from time import strftime
-from wsgiref.util import request_uri
 from flask import Flask, request, Response, abort, jsonify
 from flask_restful import Api
 from flask_mail import Mail, Message
@@ -16,6 +15,7 @@ import jwt
 from functools import wraps
 import re
 from userroutes.userroute import user_route
+
 version = '2.0.1'
 # -------------------------------------------------------------------------------------------------------
 
@@ -149,69 +149,8 @@ def register():
                 abort(404)
 
 
+# ------------------------------------------------------------------------------------------------------
 # -------------------------------------------------------------------------------------------------------
-# ADD EVENT
-# @app.route('/api/eventadd', methods=['POST'])
-# def lecturesadd():
-#     today = datetime.now()
-#     today_format = today.strftime("%G-%m-%d")
-#     iplog = request.remote_addr
-#     path = "api/list"
-#     data = [iplog, path, today_format]
-#     logquery = "insert into log(ip,path,data) values (%s,%s,%s)"
-#     savelog = db.InsertQuery(logquery, data)
-#     if savelog is True:
-#         pass
-#     else:
-#         pass
-#     eventname = str(request.form.get('eventname'))
-#     eventpersoncreator = str(request.form.get('eventpersoncreator'))
-#     eventstartdate = request.form.get('eventstartdate')
-#     eventstopdate = request.form.get('eventstopdate')
-#     descr = str(request.form.get('descr'))
-#     email = request.form.get('email')
-#     approved = False
-#     if eventname == '' or eventpersoncreator == '' or eventstartdate == '' or eventname == None or eventpersoncreator == None or eventstartdate == None:
-#         logging.error("[!] lecturesadd error!")
-#         return Response("zla data", status=409)
-#     else:
-#         if eventstartdate > eventstopdate:
-#             logging.error("[!] lecturesadd error! Bad date configuration")
-#             return Response("zla data", status=409)
-#         else:
-#             query = f"SELECT id from events where eventname = %s and eventstartdate = %s"
-#             data = (eventname, eventstartdate)
-#             checklog = db.CursorExec(query, data)
-#             if len(checklog) <= 0:
-#                 try:
-#                     sqlquery = "insert into events (eventname,eventstartdate,eventpersoncreator,approved,eventstopdate,descr,email) values(%s,%s,%s,%s,%s,%s,%s)"
-#                     data = (eventname, eventstartdate, eventpersoncreator, approved, eventstopdate, descr, email)
-#                     insert = db.InsertQuery(sqlquery, data)
-#                     if insert == True:
-#                         try:
-#                             msg = Message('Potwierdzenie dodania wydarzenia',
-#                                           sender='no-reply-EventCalendar@dannyx123.ct8.pl', recipients=[email])
-#                             msg.html = f"<h3>Twoje wydarzenie:</h3>\n<h2>{eventname}</h2>\n<br><b>data</b>:{eventstartdate} - {eventstopdate}<br><b>opis</b>:{descr}\n<br>zostało utworzone i czeka na zatwierdzenie. Jego aktualny stan możesz sprawdzić na naszej <a href='https://karczmarpg.tk'>stronie internetowej</a><br><b>Pozdrawiamy<br>Zespół ds. IT karczmarpg.tk</b> "
-#                             mail.send(msg)
-#                             logging.info("[*] Eventadd Mail send!")
-#                         except Exception as e:
-#                             logging.error(f"[!] Mail send ERROR : {e}")
-#                         logging.info("[*] lecturesadd add sucessfull!")
-#                         return Response('dodano prelekcje', status=200)
-#                     else:
-#                         logging.error("[!] lecturesadd exists!")
-#                         return Response('prelekcja istnieje', status=409)
-#                 except Exception as e:
-#                     logging.error(f"[!] lecturesadd error: {e}")
-#
-#                     abort(501)
-#
-#             else:
-#                 return Response(status=500)
-#
-
-# -------------------------------------------------------------------------------------------------------
-
 # -------------------------------------------------------------------------------------------------------
 # ROUTE TO LIST UNAPPROVED EVENTS AND APPROVE EVENT
 @app.route('/api/approve', methods=['PUT', 'POST', 'DELETE'])
@@ -238,12 +177,17 @@ def approve():
             if len(checkifexist) == 0:
                 data = (eventname, eventstartdate, eventstopdate, eventpersoncreator, descr, email, putid)
                 update = db.UpdateQuery(updatequery, data)
-                if update == True:
+                if update is True:
                     logging.info("[*] Event Update")
                     try:
                         msg = Message('Twoje wydarzenie zostało zaktualizowane',
                                       sender='no-reply-EventCalendar@dannyx123.ct8.pl', recipients=[email])
-                        msg.html = f"<h3>Twoje wydarzenie:</h3>\n<h2>{eventname}</h2>\n<br><b>data</b>:{eventstartdate} - {eventstopdate}<br><b>opis</b>:{descr}\n<br>zostało zaktualizowane.<br>Jego aktualny stan możesz sprawdzić na naszej <a href='https://karczmarpg.tk/'>stronie internetowej</a><br><b>Pozdrawiamy<br>Zespół ds. IT karczmarpg.tk</b>"
+                        msg.html = f"<h3>Twoje wydarzenie:</h3>\n<h2>{eventname}</h2>\n" \
+                                   f"<br><b>data</b>:{eventstartdate}" \
+                                   f"- {eventstopdate}<br><b>opis</b>:{descr}\n<br>zostało zaktualizowane.<br>" \
+                                   f"Jego aktualny stan możesz sprawdzić na naszej" \
+                                   f" <a href='https://karczmarpg.tk/'>stronie internetowej</a>" \
+                                   f"<br><b>Pozdrawiamy<br>Zespół ds. IT karczmarpg.tk</b>"
                         mail.send(msg)
                     except Exception as e:
                         logging.error("[!] PUT mail error: ", e)
@@ -271,11 +215,16 @@ def approve():
             updatequery = f"update events set approved = True where id = %s"
             data = body['id']
             update = db.UpdateQuery(updatequery, [data])
-            if update == True:
+            if update is True:
                 try:
                     msg = Message('Zmiana statusu wydarzenia', sender='no-reply-EventCalendar@dannyx123.ct8.pl',
                                   recipients=[f'{check[0][4]}'])
-                    msg.html = f"<h3>Twoje wydarzenie:</h3>\n<h2>{check[0][0]}</h2>\n<br><b>data</b>:{check[0][1]} - {check[0][2]}<br><b>opis</b>:{check[0][3]}\n<br>zmieniło status na <b><u>ZATWIERDZONY</u></b>.<br>Jego aktualny stan możesz sprawdzić na naszej <a href='https://karczmarpg.tk'>stronie internetowej</a><br><b>Pozdrawiamy<br>Zespół ds. IT karczmarpg.tk</b>"
+                    msg.html = f"<h3>Twoje wydarzenie:</h3>\n<h2>{check[0][0]}</h2>\n<br><b>" \
+                               f"data</b>:{check[0][1]} - {check[0][2]}<br><b>opis</b>:{check[0][3]}\n" \
+                               f"<br>zmieniło status na <b><u>ZATWIERDZONY</u>" \
+                               f"</b>.<br>Jego aktualny stan możesz sprawdzić na naszej" \
+                               f" <a href='https://karczmarpg.tk'>stronie internetowej</a><br><b>" \
+                               f"Pozdrawiamy<br>Zespół ds. IT karczmarpg.tk</b>"
                     mail.send(msg)
                     logging.info("[*] Mail send!")
                 except Exception as e:
@@ -288,7 +237,8 @@ def approve():
                 return Response(status=500)
     elif request.method == "DELETE":
         body = request.get_json()
-        checkquery = f"select email,eventname,eventstartdate,eventstopdate,eventpersoncreator,descr from events where " \
+        checkquery = f"select email,eventname,eventstartdate,eventstopdate,eventpersoncreator,descr " \
+                     f"from events where " \
                      f"id = %s "
         data = body['id']
         deletequery = f"delete from events where id=%s"
@@ -303,7 +253,7 @@ def approve():
                     msg.html = f"<h3>Twoje wydarzenie:</h3>\n<h2>{check[0][1]}</h2>\n<br><b>data</b>" \
                                f":{check[0][2]} - {check[0][3]}<br><b>opis</b>:{check[0][5]}\n<br>zmieniło status na" \
                                f" <b><u>ODRZUCONY</u></b><br><b>powód:</b>{body['msg']}<br>Jego aktualny" \
-                               f" stan możesz sprawdzić na naszej <a href='https://karczmarpg.tk'>stronie internetowej" \
+                               f" stan możesz sprawdzić na naszej <a href='https://karczmarpg.tk'>stronie internetowej"\
                                f"</a>"
                     mail.send(msg)
                     logging.info("[*] Mail send!")
@@ -317,6 +267,7 @@ def approve():
             return Response(status=402)
     else:
         return Response(status=404)
+
 
 # -------------------------------------------------------------------------------------------------------
 # ROUTE TO LIST USERS,UPDATE ROLE AND DELETE THEM
