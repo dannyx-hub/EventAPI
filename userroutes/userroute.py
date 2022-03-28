@@ -3,13 +3,14 @@ import logging
 from flask import request, Response, abort, jsonify, Blueprint
 from flask_mail import Mail, Message
 from database.Database import db
+from mail.mail import Email
 import hashlib
 # from main import token_required
 
 # TODO funkcje do przepisania na blueprint,zweryfikowanie kodu,cos z mailami trzeba zrobic bo narazie nie dzialaja
 
 user_route = Blueprint('userroute', __name__)
-mail = Mail()
+mail = Email()
 db = db()
 db.BeginConnection()
 
@@ -100,15 +101,7 @@ def lecturesadd():
                     insert = db.InsertQuery(sqlquery, data)
                     if insert is True:
                         try:
-                            msg = Message('Potwierdzenie dodania wydarzenia',
-                                          sender='no-reply-EventCalendar@dannyx123.ct8.pl', recipients=[email])
-                            msg.html = f"<h3>Twoje wydarzenie:</h3>\n<h2>{eventname}</h2>\n<br><b>data</b>:{eventstartdate} - {eventstopdate}<br>" \
-                                       f"<b>opis</b>:{descr}\n<br>zostało utworzone i czeka na zatwierdzenie." \
-                                       f" Jego aktualny stan możesz sprawdzić na naszej" \
-                                       f" <a href='https://karczmarpg.tk'>stronie internetowej</a><br><b>" \
-                                       f"Pozdrawiamy<br>Zespół ds. IT karczmarpg.tk</b> "
-                            mail.send(msg)
-                            logging.info("[*] Eventadd Mail send!")
+                            mail.eventaddsend(eventname, eventstartdate, eventstopdate, descr, email)
                         except Exception as e:
                             logging.error(f"[!] Mail send ERROR : {e}")
                         logging.info("[*] lecturesadd add sucessfull!")

@@ -26,20 +26,20 @@ logging.info(
 print(decor("barcode1") + f"    version: {version} created by dannyx-hub   " + decor("barcode1", reverse=True))
 print("\ngithub: https://github.com/dannyx-hub\n")
 # -------------------------------------------------------------------------------------------------------
-emailconfig = emailconfig()
+# emailconfig = emailconfig()
 appconfig = appconfig()
 app = Flask(__name__)
 CORS(app)
 api = Api(app)
 app.config['SECRET_KEY'] = appconfig['secret_key']
-# app.config['DEBUG'] = appconfig['debug']
-app.config['MAIL_SERVER'] = emailconfig['server']
-app.config['MAIL_PORT'] = emailconfig['port']
-app.config['MAIL_USERNAME'] = emailconfig['username']
-app.config['MAIL_PASSWORD'] = emailconfig['password']
-# app.config['MAIL_USE_TLS'] = emailconfig['tls']
-# app.config['MAIL_USE_SSL'] = emailconfig['ssl']
-mail = Mail(app)
+app.config['DEBUG'] = appconfig['debug']
+# app.config['MAIL_SERVER'] = emailconfig['server']
+# app.config['MAIL_PORT'] = emailconfig['port']
+# app.config['MAIL_USERNAME'] = emailconfig['username']
+# app.config['MAIL_PASSWORD'] = emailconfig['password']
+# # app.config['MAIL_USE_TLS'] = emailconfig['tls']
+# # app.config['MAIL_USE_SSL'] = emailconfig['ssl']
+# mail = Mail(app)
 db = db()
 db.BeginConnection()
 app.register_blueprint(user_route)
@@ -149,9 +149,6 @@ def register():
                 abort(404)
 
 
-# ------------------------------------------------------------------------------------------------------
-# -------------------------------------------------------------------------------------------------------
-# -------------------------------------------------------------------------------------------------------
 # ROUTE TO LIST UNAPPROVED EVENTS AND APPROVE EVENT
 @app.route('/api/approve', methods=['PUT', 'POST', 'DELETE'])
 @token_required
