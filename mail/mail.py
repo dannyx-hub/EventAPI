@@ -1,23 +1,23 @@
+import logging
 from config.config import emailconfig
 from flask_mail import Mail, Message
-from flask import Flask
-# from main import app
-import logging
 
-
+# TODO: maile sa spierdolone trzeba pomodzić z current_app bo czuje ze inaczej nie przejdzie
 class Email:
     def __init__(self):
+        from lecturesAPI.main import app
         logging.basicConfig(format='%(message)s', stream=open(r'log.txt', 'w', encoding='utf-8'), level=5)
-        emailapp = Flask(__name__)
-        self.mail = Mail(emailapp)
+        self.mail = Mail()
+        app.debug = 0
+        self.mail.init_app(app)
         config = emailconfig()
         # Mail server Config from Config.ini
-        emailapp.config['MAIL_SERVER'] = config['server']
-        emailapp.config['MAIL_PORT'] = config['port']
-        emailapp.config['MAIL_USERNAME'] = config['username']
-        emailapp.config['MAIL_PASSWORD'] = config['password']
-        emailapp.config['MAIL_USE_TLS'] = config['tls']
-        emailapp.config['MAIL_USE_SSL'] = config['ssl']
+        app.config['MAIL_SERVER'] = config['server']
+        app.config['MAIL_PORT'] = config['port']
+        app.config['MAIL_USERNAME'] = config['username']
+        app.config['MAIL_PASSWORD'] = config['password']
+        # emailapp.config['MAIL_USE_TLS'] = config['tls']
+        # emailapp.config['MAIL_USE_SSL'] = config['ssl']
 
     def eventaddsend(self, name, start, stop, descr, recp):
         try:

@@ -1,7 +1,7 @@
 from configparser import ConfigParser
 
 
-def dbconfig(filename="Config.ini", section='postgresql'):
+def dbconfig(filename="./Config.ini", section='postgresql'):
     parser = ConfigParser()
     parser.read(filename)
 
@@ -15,7 +15,7 @@ def dbconfig(filename="Config.ini", section='postgresql'):
     return db
 
 
-def emailconfig(filename='Config.ini', section='email'):
+def emailconfig(filename='./Config.ini', section='email'):
     parser = ConfigParser()
     parser.read(filename)
 
@@ -29,7 +29,7 @@ def emailconfig(filename='Config.ini', section='email'):
     return email
 
 
-def appconfig(filename='Config.ini', section='app'):
+def appconfig(filename='./Config.ini', section='app'):
     parser = ConfigParser()
     parser.read(filename)
 
