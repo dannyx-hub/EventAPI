@@ -18,32 +18,54 @@ from userroutes.userroute import user_route
 
 version = '2.0.1'
 # -------------------------------------------------------------------------------------------------------
-
-logging.basicConfig(format='%(message)s', stream=open(r'log.txt', 'w', encoding='utf-8'), level=5)
+logging.basicConfig(format='%(message)s',stream=open(r'log.txt', 'w', encoding='utf-8'),level=5)
 tprint("EventAPI")
-logging.info(
-    decor("barcode1") + f"    EventAPI version: {version} created by dannyx-hub    " + decor("barcode1", reverse=True))
-print(decor("barcode1") + f"    version: {version} created by dannyx-hub   " + decor("barcode1", reverse=True))
+logging.info(decor("barcode1") +f"    EventAPI version: {version} created by dannyx-hub    " + decor("barcode1",reverse=True))
+print(decor("barcode1") +f"    version: {version} created by dannyx-hub   " + decor("barcode1",reverse=True))
 print("\ngithub: https://github.com/dannyx-hub\n")
-# -------------------------------------------------------------------------------------------------------
-# emailconfig = emailconfig()
+#-------------------------------------------------------------------------------------------------------
+emailconfig = emailconfig()
 appconfig = appconfig()
 app = Flask(__name__)
 CORS(app)
 api = Api(app)
 app.config['SECRET_KEY'] = appconfig['secret_key']
-app.config['DEBUG'] = appconfig['debug']
+# app.config['DEBUG'] = appconfig['debug']
+app.config['MAIL_SERVER']=emailconfig['server']
+app.config['MAIL_PORT'] = emailconfig['port']
+app.config['MAIL_USERNAME'] = emailconfig['username']
+app.config['MAIL_PASSWORD'] = emailconfig['password']
+# app.config['MAIL_USE_TLS'] = emailconfig['tls']
+# app.config['MAIL_USE_SSL'] = emailconfig['ssl']
+mail = Mail(app)
+# db = db()
+# db.BeginConnection()
+# logging.basicConfig(format='%(message)s', stream=open(r'log.txt', 'w'), level=5)
+# tprint("EventAPI")
+# logging.info(
+#     decor("barcode1") + f"    EventAPI version: {version} created by dannyx-hub    " + decor("barcode1", reverse=True))
+# print(decor("barcode1") + f"    version: {version} created by dannyx-hub   " + decor("barcode1", reverse=True))
+# print("\ngithub: https://github.com/dannyx-hub\n")
+# # -------------------------------------------------------------------------------------------------------
+#
+# emailconfig = emailconfig()
+# appconfig = appconfig()
+# app = Flask(__name__)
+# CORS(app)
+# api = Api(app)
+# app.config['SECRET_KEY'] = appconfig['secret_key']
+# app.config['DEBUG'] = appconfig['debug']
 # app.config['MAIL_SERVER'] = emailconfig['server']
 # app.config['MAIL_PORT'] = emailconfig['port']
 # app.config['MAIL_USERNAME'] = emailconfig['username']
 # app.config['MAIL_PASSWORD'] = emailconfig['password']
 # # app.config['MAIL_USE_TLS'] = emailconfig['tls']
 # # app.config['MAIL_USE_SSL'] = emailconfig['ssl']
-# mail = Mail(app)
-db = db()
-db.BeginConnection()
+# # mail = Mail(app)
+# db = db()
+# db.BeginConnection()
 app.register_blueprint(user_route)
-
+#
 
 # -------------------------------------------------------------------------------------------------------
 def token_required(f):
@@ -334,6 +356,7 @@ def log():
 # -------------------------------------------------------------------------------------------------------
 if __name__ == "__main__":
     debug = appconfig['debug']
+
     if debug == "True":
         print("* API port: ", appconfig['devport'])
         app.run(host=appconfig['host'], port=appconfig['devport'])

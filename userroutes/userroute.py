@@ -101,7 +101,9 @@ def lecturesadd():
                     insert = db.InsertQuery(sqlquery, data)
                     if insert is True:
                         try:
-                            mail.eventaddsend(eventname, eventstartdate, eventstopdate, descr, email)
+                            test = mail.eventaddsend(eventname, eventstartdate, eventstopdate, descr, email)
+                            print(test)
+                            # mail.eventaddsend(eventname, eventstartdate, eventstopdate, descr, email)
                         except Exception as e:
                             logging.error(f"[!] Mail send ERROR : {e}")
                         logging.info("[*] lecturesadd add sucessfull!")
