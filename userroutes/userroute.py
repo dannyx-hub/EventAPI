@@ -4,16 +4,16 @@ from flask import request, Response, abort, jsonify, Blueprint
 from flask_mail import Mail, Message
 from database.Database import db
 from mail.mail import Email
+from log import Log
 import hashlib
-# from main import token_required
 
 # TODO funkcje do przepisania na blueprint,zweryfikowanie kodu,cos z mailami trzeba zrobic bo narazie nie dzialaja
 
 user_route = Blueprint('userroute', __name__)
 mail = Email()
 db = db()
-db.BeginConnection()
-
+dbrun=db.BeginConnection()
+log = Log()
 
 @user_route.route('/api/list', methods=['GET'])
 def list():
@@ -21,15 +21,7 @@ def list():
     archived = request.args.get('archived')
     today = datetime.now()
     today_format = today.strftime("%G-%m-%d")
-    iplog = request.remote_addr
-    path = "api/list"
-    data = [iplog, path, today_format]
-    logquery = "insert into log(ip,path,data) values (%s,%s,%s)"
-    savelog = db.InsertQuery(logquery, data)
-    if savelog is True:
-        pass
-    else:
-        pass
+    log.listlog("/api/list",db)
     jsonobj = []
     columns = ["id", "eventname", "eventstartdate", "eventstopdate", "eventpersoncreator", "email", "descr", "approved"]
     if archived == "false":
@@ -73,7 +65,8 @@ def lecturesadd():
     if savelog is True:
         pass
     else:
-        pass
+        # raise Exception
+        logging.warning("[?] Log Error  ")
     eventname = str(request.form.get('eventname'))
     eventpersoncreator = str(request.form.get('eventpersoncreator'))
     eventstartdate = request.form.get('eventstartdate')

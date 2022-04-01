@@ -1,5 +1,4 @@
 # EventAPI created by dannyx-hub @2022
-
 from datetime import datetime, timedelta
 import logging
 from time import strftime
@@ -14,16 +13,18 @@ from art import tprint, decor
 import jwt
 from functools import wraps
 import re
-from userroutes.userroute import user_route
 
 version = '2.0.1'
 # -------------------------------------------------------------------------------------------------------
-logging.basicConfig(format='%(message)s',stream=open(r'log.txt', 'w', encoding='utf-8'),level=5)
+logging.basicConfig(format='%(message)s', stream=open(r'log.txt', 'w', encoding='utf-8'), level=5)
 tprint("EventAPI")
-logging.info(decor("barcode1") +f"    EventAPI version: {version} created by dannyx-hub    " + decor("barcode1",reverse=True))
-print(decor("barcode1") +f"    version: {version} created by dannyx-hub   " + decor("barcode1",reverse=True))
+logging.info(
+    decor("barcode1") + f"    EventAPI version: {version} created by dannyx-hub    " + decor("barcode1", reverse=True)
+)
+print(decor("barcode1") + f"    version: {version} created by dannyx-hub   " + decor("barcode1", reverse=True))
 print("\ngithub: https://github.com/dannyx-hub\n")
-#-------------------------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------------------------
+from userroutes.userroute import user_route
 emailconfig = emailconfig()
 appconfig = appconfig()
 app = Flask(__name__)
@@ -31,42 +32,11 @@ CORS(app)
 api = Api(app)
 app.config['SECRET_KEY'] = appconfig['secret_key']
 # app.config['DEBUG'] = appconfig['debug']
-app.config['MAIL_SERVER']=emailconfig['server']
+app.config['MAIL_SERVER'] = emailconfig['server']
 app.config['MAIL_PORT'] = emailconfig['port']
 app.config['MAIL_USERNAME'] = emailconfig['username']
 app.config['MAIL_PASSWORD'] = emailconfig['password']
-# app.config['MAIL_USE_TLS'] = emailconfig['tls']
-# app.config['MAIL_USE_SSL'] = emailconfig['ssl']
-mail = Mail(app)
-# db = db()
-# db.BeginConnection()
-# logging.basicConfig(format='%(message)s', stream=open(r'log.txt', 'w'), level=5)
-# tprint("EventAPI")
-# logging.info(
-#     decor("barcode1") + f"    EventAPI version: {version} created by dannyx-hub    " + decor("barcode1", reverse=True))
-# print(decor("barcode1") + f"    version: {version} created by dannyx-hub   " + decor("barcode1", reverse=True))
-# print("\ngithub: https://github.com/dannyx-hub\n")
-# # -------------------------------------------------------------------------------------------------------
-#
-# emailconfig = emailconfig()
-# appconfig = appconfig()
-# app = Flask(__name__)
-# CORS(app)
-# api = Api(app)
-# app.config['SECRET_KEY'] = appconfig['secret_key']
-# app.config['DEBUG'] = appconfig['debug']
-# app.config['MAIL_SERVER'] = emailconfig['server']
-# app.config['MAIL_PORT'] = emailconfig['port']
-# app.config['MAIL_USERNAME'] = emailconfig['username']
-# app.config['MAIL_PASSWORD'] = emailconfig['password']
-# # app.config['MAIL_USE_TLS'] = emailconfig['tls']
-# # app.config['MAIL_USE_SSL'] = emailconfig['ssl']
-# # mail = Mail(app)
-# db = db()
-# db.BeginConnection()
 app.register_blueprint(user_route)
-#
-
 # -------------------------------------------------------------------------------------------------------
 def token_required(f):
     @wraps(f)
@@ -272,7 +242,7 @@ def approve():
                     msg.html = f"<h3>Twoje wydarzenie:</h3>\n<h2>{check[0][1]}</h2>\n<br><b>data</b>" \
                                f":{check[0][2]} - {check[0][3]}<br><b>opis</b>:{check[0][5]}\n<br>zmieniło status na" \
                                f" <b><u>ODRZUCONY</u></b><br><b>powód:</b>{body['msg']}<br>Jego aktualny" \
-                               f" stan możesz sprawdzić na naszej <a href='https://karczmarpg.tk'>stronie internetowej"\
+                               f" stan możesz sprawdzić na naszej <a href='https://karczmarpg.tk'>stronie internetowej" \
                                f"</a>"
                     mail.send(msg)
                     logging.info("[*] Mail send!")
