@@ -48,47 +48,6 @@ def token_required(f):
 
     return decorator
 
-
-# -------------------------------------------------------------------------------------------------------
-# LOGIN sqldone
-# @app.route('/api/login', methods=['POST'])
-# def logowanie():
-#     today = datetime.now()
-#     today_format = today.strftime("%G-%m-%d")
-#     iplog = request.remote_addr
-#     path = "api/list"
-#     data = [iplog, path, today_format]
-#     logquery = "insert into log(ip,path,data) values (%s,%s,%s)"
-#     savelog = db.InsertQuery(logquery, data)
-#     if savelog is True:
-#         pass
-#     else:
-#         pass
-#     login = request.form.get('login')
-#     password = request.form.get('haslo')
-#     logging.info(f"[*] Login attempt: {login, password}")
-#     test = hashlib.md5(password.encode())
-#     loginmatch = re.search('([\=\-\"\\\/\@\&])+', login)
-#     passwordmatch = re.search('([\=\-\"\\\/\@\&])+', password)
-#     if login == '' or password == '':
-#         return Response(status=402)
-#     else:
-#         if loginmatch or passwordmatch:
-#             logging.error("[!] REGEX TRIGGER")
-#             return Response(status=402)
-#         else:
-#             query = "select login,id,role from users where login =%s and hash =%s "
-#             data = (login, test.hexdigest())
-#             log = db.CursorExec(query, data)
-#             if len(log) == 1:
-#                 token = jwt.encode({'user': log[0][0], 'exp': datetime.utcnow() + timedelta(minutes=45)},
-#                                    app.config['SECRET_KEY'], "HS256")
-#                 logging.info(f"[*] Login succesfull: {login}")
-#                 return jsonify({'token': token, 'id': log[0][1], 'role': log[0][2]})
-#             else:
-#                 abort(403)
-
-
 # -------------------------------------------------------------------------------------------------------
 # REGISTER #sqldone
 @app.route('/api/register', methods=['POST'])

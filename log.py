@@ -8,25 +8,13 @@ class Log:
         self.today_format = today.strftime("%G-%m-%d")
 
 
-    def listlog(self,path,con):
+    def Addlog(self,path,con):
         ip = request.remote_addr
         data = [ip,path,self.today_format]
-        logquery = "insert into log(ip,path,data) values(%s,%s,%s)"
-        savelog = con.InsertQuery(logquery,data)
-        if savelog is True:
-            pass
-        else:
-            logging.warning("[?] List log error")
-            raise Exception
-
-
-    def Eventaddlog(self,path,con):
-        ip = request.remote_addr
-        data = [ip, path, self.today_format]
         logquery = "insert into log(ip,path,data) values(%s,%s,%s)"
         savelog = con.InsertQuery(logquery, data)
         if savelog is True:
             pass
         else:
-            logging.warning("[?] List log error")
+            logging.warning("[?] ADD log error")
             raise Exception

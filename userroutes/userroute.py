@@ -1,14 +1,15 @@
-from datetime import datetime, timedelta
+import hashlib
 import logging
-from flask import request, Response, abort, jsonify, Blueprint
-from flask_mail import Mail, Message
-from database.Database import db
+import re
+from datetime import datetime, timedelta
+
+import jwt
 from mail.mail import Email
 from config.config import appconfig
-import hashlib
-import re
-import jwt
+from database.Database import db
+from flask import request, Response, abort, jsonify, Blueprint
 
+from log import Log
 
 user_route = Blueprint('userroute', __name__)
 mail = Email()
@@ -16,23 +17,16 @@ db = db()
 db.BeginConnection()
 config = appconfig()
 config['SECRET_KEY'] = config['secret_key']
+log = Log()
 
 @user_route.route('/api/list', methods=['GET'])
-def list(con):
+def list():
     # TODO zapiski do logów muszą mieć funkcje z parametrem (path)
 
     archived = request.args.get('archived')
     today = datetime.now()
     today_format = today.strftime("%G-%m-%d")
-    iplog = request.remote_addr
-    path = "api/list"
-    data = [iplog, path, today_format]
-    logquery = "insert into log(ip,path,data) values (%s,%s,%s)"
-    savelog = db.InsertQuery(logquery, data)
-    if savelog is True:
-        pass
-    else:
-        pass
+    log.Addlog('/api/log',db)
     jsonobj = []
     columns = ["id", "eventname", "eventstartdate", "eventstopdate", "eventpersoncreator", "email", "descr", "approved"]
     if archived == "false":
@@ -69,15 +63,7 @@ def list(con):
 def lecturesadd():
     today = datetime.now()
     today_format = today.strftime("%G-%m-%d")
-    iplog = request.remote_addr
-    path = "api/list"
-    data = [iplog, path, today_format]
-    logquery = "insert into log(ip,path,data) values (%s,%s,%s)"
-    savelog = db.InsertQuery(logquery, data)
-    if savelog is True:
-        pass
-    else:
-        pass
+    log.Addlog('/api/eventadd',db)
     eventname = str(request.form.get('eventname'))
     eventpersoncreator = str(request.form.get('eventpersoncreator'))
     eventstartdate = request.form.get('eventstartdate')
@@ -130,6 +116,7 @@ def logowanie():
     test = hashlib.md5(password.encode())
     loginmatch = re.search('([\=\-\"\\\/\@\&])+', login)
     passwordmatch = re.search('([\=\-\"\\\/\@\&])+', password)
+    log.Addlog('/api/login', db)
     if login == '' or password == '':
         return Response(status=402)
     else:
