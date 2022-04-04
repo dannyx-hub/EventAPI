@@ -1,27 +1,38 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 import logging
 from flask import request, Response, abort, jsonify, Blueprint
 from flask_mail import Mail, Message
 from database.Database import db
 from mail.mail import Email
-from log import Log
+from config.config import appconfig
 import hashlib
+import re
+import jwt
 
-# TODO funkcje do przepisania na blueprint,zweryfikowanie kodu,cos z mailami trzeba zrobic bo narazie nie dzialaja
 
 user_route = Blueprint('userroute', __name__)
 mail = Email()
 db = db()
-dbrun=db.BeginConnection()
-log = Log()
+db.BeginConnection()
+config = appconfig()
+config['SECRET_KEY'] = config['secret_key']
 
 @user_route.route('/api/list', methods=['GET'])
-def list():
+def list(con):
     # TODO zapiski do logów muszą mieć funkcje z parametrem (path)
+
     archived = request.args.get('archived')
     today = datetime.now()
     today_format = today.strftime("%G-%m-%d")
-    log.listlog("/api/list",db)
+    iplog = request.remote_addr
+    path = "api/list"
+    data = [iplog, path, today_format]
+    logquery = "insert into log(ip,path,data) values (%s,%s,%s)"
+    savelog = db.InsertQuery(logquery, data)
+    if savelog is True:
+        pass
+    else:
+        pass
     jsonobj = []
     columns = ["id", "eventname", "eventstartdate", "eventstopdate", "eventpersoncreator", "email", "descr", "approved"]
     if archived == "false":
@@ -52,7 +63,8 @@ def list():
         jsonobj.append(data)
         return jsonify(jsonobj)
 
-#LOGOWANIE
+
+# LOGOWANIE
 @user_route.route('/api/eventadd', methods=['POST'])
 def lecturesadd():
     today = datetime.now()
@@ -65,8 +77,7 @@ def lecturesadd():
     if savelog is True:
         pass
     else:
-        # raise Exception
-        logging.warning("[?] Log Error  ")
+        pass
     eventname = str(request.form.get('eventname'))
     eventpersoncreator = str(request.form.get('eventpersoncreator'))
     eventstartdate = request.form.get('eventstartdate')
@@ -109,3 +120,30 @@ def lecturesadd():
                     abort(501)
             else:
                 return Response(status=500)
+
+
+@user_route.route("/api/login", methods=['POST'])
+def logowanie():
+    login = request.form.get('login')
+    password = request.form.get('haslo')
+    logging.info(f"[*] Login attempt: {login, password}")
+    test = hashlib.md5(password.encode())
+    loginmatch = re.search('([\=\-\"\\\/\@\&])+', login)
+    passwordmatch = re.search('([\=\-\"\\\/\@\&])+', password)
+    if login == '' or password == '':
+        return Response(status=402)
+    else:
+        if loginmatch or passwordmatch:
+            logging.error("[!] REGEX TRIGGER")
+            return Response(status=402)
+        else:
+            query = "select login,id,role from users where login =%s and hash =%s "
+            data = (login, test.hexdigest())
+            log = db.CursorExec(query, data)
+            if len(log) == 1:
+                token = jwt.encode({'user': log[0][0], 'exp': datetime.utcnow() + timedelta(minutes=45)},
+                                   config['SECRET_KEY'], "HS256")
+                logging.info(f"[*] Login succesfull: {login}")
+                return jsonify({'token': token, 'id': log[0][1], 'role': log[0][2]})
+            else:
+                abort(403)
