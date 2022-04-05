@@ -19,6 +19,10 @@ config = appconfig()
 config['SECRET_KEY'] = config['secret_key']
 log = Log()
 
+
+"""list route: - generate json object with all events, check parameter archived  if true return all finished events 
+false all unfinished events 
+use in EventCalendar package """
 @user_route.route('/api/list', methods=['GET'])
 def list():
     # TODO zapiski do logów muszą mieć funkcje z parametrem (path)
@@ -92,10 +96,8 @@ def lecturesadd():
                     if insert is True:
                         try:
                             test = mail.eventaddsend(eventname, eventstartdate, eventstopdate, descr, email)
-                            print(test)
-                            # mail.eventaddsend(eventname, eventstartdate, eventstopdate, descr, email)
                         except Exception as e:
-                            logging.error(f"[!] Mail send ERROR : {e}")
+                            logging.error(f"[!] Mail send ERROR : {test}")
                         logging.info("[*] lecturesadd add sucessfull!")
                         return Response('dodano prelekcje', status=200)
                     else:
@@ -126,11 +128,11 @@ def logowanie():
         else:
             query = "select login,id,role from users where login =%s and hash =%s "
             data = (login, test.hexdigest())
-            log = db.CursorExec(query, data)
-            if len(log) == 1:
-                token = jwt.encode({'user': log[0][0], 'exp': datetime.utcnow() + timedelta(minutes=45)},
+            loginQuery = db.CursorExec(query, data)
+            if len(loginQuery) == 1:
+                token = jwt.encode({'user': loginQuery[0][0], 'exp': datetime.utcnow() + timedelta(minutes=45)},
                                    config['SECRET_KEY'], "HS256")
                 logging.info(f"[*] Login succesfull: {login}")
-                return jsonify({'token': token, 'id': log[0][1], 'role': log[0][2]})
+                return jsonify({'token': token, 'id': loginQuery[0][1], 'role': loginQuery[0][2]})
             else:
                 abort(403)

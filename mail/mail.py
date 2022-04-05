@@ -84,3 +84,34 @@ class Email:
             return True
         except Exception as e:
             return e
+
+    def approveMail(self,name,start,stop,descr,recp):
+        try:
+            msg = Message('Zmiana statusu wydarzenia', sender='no-reply-EventCalendar@dannyx123.ct8.pl',
+                          recipients=[f'{recp}'])
+            msg.html = f"<h3>Twoje wydarzenie:</h3>\n<h2>{name}</h2>\n<br><b>" \
+                       f"data</b>:{start} - {stop}<br><b>opis</b>:{descr} \n" \
+                       f"<br>zmieniło status na <b><u>ZATWIERDZONY</u>" \
+                       f"</b>.<br>Jego aktualny stan możesz sprawdzić na naszej" \
+                       f" <a href='https://karczmarpg.tk'>stronie internetowej</a><br><b>" \
+                       f"Pozdrawiamy<br>Zespół ds. IT karczmarpg.tk</b>"
+            mail.send(msg)
+            logging.info("[*] Mail send!")
+            return True
+        except Exception as e:
+            return e
+
+    def deleteMail(self,name,start,stop,descr,recp,arg):
+        try:
+            msg = Message('Twoje wydarzenie zostało usunięte', sender='no-reply-EventCalendar@dannyx123.ct8.pl',
+                          recipients=[f'{recp}'])
+            msg.html = f"<h3>Twoje wydarzenie:</h3>\n<h2>{name}</h2>\n<br><b>data</b>" \
+                       f":{start} - {stop}<br><b>opis</b>:{descr}\n<br>zmieniło status na" \
+                       f" <b><u>ODRZUCONY</u></b><br><b>powód:</b>{arg}<br>Jego aktualny" \
+                       f" stan możesz sprawdzić na naszej <a href='https://karczmarpg.tk'>stronie internetowej" \
+                       f"</a>"
+            mail.send(msg)
+            return True
+        except Exception as e:
+            return e
+
