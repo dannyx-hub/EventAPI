@@ -26,7 +26,6 @@ print("\ngithub: https://github.com/dannyx-hub\n")
 # -------------------------------------------------------------------------------------------------------
 from userroutes.userroute import user_route
 from loginroutes.loginroutes import login_route
-# emailconfig = emailconfig()
 appconfig = appconfig()
 app = Flask(__name__)
 CORS(app)

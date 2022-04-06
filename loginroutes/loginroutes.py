@@ -68,6 +68,7 @@ def approve():
         checkexist = db.CursorExec(
             "select eventname,eventstartdate,eventstopdate,descr,email from events where id =%s and "
             "approved = false ", [body['id']])
+        print(checkexist)
         if len(checkexist) == 1:
             approveEvent = db.UpdateQuery("update events set approved = True where id = %s", [body['id']])
             if approveEvent is True:

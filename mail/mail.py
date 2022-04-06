@@ -8,18 +8,20 @@ from flask import Flask
 class Email:
     def __init__(self):
         # from main import app
-        logging.basicConfig(format='%(message)s', stream=open(r'log.txt', 'w', encoding='utf-8'), level=5)
+        logging.basicConfig(format='%(message)s', stream=open(r'log.txt', 'a', encoding='utf-8'), level=5)
         mailapp = Flask(__name__)
-        self.mail = Mail()
         config = emailconfig()
-        self.mail.init_app(mailapp)
+        # self.mail.init_app(mailapp)
         # Mail server Config from Config.ini
-
+        mailapp.config['MAIL_SERVER'] = config['server']
         mailapp.config['MAIL_PORT'] = config['port']
         mailapp.config['MAIL_USERNAME'] = config['username']
         mailapp.config['MAIL_PASSWORD'] = config['password']
-        mailapp.config['MAIL_USE_TLS'] = config['tls']
-        mailapp.config['MAIL_USE_SSL'] = config['ssl']
+        # mailapp.config['MAIL_USE_TLS'] = config['tls']
+        # mailapp.config['MAIL_USE_SSL'] = config['ssl']
+        self.mail = Mail(mailapp)
+        # self.mail.init_app(mailapp)
+        # print(mailapp.config['MAIL_SERVER'])
 
     def eventaddsend(self, name, start, stop, descr, recp):
         try:
@@ -49,7 +51,7 @@ class Email:
                        f"</b>.<br>Jego aktualny stan możesz sprawdzić na naszej" \
                        f" <a href='https://karczmarpg.tk'>stronie internetowej</a><br><b>" \
                        f"Pozdrawiamy<br>Zespół ds. IT karczmarpg.tk</b>"
-            mail.send(msg)
+            self.mail.send(msg)
             logging.info("[*] Mail send!")
             return True
         except Exception as e:
@@ -64,7 +66,7 @@ class Email:
                        f" <b><u>ODRZUCONY</u></b><br><b>powód:</b>{msg}<br>Jego aktualny" \
                        f" stan możesz sprawdzić na naszej <a href='https://karczmarpg.tk'>stronie internetowej" \
                        f"</a>"
-            mail.send(msg)
+            self.mail.send(msg)
             logging.info("[*] Mail send!")
             return True
         except Exception as e:
@@ -79,13 +81,13 @@ class Email:
                        f"Jego aktualny stan możesz sprawdzić na naszej" \
                        f" <a href='https://karczmarpg.tk/'>stronie internetowej</a>" \
                        f"<br><b>Pozdrawiamy<br>Zespół ds. IT karczmarpg.tk</b>"
-            mail.send(msg)
+            self.mail.send(msg)
             logging.info("[*] Mail send!")
             return True
         except Exception as e:
             return e
 
-    def approveMail(self,name,start,stop,descr,recp):
+    def approveMail(self, name, start, stop, descr, recp):
         try:
             msg = Message('Zmiana statusu wydarzenia', sender='no-reply-EventCalendar@dannyx123.ct8.pl',
                           recipients=[f'{recp}'])
@@ -95,13 +97,13 @@ class Email:
                        f"</b>.<br>Jego aktualny stan możesz sprawdzić na naszej" \
                        f" <a href='https://karczmarpg.tk'>stronie internetowej</a><br><b>" \
                        f"Pozdrawiamy<br>Zespół ds. IT karczmarpg.tk</b>"
-            mail.send(msg)
+            self.mail.send(msg)
             logging.info("[*] Mail send!")
             return True
         except Exception as e:
             return e
 
-    def deleteMail(self,name,start,stop,descr,recp,arg):
+    def deleteMail(self, name, start, stop, descr, recp, arg):
         try:
             msg = Message('Twoje wydarzenie zostało usunięte', sender='no-reply-EventCalendar@dannyx123.ct8.pl',
                           recipients=[f'{recp}'])
@@ -110,7 +112,7 @@ class Email:
                        f" <b><u>ODRZUCONY</u></b><br><b>powód:</b>{arg}<br>Jego aktualny" \
                        f" stan możesz sprawdzić na naszej <a href='https://karczmarpg.tk'>stronie internetowej" \
                        f"</a>"
-            mail.send(msg)
+            self.mail.send(msg)
             return True
         except Exception as e:
             return e
