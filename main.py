@@ -27,7 +27,14 @@ print("\ngithub: https://github.com/dannyx-hub\n")
 from userroutes.userroute import user_route
 from loginroutes.loginroutes import login_route
 appconfig = appconfig()
+config = emailconfig()
 app = Flask(__name__)
+app.config['MAIL_SERVER'] = config['server']
+app.config['MAIL_PORT'] = config['port']
+app.config['MAIL_USERNAME'] = config['username']
+app.config['MAIL_PASSWORD'] = config['password']
+# mailapp.config['MAIL_USE_TLS'] = config['tls']
+# mailapp.config['MAIL_USE_SSL'] = config['ssl']
 CORS(app)
 api = Api(app)
 app.register_blueprint(user_route)

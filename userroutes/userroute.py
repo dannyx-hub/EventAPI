@@ -2,7 +2,6 @@ import hashlib
 import logging
 import re
 from datetime import datetime, timedelta
-
 import jwt
 from mail.mail import Email
 from config.config import appconfig
@@ -75,7 +74,7 @@ def lecturesadd():
     descr = str(request.form.get('descr'))
     email = request.form.get('email')
     approved = False
-    if eventname == '' or eventpersoncreator == '' or eventstartdate == '' or eventname is None \
+    if not eventname or eventpersoncreator == '' or eventstartdate == '' or eventname is None \
             or eventpersoncreator is None or eventstartdate is None:
         logging.error("[!] lecturesadd error!")
         return Response(status=409)
@@ -95,7 +94,8 @@ def lecturesadd():
                     insert = db.InsertQuery(sqlquery, data)
                     if insert is True:
                         try:
-                            test = mail.eventaddsend(eventname, eventstartdate, eventstopdate, descr, email)
+                            test = Email().eventaddsend(eventname, eventstartdate, eventstopdate, descr, email)
+                            print(test)
                         except Exception as e:
                             logging.error(f"[!] Mail send ERROR : {test}")
                         logging.info("[*] lecturesadd add sucessfull!")
