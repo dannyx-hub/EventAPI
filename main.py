@@ -40,7 +40,13 @@ api = Api(app)
 app.register_blueprint(user_route)
 app.register_blueprint(login_route)
 db = db()
-db.BeginConnection()
+con = db.BeginConnection()
+if con[0] is True:
+    print(" * Connect to Database!")
+if con[1] is False:
+    print(" * Tabeles checked!")
+else:
+    print(" * Structure Created!")
 # -------------------------------------------------------------------------------------------------------
 def token_required(f):
     @wraps(f)
@@ -268,8 +274,8 @@ if __name__ == "__main__":
     debug = appconfig['debug']
 
     if debug == "True":
-        print("* API port: ", appconfig['devport'])
+        print(" * API port: ", appconfig['devport'])
         app.run(host=appconfig['host'], port=appconfig['devport'])
     elif debug == "False":
-        print("* API port: ", appconfig['port'])
+        print(" * API port: ", appconfig['port'])
         app.run(host=appconfig['host'], port=appconfig['port'], ssl_context=("server.pem", "server.key"))

@@ -1,41 +1,39 @@
+
 import logging
 from config.config import emailconfig
 from flask_mail import Mail, Message
 from flask import Flask
-# TODO https://stackoverflow.com/questions/34122949/working-outside-of-application-context-flask <- zaciagnaie configu maila z main
-#https://stackoverflow.com/questions/57734132/flask-application-context-app-app-context-push-works-but-cant-get-with-ap
-# TODO: maile sa spierdolone trzeba pomodzić z current_app bo czuje ze inaczej nie przejdzie
 class Email:
     def __init__(self):
         # from main import app
         logging.basicConfig(format='%(message)s', stream=open(r'log.txt', 'a', encoding='utf-8'), level=5)
         config = emailconfig()
-        # self.mail.init_app(mailapp)
-        mailapp = Flask(__name__)
-        self.mail = Mail(mailapp)
-        # Mail server Config from Config.ini
-        mailapp.config['MAIL_SERVER'] = config['server']
-        mailapp.config['MAIL_PORT'] = config['port']
-        mailapp.config['MAIL_USERNAME'] = config['username']
-        mailapp.config['MAIL_PASSWORD'] = config['password']
+        self.mailapp = Flask(__name__)
+        self.mailapp.config['MAIL_SERVER'] = config['server']
+        self.mailapp.config['MAIL_PORT'] = config['port']
+        self.mailapp.config['MAIL_USERNAME'] = config['username']
+        self.mailapp.config['MAIL_PASSWORD'] = config['password']
         # mailapp.config['MAIL_USE_TLS'] = config['tls']
         # mailapp.config['MAIL_USE_SSL'] = config['ssl']
-        # self.mail.init_app(mailapp)
-        # print(mailapp.config['MAIL_SERVER'])
+        self.mail = Mail(self.mailapp)
+        # self.mail.init_app(self.mailapp)
+
 
     def eventaddsend(self, name, start, stop, descr, recp):
         try:
             # self.mail.init_app(self.mailapp)
             msg = Message('Potwierdzenie dodania wydarzenia',
                           sender='no-reply-EventCalendar@dannyx123.ct8.pl', recipients=[recp])
+
             msg.html = f"<h3>Twoje wydarzenie:" \
                        f"</h3>\n<h2>{name}</h2>\n" \
                        f"<br><b>data</b>:{start} - {stop}<br>" \
                        f"<b>opis</b>:{descr}\n" \
-                       f"<br>zostało utworzone i czeka na zatwierdzenie." \
-                       f" Jego aktualny stan możesz sprawdzić na naszej" \
+                       f"<br>zosta&#321o utworzone i czeka na zatwierdzenie." \
+                       f" Jego aktualny stan mo&#380esz sprawdzi&#262 na naszej" \
                        f" <a href='https://karczmarpg.tk'>stronie internetowej</a><br><b>" \
-                       f"Pozdrawiamy<br>Zespół ds. IT karczmarpg.tk</b>"
+                       f"Pozdrawiamy<br>Zesp&#243&#322 ds. IT karczmarpg.tk</b>"
+
             self.mail.send(msg)
             logging.info("[*] Mail send!")
             return True

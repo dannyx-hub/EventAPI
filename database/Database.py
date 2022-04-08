@@ -14,16 +14,18 @@ class db:
     def BeginConnection(self):
         try:
             self.conn = psycopg2.connect(**self.dbconfig)
+            if self.conn:
+                connected = True
             self.conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)  # <-- ADD THIS LINE
-            print("* Connected to Database")
             with self.conn.cursor() as cur:
                 check = cur.execute(
                     "SELECT tablename FROM pg_catalog.pg_tables WHERE schemaname != 'pg_catalog' AND schemaname != 'information_schema'")
                 result = cur.fetchall()
                 if len(result) == 0:
                     cur.execute(open("Event.sql", "r").read())
+                    return connected, True
                 else:
-                    print("[!] Tables exists!")
+                    return connected, False
 
         except Exception as e:
             logging.warning(e)
