@@ -96,7 +96,7 @@ def lecturesadd():
                         try:
                             test = Email().eventaddsend(eventname, eventstartdate, eventstopdate, descr, email)
                             print(test)
-                        except Exception as e:
+                        except test != True:
                             logging.error(f"[!] Mail send ERROR : {test}")
                         logging.info("[*] lecturesadd add sucessfull!")
                         return Response('dodano prelekcje', status=200)

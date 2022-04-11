@@ -1,7 +1,7 @@
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-from config.config import emailconfig
+# from config.config import emailconfig
 
 
 class NewEmail:
@@ -22,26 +22,23 @@ class NewEmail:
         except Exception as e:
             print(e)
 
-    def SendTestMail(self, charset='utf-8'):
-        sent_from = "no-reply-EventCalendar@dannyx123.ct8.pl"
-        to = ['damian.paluch0503@gmail.com']
-        subject = 'Test nowego maila'
-        body = "ążźćęóń"
-        email_text = """\
-                From: %s
-                To: %s
-                Subject: %s
-                %s
-                """ % (sent_from, ", ".join(to), subject, body)
+    def SendTestMail(self,sent_from,sent_to,subject,text,html):
+        msg = MIMEMultipart("alternative")
+        msg["Subject"] = subject
+        msg["From"] = sent_from
+        msg["To"] = sent_to
+        # Turn these into plain/html MIMEText objects
+        part1 = MIMEText(text, "plain")
+        part2 = MIMEText(html, "html")
+
+        # Add HTML/plain-text parts to MIMEMultipart message
+        # The email client will try to render the last part first
+        msg.attach(part1)
+        msg.attach(part2)
+
         try:
-            self.smtp_server.sendmail(sent_from, to, email_text.encode("utf8"))
-            print("dziala")
+            self.smtp_server.sendmail(sent_from, sent_to, msg.as_string())
+            return True
         except Exception as e:
-            print(e)
+            return e
 
-
-if __name__ == "__main__":
-    test = newEmail()
-    test.beginConnection()
-    if test.beginConnection() is True:
-        test.SendTestMail()
