@@ -1,12 +1,13 @@
 import smtplib
+import logging
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
-# from config.config import emailconfig
+from config.config import emailconfig
 
 
 class NewEmail:
-    # https://realpython.com/python-send-email/#starting-a-secure-smtp-connection
     def __init__(self):
+
         mailconfig = emailconfig()
         self.server = mailconfig['server']
         self.port = mailconfig['port']
@@ -22,23 +23,30 @@ class NewEmail:
         except Exception as e:
             print(e)
 
-    def SendTestMail(self,sent_from,sent_to,subject,text,html):
+    def parseMail(self, template, name, start, stop, descr, ifDelete=False, comment=None):
+        with open(template, "r") as templatefile:
+            checkfile = str(templatefile.read())
+        if ifDelete is True:
+            message = checkfile.format(name, start, stop, descr, comment)
+        else:
+            message = checkfile.format(name, start, stop, descr)
+        return message
+
+    def SendMail(self, sent_to, subject, template, name, start, stop, descr, isDelete, comment):
+        sent_from = "no-reply-EventCalendar@dannyx123.ct8.pl"
         msg = MIMEMultipart("alternative")
         msg["Subject"] = subject
         msg["From"] = sent_from
         msg["To"] = sent_to
-        # Turn these into plain/html MIMEText objects
-        part1 = MIMEText(text, "plain")
-        part2 = MIMEText(html, "html")
-
-        # Add HTML/plain-text parts to MIMEMultipart message
-        # The email client will try to render the last part first
-        msg.attach(part1)
-        msg.attach(part2)
+        html = self.parseMail(template, name, start, stop, descr, isDelete, comment)
+        part = MIMEText(html, "html")
+        msg.attach(part)
 
         try:
             self.smtp_server.sendmail(sent_from, sent_to, msg.as_string())
             return True
+
         except Exception as e:
             return e
+
 
