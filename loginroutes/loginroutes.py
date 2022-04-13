@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 from config.config import appconfig
 from functools import wraps
 from database.Database import db
-from mail.mail import Email
+from mail.mail import NewEmail
 import hashlib
 import logging
 import jwt
@@ -12,7 +12,7 @@ login_route = Blueprint('loginroute', __name__)
 db = db()
 db.BeginConnection()
 config = appconfig()
-mail = Email()
+mail = NewEmail()
 
 
 def token_required(f):
@@ -48,7 +48,7 @@ def approve():
                      body['eventpersoncreator'], body['descr'], body['email'], body['id']])
                 if updateEvent is True:
                     try:
-                        updateMail = mail.eventedit(body['eventname'], body['evenstartdate'], body['eventstopdate'],
+                        updateMail = mail.SendMail(body['eventname'], body['evenstartdate'], body['eventstopdate'],
                                                     body['descr'], body['email'])
                     except Exception:
                         logging.error("[!] Event Update mail Error: ", updateMail)

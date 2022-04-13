@@ -3,33 +3,33 @@ import logging
 import re
 from datetime import datetime, timedelta
 import jwt
-from mail.mail import Email
+from mail.mail import NewEmail
 from config.config import appconfig
 from database.Database import db
 from flask import request, Response, abort, jsonify, Blueprint
-
 from log import Log
 
 user_route = Blueprint('userroute', __name__)
-mail = Email()
+mail = NewEmail()
 db = db()
 db.BeginConnection()
+mail.beginConnection()
 config = appconfig()
 config['SECRET_KEY'] = config['secret_key']
 log = Log()
 
-
 """list route: - generate json object with all events, check parameter archived  if true return all finished events 
 false all unfinished events 
 use in EventCalendar package """
+
+
 @user_route.route('/api/list', methods=['GET'])
 def list():
     # TODO zapiski do logów muszą mieć funkcje z parametrem (path)
-
     archived = request.args.get('archived')
     today = datetime.now()
     today_format = today.strftime("%G-%m-%d")
-    log.Addlog('/api/log',db)
+    log.Addlog('/api/log', db)
     jsonobj = []
     columns = ["id", "eventname", "eventstartdate", "eventstopdate", "eventpersoncreator", "email", "descr", "approved"]
     if archived == "false":
@@ -61,12 +61,11 @@ def list():
         return jsonify(jsonobj)
 
 
-# LOGOWANIE
 @user_route.route('/api/eventadd', methods=['POST'])
 def lecturesadd():
     today = datetime.now()
     today_format = today.strftime("%G-%m-%d")
-    log.Addlog('/api/eventadd',db)
+    log.Addlog('/api/eventadd', db)
     eventname = str(request.form.get('eventname'))
     eventpersoncreator = str(request.form.get('eventpersoncreator'))
     eventstartdate = request.form.get('eventstartdate')
@@ -94,10 +93,9 @@ def lecturesadd():
                     insert = db.InsertQuery(sqlquery, data)
                     if insert is True:
                         try:
-                            test = Email().eventaddsend(eventname, eventstartdate, eventstopdate, descr, email)
-                            print(test)
-                        except test != True:
-                            logging.error(f"[!] Mail send ERROR : {test}")
+                            test = mail.SendMail(email, "Wydarzenie zostało utworzone", './mail/template/EventAdd.html', eventname, eventstartdate, eventstopdate, descr, False,None)
+                        except Exception as e:
+                            logging.error(f"[!] Mail send ERROR : {e}")
                         logging.info("[*] lecturesadd add sucessfull!")
                         return Response('dodano prelekcje', status=200)
                     else:
@@ -105,6 +103,7 @@ def lecturesadd():
                         return Response('event exists', status=409)
                 except Exception as e:
                     logging.error(f"[!] lecturesadd error: {e}")
+
                     abort(501)
             else:
                 return Response(status=500)

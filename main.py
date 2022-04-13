@@ -4,7 +4,6 @@ import logging
 from time import strftime
 from flask import Flask, request, Response, abort, jsonify
 from flask_restful import Api
-from flask_mail import Mail, Message
 from flask_cors import CORS
 from database.Database import db
 from config.config import emailconfig, appconfig
@@ -25,20 +24,20 @@ print(decor("barcode1") + f"    version: {version} created by dannyx-hub   " + d
 print("\ngithub: https://github.com/dannyx-hub\n")
 # -------------------------------------------------------------------------------------------------------
 from userroutes.userroute import user_route
-from loginroutes.loginroutes import login_route
+# from loginroutes.loginroutes import login_route
 appconfig = appconfig()
-config = emailconfig()
+# config = emailconfig()
 app = Flask(__name__)
-app.config['MAIL_SERVER'] = config['server']
-app.config['MAIL_PORT'] = config['port']
-app.config['MAIL_USERNAME'] = config['username']
-app.config['MAIL_PASSWORD'] = config['password']
+# app.config['MAIL_SERVER'] = config['server']
+# app.config['MAIL_PORT'] = config['port']
+# app.config['MAIL_USERNAME'] = config['username']
+# app.config['MAIL_PASSWORD'] = config['password']
 # mailapp.config['MAIL_USE_TLS'] = config['tls']
 # mailapp.config['MAIL_USE_SSL'] = config['ssl']
 CORS(app)
 api = Api(app)
 app.register_blueprint(user_route)
-app.register_blueprint(login_route)
+# app.register_blueprint(login_route)
 db = db()
 con = db.BeginConnection()
 if con[0] is True:
