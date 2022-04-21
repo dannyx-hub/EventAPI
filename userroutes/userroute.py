@@ -111,8 +111,9 @@ def lecturesadd():
 
 @user_route.route("/api/login", methods=['POST'])
 def logowanie():
-    login = request.form.get('login')
-    password = request.form.get('haslo')
+    obj = request.get_json()
+    login = obj['login']
+    password = obj['password']
     logging.info(f"[*] Login attempt: {login, password}")
     test = hashlib.md5(password.encode())
     loginmatch = re.search('([\=\-\"\\\/\@\&])+', login)
